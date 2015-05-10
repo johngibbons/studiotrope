@@ -2,7 +2,10 @@
 	"use strict";
 
 	$(function () {
-		// DOM ready, take it away
+		$("button").attr("aria-label", "Toggle Navigation").on("click", function() {
+			$(this).toggleClass("close");
+			$(".l-wrapper, .lines-button").toggleClass("is-pushed");
+		});
 	});
 
 } ( this, jQuery ));

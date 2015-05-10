@@ -8,3 +8,12 @@
   padding: 0;
   margin: 0;
 }
+
+// mobile nav button
+@mixin line {
+  display: inline-block;
+  width: $button-size;
+  height: $button-size/6;
+  background: $st-dark-gray;
+  transition: 0.1s;
+}

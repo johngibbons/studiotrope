@@ -158,6 +158,16 @@ gulp.task( "watch", [ "template", "styles", "jshint" ], function() {
 	gulp.watch( "src/js/{!(lib)/*.js,*.js}", ["jshint"] );
 });
 
+gulp.task('default', function () {
+	return gulp.src('src/img/*')
+	    .pipe(imagemin({
+	        progressive: true,
+	        svgoPlugins: [{removeViewBox: false}],
+	        use: [pngquant()]
+	    }))
+	    .pipe(gulp.dest('dist/img'));
+});
+
 /** Build */
 gulp.task( "build", [
 	"envProduction",

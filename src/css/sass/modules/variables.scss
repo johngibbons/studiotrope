@@ -8,7 +8,16 @@
  * Typography
  */
 
-$font-family-base: "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
+$gothic: "ff-basic-gothic-web-pro", Helvetica, Arial, "Open Sans", sans-serif;
+$helvetica: "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
+$facit: "jaf-facitweb", Helvetica, Arial, "Open Sans", sans-serif;
+$adelle: "adelle", serif;
+
+
+$font-family-base: $facit;
+$font-family-nav: $facit;
+$font-family-header: $adelle;
+$font-family-button: $facit;
 $font-size-base: 140%;
 $line-height-base: 1.5;
 
@@ -17,9 +26,15 @@ $line-height-base: 1.5;
  * Colors
  */
 
-$text-color: #444;
-$body-bg: #fff;
-$selection-bg: #04A4CC;
+$white: #fff;
+$st-lightest-gray: #eee;
+$st-medium-gray: #aaa;
+$st-dark-gray: #444;
+$st-orange: #d18b00;
+
+$text-color: $st-dark-gray;
+$body-bg: $white;
+$selection-bg: $st-orange;
 
 
 /**
@@ -53,7 +68,9 @@ $selection-bg: #04A4CC;
   )
 );
 
+$mobile-wrapper-width: 90%;
 $wrapper-width: 1280px;
+$mobile-nav-width: 20em;
 
 
 $padding-horizontal-base: 5px;
@@ -62,3 +79,9 @@ $margin-horizontal-base: 5px;
 $margin-vertical-base: 5px;
 $margin-horizontal-large: 15px;
 $margin-vertical-large: 15px;
+
+$base-border: 1px solid $st-lightest-gray;
+$base-border-dashed: 1px dashed $st-lightest-gray;
+$base-border-medium: 1px solid $st-medium-gray;
+$base-border-medium-dashed: 1px dashed $st-medium-gray;
+$base-box-shadow: 0 1px 2px 0 $st-lightest-gray;

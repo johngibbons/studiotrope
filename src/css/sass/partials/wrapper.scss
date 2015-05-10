@@ -4,6 +4,19 @@
  */
 
 
-.wrapper {
-	@include container(80em);
+.l-wrapper {
+	position: relative;
+	background-color: $white;
+	padding-top: 4em;
+	z-index: 1;
+	transition: 0.3s;
+
+  &.is-pushed {
+    transform: translate3d($mobile-nav-width, 0, 0);
+    box-shadow: -1px 0 10px 0 #ddd;
+  }
+}
+
+.l-container {
+	@include container($mobile-wrapper-width);
 }
