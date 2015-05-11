@@ -475,3 +475,5 @@ function theme_typekit_inline() {
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php }
 }
+
+?>

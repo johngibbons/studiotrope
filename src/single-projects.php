@@ -3,59 +3,95 @@
 	<div class="l-container">
 
 		<main role="main">
-		<!-- section -->
-		<section>
+			<!-- section -->
+			<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+				<section id="project-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+					<!-- post thumbnail -->
+					<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
+						<div class="project-featured-image">
+							<?php the_post_thumbnail(); // Fullsize image for the single post ?>
+						</div>
+					<?php endif; ?>
+					<!-- /post thumbnail -->
 
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<div class="project-details">
+						<!-- post title -->
+						<h1 class="project-title">
+							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+						</h1>
+						<!-- /post title -->
 
-				<!-- post thumbnail -->
-				<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-						<?php the_post_thumbnail(); // Fullsize image for the single post ?>
-					</a>
-				<?php endif; ?>
-				<!-- /post thumbnail -->
+						<p class="project-detail"><?php the_terms( $post->ID, 'studio', '<span class="project-detail-label">Studio: </span>', ' / ' ); ?></p>
 
-				<!-- post title -->
-				<h1>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-				</h1>
-				<!-- /post title -->
+						<p class="project-detail"><?php the_terms( $post->ID, 'project_type', '<span class="project-detail-label">Project Type: </span>', ' / ' ); ?></p>
 
-				<?php the_content(); // Dynamic Content ?>
+						<p class="project-detail"><?php the_tags( __( '<span class="project-detail-label">Tags: </span>', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?></p>
 
-				<p><?php the_terms( $post->ID, 'studio', '<span class="term_name">Studio: </span>', ' / ' ); ?></p>
+					</div>
 
-				<p><?php the_terms( $post->ID, 'project_type', '<span class="term_name">Project Type: </span>', ' / ' ); ?></p>
+					<div class="project-contents">
 
-				<?php the_tags( __( '<span class="term_name">Tags: </span>', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
+					<?php
 
-				<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+						// check if the flexible content field has rows of data
+						if( have_rows('flexible_project_content') ):
 
-				<?php comments_template(); ?>
+						     // loop through the rows of data
+						    while ( have_rows('flexible_project_content') ) : the_row();
 
-			</article>
-			<!-- /article -->
+					        	$width = get_sub_field('st_content_width');
 
-		<?php endwhile; ?>
+					        	if(get_sub_field('st_last')) {
+					        		$last = "last";
+					        	};
 
-		<?php else: ?>
+						        if( get_row_layout() == 'project_image' ):
 
-			<!-- article -->
-			<article>
+						        	$image = get_sub_field('st_image');
 
-				<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
+							        		?> <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" class="<?php echo "l_" . $width . " " . $last; ?>"> 
+							        		
+	        		<?php elseif( get_row_layout() == 'project_description' ): 
 
-			</article>
-			<!-- /article -->
+						        	?><p class="project-description <?php echo "l_" . $width . " " . $last; ?>"><?php the_sub_field('st_description'); ?></p>
 
-		<?php endif; ?>
+			        <?php elseif( get_row_layout() == 'project_testimonial' ): ?> 
 
-		</section>
-		<!-- /section -->
+						        	<p class="testimonial <?php echo "l_" . $width . " " . $last; ?>"><?php the_sub_field('st_testimonial'); ?></p>
+
+						        	<?php
+
+						        endif;
+
+						    endwhile;
+
+						else :
+
+						    // no layouts found
+
+						endif;
+
+					?>
+
+					</div>
+
+				</section>
+
+			<?php endwhile; ?>
+
+			<?php else: ?>
+
+				<!-- article -->
+				<section>
+
+					<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
+
+				</section>
+				<!-- /article -->
+
+			<?php endif; ?>
+			<!-- /section -->
 		</main>
 
 	</div>

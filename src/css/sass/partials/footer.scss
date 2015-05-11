@@ -4,4 +4,12 @@
  */
 
 
-.footer {}
+.footer {
+	padding: 1em;
+	background-color: $st-lightest-gray;
+
+	.copyright {
+		text-align: center;
+	}
+
+}

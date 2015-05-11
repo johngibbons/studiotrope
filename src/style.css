@@ -208,6 +208,75 @@ input[type="search"] {
   clear: both;
 }
 
+.l_full {
+  width: 100%;
+}
+
+.l_two_thirds {
+  width: 64.2857142857%;
+  float: left;
+  margin-right: 7.1428571429%;
+}
+@media (min-width: 768px) {
+  .l_two_thirds {
+    width: 65.5172413793%;
+    float: left;
+    margin-right: 3.4482758621%;
+  }
+}
+@media (min-width: 992px) {
+  .l_two_thirds {
+    width: 66.1016949153%;
+    float: left;
+    margin-right: 1.6949152542%;
+  }
+}
+
+.l_one_half {
+  width: 44.4444444444%;
+  float: left;
+  margin-right: 11.1111111111%;
+}
+@media (min-width: 768px) {
+  .l_one_half {
+    width: 48.275862069%;
+    float: left;
+    margin-right: 3.4482758621%;
+  }
+}
+@media (min-width: 992px) {
+  .l_one_half {
+    width: 49.1525423729%;
+    float: left;
+    margin-right: 1.6949152542%;
+  }
+}
+
+.l_one_third {
+  width: 28.5714285714%;
+  float: left;
+  margin-right: 7.1428571429%;
+}
+@media (min-width: 768px) {
+  .l_one_third {
+    width: 31.0344827586%;
+    float: left;
+    margin-right: 3.4482758621%;
+  }
+}
+@media (min-width: 992px) {
+  .l_one_third {
+    width: 32.2033898305%;
+    float: left;
+    margin-right: 1.6949152542%;
+  }
+}
+
+.last {
+  float: right;
+  margin-right: 0;
+}
+
 /**
  * partials/header
  * ---
@@ -218,7 +287,7 @@ input[type="search"] {
   left: 0;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 1px 2px 0 #eee;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   padding: 1.5em;
 }
 
@@ -229,7 +298,7 @@ input[type="search"] {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   display: inline-block;
-  width: 10em;
+  width: 8em;
 }
 
 .lines-button {
@@ -332,7 +401,7 @@ input[type="search"] {
   top: 0;
   width: 20em;
   background-color: #eee;
-  height: 100vh;
+  height: 100%;
 }
 .nav ul {
   padding: 0;
@@ -360,6 +429,14 @@ input[type="search"] {
  * partials/footer
  * ---
  */
+.footer {
+  padding: 1em;
+  background-color: #eee;
+}
+.footer .copyright {
+  text-align: center;
+}
+
 /**
  * partials/print
  * ---
@@ -470,7 +547,20 @@ h1, h2, h3, h4, h5 {
   color: #444;
 }
 
-form input {
+form input, form textarea {
   border: 1px solid #eee;
   padding: 1em;
+  outline: none;
+}
+form input:focus, form textarea:focus {
+  border: 1px solid #eee;
+  border-color: #d18b00;
+}
+
+.project-details {
+  margin: 2em 0;
+}
+
+.project-detail-label {
+  font-weight: 700;
 }

@@ -84,4 +84,5 @@ $base-border: 1px solid $st-lightest-gray;
 $base-border-dashed: 1px dashed $st-lightest-gray;
 $base-border-medium: 1px solid $st-medium-gray;
 $base-border-medium-dashed: 1px dashed $st-medium-gray;
-$base-box-shadow: 0 1px 2px 0 $st-lightest-gray;
+
+$base-box-shadow: 0 1px 2px 0 rgba(0,0,0, 0.1);

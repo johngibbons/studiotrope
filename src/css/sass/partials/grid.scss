@@ -1,0 +1,41 @@
+.l_full {
+	width: 100%;
+}
+
+.l_two_thirds {
+	@include span(2 of 3);
+
+	@include breakpoint(tablet) {
+		@include span(4 of 6);
+	}
+
+	@include breakpoint(desktop) {
+		@include span(8 of 12);
+	}
+}
+
+.l_one_half {
+	@include span(1 of 2);
+
+	@include breakpoint(tablet) {
+		@include span(3 of 6);
+	}
+
+	@include breakpoint(desktop) {
+		@include span(6 of 12);
+	}
+}
+
+.l_one_third {
+	@include span(1 of 3);
+
+	@include breakpoint(tablet) {
+		@include span(2 of 6);
+	}
+
+	@include breakpoint(desktop) {
+		@include span(4 of 12);
+	}
+}
+
+.last { @include last; }
