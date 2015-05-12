@@ -3,9 +3,76 @@
 }
 
 .project-details {
-	margin: 2em 0;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	border-top: $base-border-medium-dashed;
+	border-bottom: $base-border-medium-dashed;
+	margin: gutter()/2 0;
+	background-color: $st-lightest-gray;
+
+	h1 {
+		margin-top: 0
+	}
+
+	td {
+		padding-right: 2em;
+
+		&:last-child {
+			padding-right: 0;
+		}
+	}
 }
 
 .project-detail-label {
 	font-weight: 700;
+}
+
+.project-contents {
+	margin-bottom: gutter()/2;
+
+	@include breakpoint(tablet) {
+		margin-bottom: gutter($tablet-columns)/2;
+	}
+
+	@include breakpoint(desktop) {
+		margin-bottom: gutter($desktop-columns)/2;
+	}
+
+	&:after {
+		content: "";
+	  display: table;
+		clear: both;
+	}
+}
+
+.project-video {
+
+}
+
+.project-testimonial {
+	padding: 5em 0;
+	box-sizing: content-box;
+	text-align: center;
+	font-family: $font-family-testimonial;
+	font-weight: 100;
+	letter-spacing: 1px;
+	background-color: $st-lightest-gray;
+
+	q {
+		quotes:	"“" "”";
+		font-size: $font-size-base * 1.75;
+		padding-right: 0.1em;
+		font-style: italic;
+		color: $text-color;
+	}
+
+	.testimonial-source {
+		font-size: $font-size-base;
+		color: $emphasis-color;
+		display: block;
+
+		@include breakpoint(tablet) {
+			display: inline;
+		}
+	}
 }

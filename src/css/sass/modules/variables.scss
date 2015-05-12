@@ -12,12 +12,15 @@ $gothic: "ff-basic-gothic-web-pro", Helvetica, Arial, "Open Sans", sans-serif;
 $helvetica: "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
 $facit: "jaf-facitweb", Helvetica, Arial, "Open Sans", sans-serif;
 $adelle: "adelle", serif;
+$freight-big: "freight-big-pro", serif;
+$garamond: "adobe-garamond-pro", serif;
 
 
 $font-family-base: $facit;
 $font-family-nav: $facit;
 $font-family-header: $adelle;
 $font-family-button: $facit;
+$font-family-testimonial: $adelle;
 $font-size-base: 140%;
 $line-height-base: 1.5;
 
@@ -33,6 +36,8 @@ $st-dark-gray: #444;
 $st-orange: #d18b00;
 
 $text-color: $st-dark-gray;
+$link-color: $st-orange;
+$emphasis-color: $st-medium-gray;
 $body-bg: $white;
 $selection-bg: $st-orange;
 
@@ -41,6 +46,10 @@ $selection-bg: $st-orange;
  * Grid
  */
 
+$mobile-columns  : 4;
+$tablet-columns  : 8;
+$desktop-columns : 12;
+
  $susy: (
   flow: ltr,
   math: fluid,
@@ -48,8 +57,8 @@ $selection-bg: $st-orange;
   gutter-position: after,
   container: auto,
   container-position: center,
-  columns: 4,
-  gutters: .25,
+  columns: $mobile-columns,
+  gutters: .5,
   column-width: false,
   global-box-sizing: content-box,
   last-flow: to,
@@ -68,9 +77,18 @@ $selection-bg: $st-orange;
   )
 );
 
-$mobile-wrapper-width: 90%;
-$wrapper-width: 1280px;
-$mobile-nav-width: 20em;
+// @include breakpoint(tablet) {
+//   @include layout($tablet-columns);
+// }
+
+// @include breakpoint(desktop) {
+//   @include layout($desktop-columns);
+// }
+
+$mobile-container-padding: 1em;
+$tablet-container-padding: 2em;
+$desktop-container-padding: 5em;
+$mobile-nav-width: 75%;
 
 
 $padding-horizontal-base: 5px;

@@ -11,7 +11,7 @@
 
 @mixin breakpoint($class) {
   @if $class == phone {
-    @media (max-width: 767px) { @content; }
+    @media (max-width: 400px) { @content; }
   }
  
   @else if $class == tablet {
@@ -19,11 +19,11 @@
   }
  
   @else if $class == desktop {
-    @media (min-width: 992px) { @content; }
+    @media (min-width: 1024px) { @content; }
   }
  
   @else if $class == large {
-    @media (min-width: 1200px) { @content; }
+    @media (min-width: 1400px) { @content; }
   }
  
   @else {

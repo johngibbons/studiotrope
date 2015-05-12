@@ -18,5 +18,16 @@
 }
 
 .l-container {
-	@include container($mobile-wrapper-width);
+	@include container;
+	margin: 0 $mobile-container-padding;
+
+	@include breakpoint(tablet) {
+		@include container($tablet-columns);
+		margin: 0 $tablet-container-padding;
+	}
+
+	@include breakpoint(desktop) {
+		@include container($desktop-columns);
+		margin: 0 $desktop-container-padding;
+	}
 }

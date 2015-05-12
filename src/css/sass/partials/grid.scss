@@ -3,39 +3,60 @@
 }
 
 .l_two_thirds {
-	@include span(2 of 3);
 
 	@include breakpoint(tablet) {
-		@include span(4 of 6);
+		@include span(2*$tablet-columns/3 of $tablet-columns);
 	}
 
 	@include breakpoint(desktop) {
-		@include span(8 of 12);
+		@include span(2*$desktop-columns/3 of $desktop-columns);
 	}
 }
 
 .l_one_half {
-	@include span(1 of 2);
 
 	@include breakpoint(tablet) {
-		@include span(3 of 6);
+		@include span($tablet-columns/2 of $tablet-columns);
 	}
 
 	@include breakpoint(desktop) {
-		@include span(6 of 12);
+		@include span($desktop-columns/2 of $desktop-columns);
 	}
 }
 
 .l_one_third {
-	@include span(1 of 3);
 
 	@include breakpoint(tablet) {
-		@include span(2 of 6);
+		@include span($tablet-columns/3 of $tablet-columns);
 	}
 
 	@include breakpoint(desktop) {
-		@include span(4 of 12);
+		@include span($desktop-columns/3 of $desktop-columns);
 	}
 }
 
 .last { @include last; }
+
+.l-content-module {
+	margin: gutter()/2 0;
+
+	@include breakpoint(tablet) {
+		margin: gutter($tablet-columns)/2 0;
+	}
+
+	@include breakpoint(desktop) {
+		margin: gutter($desktop-columns)/2 0;
+	}
+}
+
+.full-bleed {
+	@include bleed(0 $mobile-container-padding);
+
+	@include breakpoint(tablet) {
+		@include bleed(0 $tablet-container-padding);
+	}
+
+	@include breakpoint(desktop) {
+		@include bleed(0 $desktop-container-padding);
+	}
+}
