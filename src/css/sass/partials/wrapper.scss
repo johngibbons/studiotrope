@@ -21,13 +21,18 @@
 	@include container;
 	margin: 0 $mobile-container-padding;
 
-	@include breakpoint(tablet) {
+	@include susy-breakpoint($tablet, $tablet-columns) {
 		@include container($tablet-columns);
 		margin: 0 $tablet-container-padding;
 	}
 
-	@include breakpoint(desktop) {
+	@include susy-breakpoint($desktop, $desktop-columns) {
 		@include container($desktop-columns);
 		margin: 0 $desktop-container-padding;
+	}
+
+	@include susy-breakpoint($large, $large-columns) {
+		@include container($large-columns);
+		margin: 0 $large-container-padding;
 	}
 }

@@ -1,14 +1,14 @@
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
 	<!-- article -->
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="troper-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 		<!-- post thumbnail -->
-		<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
-				<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
-			</a>
-		<?php endif; ?>
+		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
+			<?php $avatar = get_field("st_profile_picture"); ?>
+	  	<?php $thumb = $avatar["sizes"]["thumbnail"]; ?>
+	  	<img src="<?php echo $thumb; ?>" alt="<?php echo $avatar['alt']; ?>" class="troper-avatar">
+		</a>
 		<!-- /post thumbnail -->
 
 		<!-- post title -->

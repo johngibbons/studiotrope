@@ -389,6 +389,7 @@ add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline 
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 add_action( 'wp_head', 'theme_typekit_inline' ); //Add Typekit Fonts
 add_action( 'wp_enqueue_scripts', 'theme_typekit' ); //Add Typekit Fonts
+add_action( 'p2p_init', 'st_connection_types' ); //Troper to Project Connection
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -440,7 +441,7 @@ function query_post_type($query) {
     if($post_type)
         $post_type = $post_type;
     else
-        $post_type = array('post','project'); // replace cpt to your custom post type
+        $post_type = array('post','projects'); // replace cpt to your custom post type
     $query->set('post_type',$post_type);
     return $query;
     }
@@ -474,6 +475,18 @@ function theme_typekit_inline() {
   if ( wp_script_is( 'theme_typekit', 'done' ) ) { ?>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php }
+}
+
+/*------------------------------------*\
+    Troper to Project Connection
+\*------------------------------------*/
+
+function st_connection_types() {
+    p2p_register_connection_type( array(
+        'name' => 'projects_to_tropers',
+        'from' => 'projects',
+        'to' => 'tropers'
+    ) );
 }
 
 ?>

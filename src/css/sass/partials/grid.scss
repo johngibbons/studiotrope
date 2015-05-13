@@ -1,37 +1,59 @@
 .l_full {
-	width: 100%;
+	@include susy-breakpoint($tablet, $tablet-columns) {
+		@include span($tablet-columns of $tablet-columns);
+	}
+
+	@include susy-breakpoint($desktop, $desktop-columns) {
+		@include span($desktop-columns of $desktop-columns);
+	}
+
+	@include susy-breakpoint($large, $large-columns) {
+		@include span($large-columns of $large-columns);
+	}
 }
 
 .l_two_thirds {
 
-	@include breakpoint(tablet) {
+	@include susy-breakpoint($tablet, $tablet-columns) {
 		@include span(2*$tablet-columns/3 of $tablet-columns);
 	}
 
-	@include breakpoint(desktop) {
+	@include susy-breakpoint($desktop, $desktop-columns) {
 		@include span(2*$desktop-columns/3 of $desktop-columns);
+	}
+
+	@include susy-breakpoint($large, $large-columns) {
+		@include span(2*$large-columns/3 of $large-columns);
 	}
 }
 
 .l_one_half {
 
-	@include breakpoint(tablet) {
+	@include susy-breakpoint($tablet, $tablet-columns) {
 		@include span($tablet-columns/2 of $tablet-columns);
 	}
 
-	@include breakpoint(desktop) {
+	@include susy-breakpoint($desktop, $desktop-columns) {
 		@include span($desktop-columns/2 of $desktop-columns);
+	}
+
+	@include susy-breakpoint($large, $large-columns) {
+		@include span($large-columns/2 of $large-columns);
 	}
 }
 
 .l_one_third {
 
-	@include breakpoint(tablet) {
+	@include susy-breakpoint($tablet, $tablet-columns) {
 		@include span($tablet-columns/3 of $tablet-columns);
 	}
 
-	@include breakpoint(desktop) {
+	@include susy-breakpoint($desktop, $desktop-columns) {
 		@include span($desktop-columns/3 of $desktop-columns);
+	}
+
+	@include susy-breakpoint($large, $large-columns) {
+		@include span($large-columns/3 of $large-columns);
 	}
 }
 
@@ -40,23 +62,31 @@
 .l-content-module {
 	margin: gutter()/2 0;
 
-	@include breakpoint(tablet) {
+	@include susy-breakpoint($tablet, $tablet-columns) {
 		margin: gutter($tablet-columns)/2 0;
 	}
 
-	@include breakpoint(desktop) {
-		margin: gutter($desktop-columns)/2 0;
+	@include susy-breakpoint($desktop, $desktop-columns) {
+		margin-top: gutter($desktop-columns)/2 0;
+	}
+
+	@include susy-breakpoint($large, $large-columns) {
+		margin-top: gutter($large-columns)/2 0;
 	}
 }
 
-.full-bleed {
+.l-full-bleed {
 	@include bleed(0 $mobile-container-padding);
 
-	@include breakpoint(tablet) {
+	@include susy-breakpoint($tablet, $tablet-columns) {
 		@include bleed(0 $tablet-container-padding);
 	}
 
-	@include breakpoint(desktop) {
+	@include susy-breakpoint($desktop, $desktop-columns) {
 		@include bleed(0 $desktop-container-padding);
+	}
+
+	@include susy-breakpoint($large, $large-columns) {
+		@include bleed(0 $large-container-padding);
 	}
 }

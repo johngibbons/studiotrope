@@ -15,14 +15,14 @@
 					<?php endif; ?>
 					<!-- /post thumbnail -->
 
-					<div class="project-details">
+					<div class="project-details l-full-bleed">
 						<!-- post title -->
 						<h1 class="project-title">
-							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+							<?php the_title(); ?>
 						</h1>
 						<!-- /post title -->
 
-						<table>
+						<table class="detail">
 							<tr>
 								<td class="project-detail-label">Studio:</td>
 								<td><?php the_terms( $post->ID, 'studio', '', ' / ' ); ?></td>
@@ -33,13 +33,45 @@
 							</tr>
 							<tr>
 								<td class="project-detail-label">Tags:</td>
-								<td><?php the_tags( '<span class="tag">', '</span><span class="tag">', '</span>'); // Surrounded by spans ?></td>
+								<td><?php the_tags( '', ' / ', ''); // Surrounded by spans ?></td>
 							</tr>
+							<?php
+								// Find connected tropers
+								$tropers = new WP_Query( array(
+								  'connected_type' => 'projects_to_tropers',
+								  'connected_items' => get_queried_object(),
+								  'nopaging' => true,
+								) );
+
+								// Display connected tropers
+								if ( $tropers->have_posts() ) :
+									?>
+								<tr>
+									<td class="project-detail-label">Contributers:</td>
+								</tr>
+								<tr>
+									<td>
+										<?php while ( $tropers->have_posts() ) : $tropers->the_post(); ?>
+									  	<a href="<?php the_permalink(); ?>" class="troper-thumb no-underline">
+										  	<?php $avatar = get_field("st_profile_picture"); ?>
+										  	<?php $thumb = $avatar["sizes"]["thumbnail"]; ?>
+										  	<img src="<?php echo $thumb; ?>" alt="<?php echo $avatar['alt']; ?>" class="troper-avatar">
+									  	</a>
+										<?php endwhile; ?>
+									</td>
+								</tr>
+
+									<?php 
+									// Prevent weirdness
+									wp_reset_postdata();
+
+								endif;
+							?>
 						</table>
 
 					</div>
 
-					<div class="project-contents">
+					<div class="project-contents l-content-module l_full">
 
 					<?php
 
@@ -71,7 +103,7 @@
 								        <?php break;
 
 									    case "project_testimonial":
-								        ?><div class="project-testimonial l-content-module <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>">
+								        ?><div class="project-testimonial l-content-module l-full-bleed <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>">
 								        		<q><?php the_sub_field('st_testimonial'); ?></q>
 								        		<span class="testimonial-source"><?php the_sub_field('st_testimonial_source'); ?></span>
 								        	</div>

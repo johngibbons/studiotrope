@@ -8,22 +8,29 @@
  * Typography
  */
 
-$gothic: "ff-basic-gothic-web-pro", Helvetica, Arial, "Open Sans", sans-serif;
-$helvetica: "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
-$facit: "jaf-facitweb", Helvetica, Arial, "Open Sans", sans-serif;
-$adelle: "adelle", serif;
-$freight-big: "freight-big-pro", serif;
-$garamond: "adobe-garamond-pro", serif;
-
+$gothic:          "ff-basic-gothic-web-pro", Helvetica, Arial, "Open Sans", sans-serif;
+$helvetica:       "Helvetica Neue", Helvetica, Arial, "Open Sans", sans-serif;
+$facit:           "jaf-facitweb", Helvetica, Arial, "Open Sans", sans-serif;
+$adelle:          "adelle", serif;
+$freight-big:     "freight-big-pro", serif;
+$garamond:        "adobe-garamond-pro", serif;
+$fira:            "fira-mono",sans-serif;
+$pragmatica-cond: "pragmatica-web-condensed", sans-serif;
+$proxima-cond:    "proxima-nova-condensed", sans-serif;
 
 $font-family-base: $facit;
 $font-family-nav: $facit;
 $font-family-header: $adelle;
 $font-family-button: $facit;
 $font-family-testimonial: $adelle;
+$font-family-details: $proxima-cond;
 $font-size-base: 140%;
 $line-height-base: 1.5;
 
+$mobile: 400px;
+$tablet: 768px;
+$desktop: 1024px;
+$large: 1400px;
 
 /**
  * Colors
@@ -34,6 +41,7 @@ $st-lightest-gray: #eee;
 $st-medium-gray: #aaa;
 $st-dark-gray: #444;
 $st-orange: #d18b00;
+$st-pink: #D41772;
 
 $text-color: $st-dark-gray;
 $link-color: $st-orange;
@@ -49,6 +57,7 @@ $selection-bg: $st-orange;
 $mobile-columns  : 4;
 $tablet-columns  : 8;
 $desktop-columns : 12;
+$large-columns : 18;
 
  $susy: (
   flow: ltr,
@@ -88,7 +97,8 @@ $desktop-columns : 12;
 $mobile-container-padding: 1em;
 $tablet-container-padding: 2em;
 $desktop-container-padding: 5em;
-$mobile-nav-width: 75%;
+$large-container-padding: 10em;
+$mobile-nav-width: 20em;
 
 
 $padding-horizontal-base: 5px;
@@ -100,7 +110,7 @@ $margin-vertical-large: 15px;
 
 $base-border: 1px solid $st-lightest-gray;
 $base-border-dashed: 1px dashed $st-lightest-gray;
-$base-border-medium: 1px solid $st-medium-gray;
-$base-border-medium-dashed: 1px dashed $st-medium-gray;
+$base-border-medium: 1px solid darken($st-lightest-gray, 5%);
+$base-border-medium-dashed: 1px dashed darken($st-lightest-gray, 5%);
 
 $base-box-shadow: 0 1px 2px 0 rgba(0,0,0, 0.1);
