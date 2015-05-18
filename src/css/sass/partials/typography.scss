@@ -45,7 +45,7 @@ a {
 	  margin-top: 4px;
 	}
 
-	&:hover, :active, :visited, :focus {
+	&:hover, &:active, &:visited, &:focus {
 		text-decoration: none;
 
 		&:after {

@@ -102,6 +102,9 @@ function html5blank_header_scripts()
             // Modernizr
             wp_register_script('modernizr', get_template_directory_uri() . '/bower_components/modernizr/modernizr.js', array(), '2.8.3');
 
+            // Mixitup
+            wp_register_script('mixitup', get_template_directory_uri() . '/bower_components/bower-mixitup/build/jquery.mixitup.min.js', array(), '2.1.8');
+
             // Custom scripts
             wp_register_script(
                 'html5blankscripts',
@@ -109,8 +112,15 @@ function html5blank_header_scripts()
                 array(
                     'conditionizr',
                     'modernizr',
-                    'jquery'),
+                    'jquery',
+                    'mixitup'),
                 '1.0.0');
+
+            // global $wp_query;
+            // wp_localize_script( 'html5blankscripts', 'stProjectsFilter', array(
+            //     'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            //     'query_vars' => json_encode( $wp_query->query )
+            // ));
 
             // Enqueue Scripts
             wp_enqueue_script('html5blankscripts');
@@ -390,6 +400,8 @@ add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 add_action( 'wp_head', 'theme_typekit_inline' ); //Add Typekit Fonts
 add_action( 'wp_enqueue_scripts', 'theme_typekit' ); //Add Typekit Fonts
 add_action( 'p2p_init', 'st_connection_types' ); //Troper to Project Connection
+// add_action( 'wp_ajax_nopriv_projects_filter', 'st_projects_filter' ); //Ajax Projects Filter
+// add_action( 'wp_ajax_projects_filter', 'st_projects_filter' ); //Ajax Projects Filter
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -488,5 +500,42 @@ function st_connection_types() {
         'to' => 'tropers'
     ) );
 }
+
+/*------------------------------------*\
+    Filter Projects
+\*------------------------------------*/
+
+function st_get_tax($tax_name) {
+    $args = array(
+        'orderby'           => 'count', 
+        'order'             => 'DESC',
+        'hide_empty'        => true, 
+        'exclude'           => array(), 
+        'exclude_tree'      => array(), 
+        'include'           => array(),
+        'number'            => '', 
+        'fields'            => 'all', 
+        'slug'              => '',
+        'parent'            => '',
+        'hierarchical'      => true, 
+        'child_of'          => 0,
+        'childless'         => false,
+        'get'               => '', 
+        'name__like'        => '',
+        'description__like' => '',
+        'pad_counts'        => false, 
+        'offset'            => '', 
+        'search'            => '', 
+        'cache_domain'      => 'core'
+    ); 
+
+    return $terms = get_terms($tax_name, $args);
+}
+
+
+// function st_projects_filter() {
+//     echo get_bloginfo( 'title' );
+//     die();
+// }
 
 ?>

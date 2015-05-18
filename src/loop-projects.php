@@ -1,7 +1,16 @@
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
 	<!-- article -->
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php 
+	 $i = 0;
+	 foreach ( $post->connected as $post ) : setup_postdata( $post );
+	   $troper_ids[$i] = "troper-" . get_the_ID();
+	   $i++;
+   endforeach;
+   $troper_ids[] = "mix";
+    wp_reset_postdata(); // set $post back to original post
+  ?>
+	<article id="post-<?php the_ID(); ?>" <?php post_class($troper_ids); ?>>
 
 		<!-- post thumbnail -->
 		<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
