@@ -1,0 +1,15 @@
+#people-index {
+  .troper {
+    display: inline-block;
+  }
+  .troper-name {
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: $font-size-base * 0.8;
+  }
+}
+
+.troper-avatar {
+  border-radius: 100%;
+}

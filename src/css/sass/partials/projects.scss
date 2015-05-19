@@ -1,17 +1,68 @@
-#projects-index {
+#projects-index, #people-index {
+  text-align: justify;
+  font-size: 0;
+  background-color: #ccc;
 
-	.mix {
-		display: none;
-	}
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+  }
 
-	article {
+  .project, .troper, .gap {
+    display: inline-block;
+    width: span(2 of 4);
 
-	}
+    @include susy-breakpoint($tablet, $tablet-columns) {
+      width: span(4 of 8);
+    }
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      width: span(3 of 12);
+    }
+
+    @include susy-breakpoint($large, $large-columns) {
+      width: span(4 of 20);
+    }
+  }
+
+  .project, .troper {
+    text-align: left;
+    margin-bottom: gutter();
+    background-color: #eee;
+    
+    @include susy-breakpoint($tablet, $tablet-columns) {
+      margin-bottom: gutter();
+    }
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      margin-bottom: gutter();
+    }
+
+    @include susy-breakpoint($large, $large-columns) {
+      margin-bottom: gutter();
+    }
+
+    &:before {
+      content: '';
+      display: inline-block;
+      padding-top: 60%;
+    }
+
+  }
+
+  .mix {
+    display: none;
+  }
 
 }
 
 #projects-filter {
-	.active {
-		font-weight: 700;
-	}
+  &:checked {
+    font-weight: 700;
+  }
+}
+
+.single-filter {
+  display: inline-block;
 }

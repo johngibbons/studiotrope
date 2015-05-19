@@ -1,60 +1,69 @@
 .project-details {
-	padding-top: gutter();
-	padding-bottom: gutter();
-	border-top: $base-border-medium-dashed;
-	border-bottom: $base-border-medium-dashed;
-	background-color: $st-lightest-gray;
-	margin-top: 2*gutter();
+  padding: 0 0 2em;
+  max-height: 100%;
+  border-bottom: 1px solid $st-lightest-gray;
+  overflow: auto;
+  top: $nav-bar-height+1;
 
-	@include susy-breakpoint($tablet, $tablet-columns) {
-		padding-top: gutter();
-		padding-bottom: gutter();
-		margin-top: 2*gutter();
-	}
+  @include susy-breakpoint($tablet, $tablet-columns) {
+    position: fixed;
+    right: -15px;
+    padding-right: $tablet-container-padding;
+  }
 
-	@include susy-breakpoint($desktop, $desktop-columns) {
-		padding-top: gutter();
-		padding-bottom: gutter();
-		margin-top: 2*gutter();
-	}
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    padding-right: $desktop-container-padding;
+  }
 
-	@include susy-breakpoint($large, $large-columns) {
-		padding-top: gutter();
-		padding-bottom: gutter();
-		margin-top: 2*gutter();
-	}
+  @include susy-breakpoint($large, $large-columns) {
+    padding-right: $desktop-container-padding;
+  }
 
-	h1 {
-		margin-top: 0
-	}
 
-	td {
-		padding-right: 2em;
+  h1 {
+    margin-top: 0
+  }
 
-		&:last-child {
-			padding-right: 0;
-		}
-	}
+  table {
+    margin-bottom: 6em;
 
-	.troper-avatar {
-		margin: 1em 0;
-		width: 5em;
-		height: 5em;
-		border-radius: 100%;
-	}
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      margin-bottom: 4em;
+    }
+  }
+
+  td {
+    vertical-align: baseline;
+    padding: .5em 0;
+
+    &.project-detail-label {
+      padding-right: 1em;
+    }
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      padding: 0.25em 0;
+    }
+  }
+
+  .troper-avatar {
+    margin: 1em 0;
+    width: 5em;
+    height: 5em;
+    border-radius: 100%;
+  }
 }
 
 .project-detail-label {
-	font-weight: 400;
+  font-weight: 600;
 }
 
 .project-contents {
 
-	&:after {
-		content: "";
-	  display: table;
-		clear: both;
-	}
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 .project-video {
@@ -62,24 +71,23 @@
 }
 
 .project-testimonial {
-	padding-top: gutter();
-	padding-bottom: gutter();
-	border-top: $base-border-medium-dashed;
-	border-bottom: $base-border-medium-dashed;
-	box-sizing: content-box;
-	text-align: center;
-	font-family: $font-family-testimonial;
-	font-weight: 100;
-	letter-spacing: 1px;
-	background-color: $st-lightest-gray;
+  padding-top: gutter();
+  padding-bottom: gutter();
+  border-top: $base-border-medium-dashed;
+  border-bottom: $base-border-medium-dashed;
+  box-sizing: content-box;
+  text-align: center;
+  font-family: $font-family-testimonial;
+  font-weight: 100;
+  letter-spacing: 1px;
 
-	.testimonial-source {
-		font-size: $font-size-base;
-		color: $emphasis-color;
-		display: block;
+  .testimonial-source {
+    font-size: $font-size-base;
+    color: $emphasis-color;
+    display: block;
 
-		@include susy-breakpoint($tablet, $tablet-columns) {
-			display: inline;
-		}
-	}
+    @include susy-breakpoint($tablet, $tablet-columns) {
+      display: inline;
+    }
+  }
 }

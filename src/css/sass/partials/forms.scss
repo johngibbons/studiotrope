@@ -1,12 +1,17 @@
 form {
-	input, textarea {
-		border: $base-border;
-		padding: 1em;
-		outline: none;
+  input, textarea {
+    border: $base-border;
+    padding: 1em;
+    outline: none;
 
-		&:focus {
-			border: $base-border;
-			border-color: $st-orange;
-		}
-	}
+    &:focus {
+      border: $base-border;
+      border-color: $st-orange;
+    }
+  }
+}
+
+fieldset {
+  border: none;
+  padding: 1em;
 }

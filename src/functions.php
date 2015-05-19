@@ -453,7 +453,7 @@ function query_post_type($query) {
     if($post_type)
         $post_type = $post_type;
     else
-        $post_type = array('post','projects'); // replace cpt to your custom post type
+        $post_type = array('post','project'); // replace cpt to your custom post type
     $query->set('post_type',$post_type);
     return $query;
     }
@@ -495,9 +495,9 @@ function theme_typekit_inline() {
 
 function st_connection_types() {
     p2p_register_connection_type( array(
-        'name' => 'projects_to_tropers',
-        'from' => 'projects',
-        'to' => 'tropers'
+        'name' => 'project_to_troper',
+        'from' => 'project',
+        'to' => 'troper'
     ) );
 }
 

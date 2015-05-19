@@ -17,10 +17,11 @@ $garamond:        "adobe-garamond-pro", serif;
 $fira:            "fira-mono",sans-serif;
 $pragmatica-cond: "pragmatica-web-condensed", sans-serif;
 $proxima-cond:    "proxima-nova-condensed", sans-serif;
+$bookmania:       "bookmania", sans-serif;
 
 $font-family-base: $facit;
 $font-family-nav: $facit;
-$font-family-header: $adelle;
+$font-family-header: $bookmania;
 $font-family-button: $facit;
 $font-family-testimonial: $adelle;
 $font-family-details: $proxima-cond;
@@ -97,9 +98,10 @@ $large-columns : 18;
 $mobile-container-padding: 1em;
 $tablet-container-padding: 2em;
 $desktop-container-padding: 5em;
-$large-container-padding: 10em;
+$large-container-padding: 5em;
 $mobile-nav-width: 20em;
-
+$nav-bar-height: 4em;
+$footer-height: 5em;
 
 $padding-horizontal-base: 5px;
 $padding-vertical-base: 5px;

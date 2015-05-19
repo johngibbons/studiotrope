@@ -21,3 +21,7 @@
 .reset-box {
   @include reset-box;
 }
+
+.is-fixed {
+  transition: transform .3s ease;
+}

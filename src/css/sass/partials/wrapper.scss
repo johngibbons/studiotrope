@@ -3,36 +3,105 @@
  * ---
  */
 
-
-.l-wrapper {
-	position: relative;
-	background-color: $white;
-	padding-top: 4em;
-	z-index: 1;
-	transition: 0.3s;
-
+body {
   &.is-pushed {
-    transform: translate3d($mobile-nav-width, 0, 0);
-    box-shadow: -1px 0 10px 0 #ddd;
+    overflow: hidden !important;
+    .transition-container {
+      left: $mobile-nav-width;
+      box-shadow: -1px 0 10px 0 #ddd;
+    }
+    .is-fixed {
+      transform: translateX($mobile-nav-width);
+    }
   }
 }
 
+#view {
+  overflow: hidden;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+}
+
+main {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.l-wrapper {
+  position: relative;
+  background-color: $white;
+  padding-top: $nav-bar-height;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+.transition-container{
+  transition: all 0.3s ease;
+  left: 0;
+}
+
 .l-container {
-	@include container;
-	margin: 0 $mobile-container-padding;
+  @include container;
+  margin: 0 $mobile-container-padding;
 
-	@include susy-breakpoint($tablet, $tablet-columns) {
-		@include container($tablet-columns);
-		margin: 0 $tablet-container-padding;
-	}
+  @include susy-breakpoint($tablet, $tablet-columns) {
+    @include container($tablet-columns);
+    margin: 0 $tablet-container-padding;
+  }
 
-	@include susy-breakpoint($desktop, $desktop-columns) {
-		@include container($desktop-columns);
-		margin: 0 $desktop-container-padding;
-	}
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    @include container($desktop-columns);
+    margin: 0 $desktop-container-padding;
+  }
 
-	@include susy-breakpoint($large, $large-columns) {
-		@include container($large-columns);
-		margin: 0 $large-container-padding;
-	}
+  @include susy-breakpoint($large, $large-columns) {
+    @include container($large-columns);
+    margin: 0 $large-container-padding;
+  }
+}
+
+.l-container-w-side {
+  @include container;
+  margin: 0 $mobile-container-padding;
+  background-color: $white;
+
+  @include susy-breakpoint($tablet, $tablet-columns) {
+    .l-full-bleed {
+      margin-right: 0;
+      margin-left: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    @include span(9);
+  }
+
+  @include susy-breakpoint($large, $large-columns) {
+    @include span(12 of 16);
+  }
+
+}
+
+.l-sidebar {
+  @include container;
+  margin: 0 $mobile-container-padding;
+
+  @include susy-breakpoint($tablet, $tablet-columns) {
+    @include span(2 last);
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    @include span(3 last);
+  }
+
+  @include susy-breakpoint($large, $large-columns) {
+    @include span(4 of 16 last);
+  }
 }
