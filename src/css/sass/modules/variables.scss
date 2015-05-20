@@ -38,15 +38,16 @@ $large: 1400px;
  */
 
 $white: #fff;
+$st-off-white: #fafafa;
 $st-lightest-gray: #eee;
 $st-medium-gray: #aaa;
 $st-dark-gray: #444;
 $st-orange: #d18b00;
 $st-pink: #D41772;
 
-$text-color: $st-dark-gray;
+$text-color: $st-medium-gray;
 $link-color: $st-orange;
-$emphasis-color: $st-medium-gray;
+$emphasis-color: $st-dark-gray;
 $body-bg: $white;
 $selection-bg: $st-orange;
 
@@ -112,7 +113,7 @@ $margin-vertical-large: 15px;
 
 $base-border: 1px solid $st-lightest-gray;
 $base-border-dashed: 1px dashed $st-lightest-gray;
-$base-border-medium: 1px solid darken($st-lightest-gray, 5%);
-$base-border-medium-dashed: 1px dashed darken($st-lightest-gray, 5%);
+$base-border-medium: 1px solid darken($st-lightest-gray, 15%);
+$base-border-medium-dashed: 1px dashed darken($st-lightest-gray, 15%);
 
 $base-box-shadow: 0 1px 2px 0 rgba(0,0,0, 0.1);

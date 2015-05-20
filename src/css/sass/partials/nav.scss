@@ -12,13 +12,22 @@
   background-color: $st-lightest-gray;
   height: 100%;
 
-  ul {
+  #nav-contents {
     position: absolute;
     top: 50%;
     width: 100%;
     transform: translate(0, -50%);
+  }
+
+  #nav-logo {
+    padding: 2em 0 2em 4em;
+    width: 70%;
+  }
+
+  ul {
     padding: 0;
     margin: 0;
+    border-top: $base-border-medium-dashed;
   }
 
   li {
@@ -29,10 +38,18 @@
     border-bottom: $base-border-medium-dashed;
 
     a {
-      padding: 2em 4em;
+      color: lighten($st-dark-gray, 20%);
+      padding: 1em 4em;
       width: 100%;
       height: 100%;
       display: block;
+      left: 0;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $st-dark-gray;
+        left: 2px;
+      }
 
       &:after {
         box-shadow: none;
@@ -41,6 +58,19 @@
   }
 }
 
+#nav-social {
+  text-align: justify;
+
+  &:after{
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+
+  .fa {
+    display: inline-block;
+  }
+}
 .menu {}
 
 .sub-menu {}

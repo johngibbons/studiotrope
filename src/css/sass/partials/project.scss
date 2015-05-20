@@ -1,48 +1,31 @@
 .project-details {
-  padding: 0 0 2em;
-  max-height: 100%;
-  border-bottom: 1px solid $st-lightest-gray;
+  padding: 2em;
+  background-color: $st-off-white;
+  border-right: 1px dashed $st-lightest-gray;
+  height: 100%;
   overflow: auto;
-  top: $nav-bar-height+1;
 
   @include susy-breakpoint($tablet, $tablet-columns) {
     position: fixed;
-    right: -15px;
-    padding-right: $tablet-container-padding;
+    left: 0;
   }
-
-  @include susy-breakpoint($desktop, $desktop-columns) {
-    padding-right: $desktop-container-padding;
-  }
-
-  @include susy-breakpoint($large, $large-columns) {
-    padding-right: $desktop-container-padding;
-  }
-
 
   h1 {
     margin-top: 0
   }
 
-  table {
-    margin-bottom: 6em;
-
-    @include susy-breakpoint($desktop, $desktop-columns) {
-      margin-bottom: 4em;
-    }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 2em;
   }
 
-  td {
-    vertical-align: baseline;
-    padding: .5em 0;
+  li {
+  }
 
-    &.project-detail-label {
-      padding-right: 1em;
-    }
-
-    @include susy-breakpoint($desktop, $desktop-columns) {
-      padding: 0.25em 0;
-    }
+  p {
+    font-size: $font-size-base * 0.7;
   }
 
   .troper-avatar {
@@ -55,9 +38,15 @@
 
 .project-detail-label {
   font-weight: 600;
+  color: $emphasis-color;
+}
+
+.project-detail-value {
+  margin-bottom: 2em;
 }
 
 .project-contents {
+  @include last;
 
   &:after {
     content: "";

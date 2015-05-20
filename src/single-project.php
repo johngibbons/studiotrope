@@ -12,19 +12,13 @@
             <?php the_title(); ?>
           </h1>
 
-          <table class="detail">
-            <tr>
-              <td class="project-detail-label">Studio:</td>
-              <td><?php the_terms( $post->ID, 'studio', '', ' / ' ); ?></td>
-            </tr>
-            <tr>
-              <td class="project-detail-label">Project Type:</td>
-              <td><?php the_terms( $post->ID, 'project_type', '', ' / ' ); ?></td>
-            </tr>
-            <tr>
-              <td class="project-detail-label">Tags:</td>
-              <td><?php the_tags( '', ' / ', ''); // Surrounded by spans ?></td>
-            </tr>
+          <ul class="detail">
+              <li class="project-detail-label">Studio:</li>
+              <li class="project-detail-value"><?php the_terms( $post->ID, 'studio', '', ' / ' ); ?></li>
+              <li class="project-detail-label">Project Type:</li>
+              <li class="project-detail-value"><?php the_terms( $post->ID, 'project_type', '', ' / ' ); ?></li>
+              <li class="project-detail-label">Tags:</li>
+              <li class="project-detail-value"><?php the_tags( '', ' / ', ''); // Surrounded by spans ?></li>
 <?php // Find connected tropers
 $tropers = new WP_Query( array(
 'connected_type' => 'project_to_troper',
@@ -34,11 +28,8 @@ $tropers = new WP_Query( array(
 
 // Display connected tropers
 if ( $tropers->have_posts() ) : ?>
-            <tr>
-              <td class="project-detail-label">Contributers:</td>
-            </tr>
-            <tr>
-              <td colspan="2">
+              <li class="project-detail-label">Contributers:</li>
+              <li class="project-detail-value">
                 <?php while ( $tropers->have_posts() ) : $tropers->the_post(); ?>
                   <a href="<?php the_permalink(); ?>" class="troper-thumb no-underline">
                     <?php $avatar = get_field("st_profile_picture"); ?>
@@ -46,11 +37,9 @@ if ( $tropers->have_posts() ) : ?>
                     <img src="<?php echo $thumb; ?>" alt="<?php echo $avatar['alt']; ?>" class="troper-avatar">
                   </a>
                 <?php endwhile; ?>
-              </td>
-            </tr>
-
+              </li>
+            </ul>
 <?php /* Prevent weirdness */ wp_reset_postdata(); endif; ?>
-          </table>
 
           <p id="project-detail-description">
             <?php the_field("st_project_description") ?>

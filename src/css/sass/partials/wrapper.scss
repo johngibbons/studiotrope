@@ -91,17 +91,16 @@ main {
 
 .l-sidebar {
   @include container;
-  margin: 0 $mobile-container-padding;
 
   @include susy-breakpoint($tablet, $tablet-columns) {
-    @include span(2 last);
+    @include span(2);
   }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
-    @include span(3 last);
+    @include span(3);
   }
 
   @include susy-breakpoint($large, $large-columns) {
-    @include span(4 of 16 last);
+    @include span(4 of 16);
   }
 }

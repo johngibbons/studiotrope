@@ -165,6 +165,11 @@ function html5blank_styles()
     }
 }
 
+function fontAwesome_styles()
+{
+  wp_register_style('fontAwesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array());
+  wp_enqueue_style('fontAwesome');
+}
 // Register HTML5 Blank Navigation
 function register_html5_menu()
 {
@@ -394,6 +399,7 @@ add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_hea
 add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
+add_action('wp_enqueue_scripts', 'fontAwesome_styles');
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
