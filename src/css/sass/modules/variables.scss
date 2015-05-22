@@ -40,7 +40,7 @@ $large: 1400px;
 $white: #fff;
 $st-off-white: #fafafa;
 $st-lightest-gray: #eee;
-$st-medium-gray: #aaa;
+$st-medium-gray: #999;
 $st-dark-gray: #444;
 $st-orange: #d18b00;
 $st-pink: #D41772;
@@ -96,13 +96,14 @@ $large-columns : 18;
 //   @include layout($desktop-columns);
 // }
 
-$mobile-container-padding: 1em;
-$tablet-container-padding: 2em;
-$desktop-container-padding: 5em;
-$large-container-padding: 5em;
-$mobile-nav-width: 20em;
-$nav-bar-height: 4em;
-$footer-height: 5em;
+$mobile-container-padding: 2rem;
+$tablet-container-padding: 2rem;
+$desktop-container-padding: 5rem;
+$large-container-padding: 5rem;
+$mobile-nav-width: 30rem;
+$nav-bar-height: 6rem;
+$footer-height: 8rem;
+$mobile-control-bar-height: 5rem;
 
 $padding-horizontal-base: 5px;
 $padding-vertical-base: 5px;

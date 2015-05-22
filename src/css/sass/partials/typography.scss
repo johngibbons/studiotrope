@@ -25,8 +25,6 @@ p {
 }
 
 a {
-  display: inline-block;
-  position: relative;
   transition: all .3s ease;
   text-decoration: none;
 
@@ -47,4 +45,13 @@ q {
   font-style: italic;
   color: $text-color;
   line-height: 1;
+}
+
+.label {
+  font-weight: 600;
+  color: $emphasis-color;
+}
+
+.value {
+  margin-bottom: 1em;
 }

@@ -1,0 +1,59 @@
+.dropdown {
+  display: none;
+  line-height: 1.5;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    display: block;
+  }
+}
+
+.dropdown-button {
+  &:after {
+    content: ' \25BE';
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      content: "";
+    }
+  }
+}
+
+.dropdown-sublist {
+  display: none;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    display: block;
+  }
+
+  div {
+    background-color: $st-lightest-gray;
+    border-top: $base-border-medium-dashed;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      background-color: transparent;
+      border-top: none;
+    }
+  }
+
+  label {
+    padding: 1em;
+    cursor: pointer;
+    display: block;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      padding: 0 0 0 1em;
+    }
+  }
+}
+
+.dropdown-sublist-title {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  border-top: $base-border-medium-dashed;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    background-color: transparent;
+    border-top: none;
+    padding: .5em;
+  }
+}
+

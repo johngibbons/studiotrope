@@ -41,12 +41,16 @@
       // Kick off one resize to fix all videos on page load
     }).resize();
 
+
+
+
+
     checkboxFilter.init();
 
     //Projects Filter
     $("#projects-index").mixItUp({
       animation: {
-        enable: false		
+        enable: false
       },
       callbacks: {
         onMixLoad: function(){
@@ -59,7 +63,7 @@
               duration: 400,
               effects: "fade stagger(30ms) translateX(10%)",
               easing: "ease",
-              reverseOut: true	
+              reverseOut: true
             },
           });
         }
@@ -69,10 +73,65 @@
       }
     });
 
+    //Mobile Only
+      if (isMobile()) {
+        // Dropdown for mobile filter
+        $(function(){
+          $(".dropdown-button").click(function() {
+            $(".dropdown-sublist-title").next().hide();
+            $(".filter").slideToggle(100);
+          });
+
+          $(".dropdown-sublist-title").click(function() {
+            $(this).next().slideToggle(100);
+          });
+        });
+
+        // Mobile Search Bar
+        var $searchOpen = $("#header-search").find(".search-submit");
+        $searchOpen.addClass("open-btn");
+        var setOpenEvent = function() {
+          $(".open-btn").on("click", function(e) {
+            e.preventDefault();
+            $("#header-search").toggleClass("open");
+            $("#header-search").find("input").focus();
+          });
+        };
+        setOpenEvent();
+
+        $("#header-search").on("click", ".close-btn", function() {
+          $("#header-search").removeClass("open");
+        });
+
+      }
+      else {
+        // Sticky Sidebar
+        var $stickyEl = $(".sticky");
+        if ($stickyEl.length > 0) {
+          var elHeight = $stickyEl.innerHeight();
+          $(".sticky").css("position", "absolute");
+          var elTop = $stickyEl.offset().top;
+          $(".sticky").css("position", "");
+          $(window).scroll(function(){
+            var elBottom = elTop + elHeight + $(window).scrollTop();
+            var footerTop = Math.round($("footer").offset().top);
+
+            if (elBottom >= footerTop) {
+              $stickyEl.addClass("stuck");
+            }
+            else {
+              $stickyEl.removeClass("stuck");
+            }
+          });
+        }
+      }
  });
 
 } ( this, jQuery ));
 
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
 // To keep our code clean and modular, all custom functionality will be contained inside a single object literal called "checkboxFilter".
 

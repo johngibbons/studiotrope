@@ -4,4 +4,22 @@
  */
 
 
-.sidebar {}
+.l-sidebar {
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    @include span(3);
+
+    &.mobile-control-bar.l-wide, &.mobile-control-bar.l-narrow {
+      @include span(3);
+      right: auto;
+    }
+  }
+
+  @include susy-breakpoint($large, $large-columns) {
+    @include span(4 of 16);
+
+    &.mobile-control-bar.l-wide, &.mobile-control-bar.l-narrow {
+      @include span(4 of 16);
+    }
+  }
+}

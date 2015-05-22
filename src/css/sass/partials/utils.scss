@@ -22,6 +22,6 @@
   @include reset-box;
 }
 
-.is-fixed {
+.is-fixed, .is-fixed-mobile {
   transition: transform .3s ease;
 }

@@ -34,6 +34,81 @@
   width: 100%;
 }
 
+#header-search {
+  position: absolute;
+  top: 1.25rem;
+  right: 2rem;
+  left: 8rem;
+  transition: all 0.3s ease;
+
+  &.open {
+    .close-btn {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: -3rem;
+      padding: 1.2rem 2rem;
+      float: left;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      border: $base-border;
+      padding-left: 3rem;
+    }
+
+    .search-submit {
+    }
+  }
+
+  @include susy-breakpoint($tablet, $tablet-columns) {
+    width: auto;
+  }
+
+  .search-submit {
+    left: 1rem;
+
+    @include susy-breakpoint($tablet, $tablet-columns) {
+      left: auto;
+    }
+  }
+
+  .close-btn {
+    display: none;
+  }
+
+  form {
+    position: absolute;
+    transition: all .3s ease;
+    width: 2rem;
+    right: 0;
+  }
+
+  input[type="search"] {
+    float: right;
+    width: 0;
+    border: none;
+    transition: all 0.3s ease;
+
+    @include susy-breakpoint($tablet, $tablet-columns) {
+      width: 20rem;
+      border: $base-border;
+    }
+
+    &:focus {
+      border-color: $st-orange;
+
+      @include susy-breakpoint($tablet, $tablet-columns) {
+        width: 24rem;
+      }
+    }
+  }
+}
+
 $button-size : 2rem; 
 $transition: .3s; // increase this to see the transformations in slow-motion
 
@@ -48,7 +123,7 @@ $transition: .3s; // increase this to see the transformations in slow-motion
   box-shadow: none;
   border: none;
   outline: none;
-  padding: 2.2em 2em;
+  padding: 2.75rem 2rem;
 
   &.is-pushed {
     left: 0;

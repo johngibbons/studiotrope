@@ -8,17 +8,15 @@
   wp_reset_postdata(); // set $post back to original post ?>
   <article id="post-<?php the_ID(); ?>" <?php post_class($troper_ids); ?>>
     <?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-      <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
-        <?php the_post_thumbnail(array(500,500)); // Declare pixel size you need inside the array ?>
+<?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' )[0]; ?>
+<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"
+  class="no-underline">
+  <div class="project-thumb" style="background-image: url( <?php echo $url ?> );"></div>
       </a>
     <?php endif; ?>
-    <h2>
-      <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-    </h2>
-    <?php html5wp_excerpt('html5wp_index'); // Build your custom callback length in functions.php ?>
-    <?php edit_post_link(); ?>
   </article>
 <?php endwhile; ?>
+  <div class="gap"></div>
   <div class="gap"></div>
   <div class="gap"></div>
 <?php else: ?>

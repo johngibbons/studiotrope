@@ -1,70 +1,57 @@
 <?php get_header(); ?>
 
-	<div class="l-container">
+    <main role="main">
+      <!-- section -->
+      <section>
 
-		<main role="main">
-			<!-- section -->
-			<section>
+        <div class="l-container-w-side right last">
+      <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-			<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+        <!-- article -->
+        <article id="troper-<?php the_ID(); ?>" <?php post_class(); ?>>
+          <?php $avatar = get_field("st_profile_picture"); ?>
+          <?php $photo = $avatar["sizes"]["medium"]; ?>
+          <?php if( !empty($avatar) ): ?>
 
-				<!-- article -->
-				<article id="troper-<?php the_ID(); ?>" <?php post_class(); ?>>
+          <?php endif; ?> 
+          <img src="<?php echo $photo; ?>" alt="<?php echo $avatar['alt']; ?>" id="troper-profile-picture" class="troper-avatar">
+          <!-- /post thumbnail -->
 
-					<!-- post thumbnail -->
-					<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-						<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-							<?php the_post_thumbnail(); // Fullsize image for the single post ?>
-						</a>
-					<?php endif; ?>
+          <!-- post title -->
+          <h1>
+            <?php the_title(); ?>
+          </h1>
+          <h2><?php echo get_post_meta(get_the_id(), "st_job_title", true); ?>
+</h2>
+          <!-- /post title -->
+          <p><?php the_terms( $post->ID, 'studio', '', ' / ' ); ?></p>
+          <p><?php echo get_post_meta(get_the_id(), "st_email_address", true); ?>
+</p>
+          <p><?php echo get_post_meta(get_the_id(), "st_bio", true); ?>
+</p>
+        </article>
+        <!-- /article -->
 
-					<?php $avatar = get_field("st_profile_picture"); ?>
-					<?php $photo = $avatar["sizes"]["medium"]; ?>
-					<?php if( !empty($avatar) ): ?>
+      <?php endwhile; ?>
 
-					<?php endif; ?> 
-			  	<img src="<?php echo $photo; ?>" alt="<?php echo $avatar['alt']; ?>" class="troper-avatar">
-					<!-- /post thumbnail -->
+      <?php else: ?>
 
-					<!-- post title -->
-					<h1>
-						<?php the_title(); ?>
-					</h1>
-					<!-- /post title -->
-					<p><?php the_terms( $post->ID, 'studio', '', ' / ' ); ?></p>
-					<p><?php the_field("st_email_address"); ?></p>
-					<p><?php the_field("st_bio"); ?></p>
+        <!-- article -->
+        <article>
 
-					<p><?php _e( 'Categorised in: ', 'html5blank' ); the_category(', '); // Separated by commas ?></p>
+          <h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
 
-					<p><?php _e( 'This post was written by ', 'html5blank' ); the_author(); ?></p>
+        </article>
+        <!-- /article -->
 
-					<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+      <?php endif; ?>
 
-					<?php comments_template(); ?>
-
-				</article>
-				<!-- /article -->
-
-			<?php endwhile; ?>
-
-			<?php else: ?>
-
-				<!-- article -->
-				<article>
-
-					<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
-
-				</article>
-				<!-- /article -->
-
-			<?php endif; ?>
-
-			</section>
-			<!-- /section -->
-		</main>
-	</div>
-
-<?php get_sidebar(); ?>
+        </div>
+      </section>
+      <!-- /section -->
+      <section id="troper-sidebar" class="l-sidebar left">
+<?php get_template_part('troper-sidebar'); ?>
+      </section>
+    </main>
 
 <?php get_footer(); ?>

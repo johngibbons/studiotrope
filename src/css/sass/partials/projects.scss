@@ -1,7 +1,90 @@
+#projects-filter-container {
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    display: block;
+    height: 100%;
+    background-color: $st-off-white;
+    padding: 3rem;
+    position: fixed;
+
+    h2 {
+      font-weight: 700;
+    }
+  }
+}
+
+#projects-filter {
+
+  input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+
+    &:checked+label {
+      font-weight: 700;
+      color: $st-orange;
+    }
+  }
+
+  legend {
+    color: $emphasis-color;
+    font-weight: 700;
+  }
+
+  button {
+    outline: none;
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    legend {
+      padding: 0;
+      padding-top: 1rem;
+    }
+  }
+
+}
+
+
+#filter-reset {
+  border: none;
+  color: $link-color;
+  font-weight: 400;
+  padding-left: 1em;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    padding: 1rem 0 0 0;
+    float: none;
+  }
+}
+
+.filter {
+  position: absolute;
+  right: 0;
+  width: 200%;
+  top: 3.6em;
+  background-color: $white;
+  box-shadow: $base-box-shadow;
+  z-index: 2;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    width: auto;
+    position: static;
+    height: 100%;
+    box-shadow: none;
+    top: auto;
+    right: auto;
+    background-color: transparent;
+  }
+}
+
+.single-filter {
+  padding: 0;
+  margin: 0;
+}
+
 #projects-index, #people-index {
   text-align: justify;
   font-size: 0;
-  background-color: #ccc;
+  padding: $mobile-container-padding 0;
 
   &:after {
     content: "";
@@ -9,9 +92,10 @@
     width: 100%;
   }
 
+
   .project, .troper, .gap {
     display: inline-block;
-    width: span(2 of 4);
+    width: span(4 of 4);
 
     @include susy-breakpoint($tablet, $tablet-columns) {
       width: span(4 of 8);
@@ -27,6 +111,7 @@
   }
 
   .project, .troper {
+    position: relative;
     text-align: left;
     margin-bottom: gutter();
     background-color: #eee;
@@ -49,6 +134,24 @@
       padding-top: 60%;
     }
 
+    .project-thumb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
   }
 
   .mix {
@@ -57,12 +160,3 @@
 
 }
 
-#projects-filter {
-  &:checked {
-    font-weight: 700;
-  }
-}
-
-.single-filter {
-  display: inline-block;
-}

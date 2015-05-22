@@ -4,21 +4,35 @@
  */
 
 body {
+
   &.is-pushed {
     overflow: hidden !important;
     .transition-container {
       left: $mobile-nav-width;
       box-shadow: -1px 0 10px 0 #ddd;
     }
-    .is-fixed {
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      .is-fixed {
+        transform: translateX($mobile-nav-width);
+      }
+    }
+    .is-fixed-mobile {
       transform: translateX($mobile-nav-width);
+
+      @include susy-breakpoint($desktop, $desktop-columns) {
+        .is-fixed {
+          transform: nonei;
+        }
+      }
     }
   }
 }
 
 #view {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   overflow: hidden;
-  position: absolute;
   top:0;
   left: 0;
   right: 0;
@@ -33,11 +47,12 @@ main {
 }
 
 .l-wrapper {
-  position: relative;
+  flex: 1;
   background-color: $white;
   padding-top: $nav-bar-height;
-  z-index: 1;
   transition: 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .transition-container{
@@ -67,8 +82,9 @@ main {
 
 .l-container-w-side {
   @include container;
-  margin: 0 $mobile-container-padding;
+  padding: 0 $mobile-container-padding;
   background-color: $white;
+  width: 100%;
 
   @include susy-breakpoint($tablet, $tablet-columns) {
     .l-full-bleed {
@@ -81,26 +97,19 @@ main {
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     @include span(9);
+
+    &.mobile-control-bar.l-wide {
+      @include span(9 last);
+    }
   }
 
   @include susy-breakpoint($large, $large-columns) {
     @include span(12 of 16);
+
+    &.mobile-control-bar.l-wide {
+      @include span(12 of 16 last);
+    }
   }
 
 }
 
-.l-sidebar {
-  @include container;
-
-  @include susy-breakpoint($tablet, $tablet-columns) {
-    @include span(2);
-  }
-
-  @include susy-breakpoint($desktop, $desktop-columns) {
-    @include span(3);
-  }
-
-  @include susy-breakpoint($large, $large-columns) {
-    @include span(4 of 16);
-  }
-}

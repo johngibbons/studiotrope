@@ -11,6 +11,7 @@
   width: $mobile-nav-width;
   background-color: $st-lightest-gray;
   height: 100%;
+  z-index: 0;
 
   #nav-contents {
     position: absolute;
@@ -20,8 +21,15 @@
   }
 
   #nav-logo {
-    padding: 2em 0 2em 4em;
+    display: inline-block;
+    padding: 2em 0 0 4em;
     width: 70%;
+  }
+
+  .search {
+    padding: 2em 0;
+    width: 80%;
+    margin: 0 auto;
   }
 
   ul {
@@ -38,6 +46,7 @@
     border-bottom: $base-border-medium-dashed;
 
     a {
+      position: relative;
       color: lighten($st-dark-gray, 20%);
       padding: 1em 4em;
       width: 100%;
@@ -59,16 +68,10 @@
 }
 
 #nav-social {
-  text-align: justify;
-
-  &:after{
-    content: '';
-    display: inline-block;
-    width: 100%;
-  }
-
+  padding: 2em 0 2em 4em;
   .fa {
     display: inline-block;
+    padding-right: 2em;
   }
 }
 .menu {}

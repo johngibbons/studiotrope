@@ -1,0 +1,64 @@
+.mobile-control-bar {
+  background-color: $white;
+  height: $mobile-control-bar-height;
+  line-height: $mobile-control-bar-height;
+  position: fixed;
+  top: $nav-bar-height;
+  box-shadow: $base-box-shadow;
+  border-bottom: $base-border;
+  z-index: 2;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    background-color: transparent;
+    position: static;
+    height: auto;
+    line-height: $line-height-base;
+    box-shadow: none;
+    border-bottom: none;
+  }
+
+  h1, h2, p {
+    margin: 0;
+  }
+
+  &.l-wide {
+    width: 66.666%;
+    margin: 0;
+  }
+
+  &.l-narrow {
+    width: 33.3333%;
+    margin: 0;
+  }
+
+  &.l-left {
+    left: 0;
+  }
+
+  &.l-right {
+    right: 0;
+    border-left: $base-border-medium-dashed;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      border-left: none;
+    }
+  }
+
+  &+div, &+section {
+    margin-top: $mobile-control-bar-height;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      margin-top: 0;
+    }
+  }
+}
+
+.title-text {
+  padding-left: 2rem;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    padding-left: 0;
+    padding-bottom: 2rem;
+    text-align: left;
+  }
+}

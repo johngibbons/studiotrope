@@ -1,0 +1,58 @@
+form.search {
+  position: relative;
+
+  button {
+    border: none;
+    position: absolute;
+    outline: none;
+    font-size: $font-size-base * 0.7;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    padding-right: 1rem;
+  }
+
+  input[type="search"] {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    padding: 0.5em;
+    font-size: $font-size-base * 0.7;
+  }
+}
+
+.swiftype-widget {
+  .autocomplete {
+    box-shadow: $base-box-shadow;
+    ul {
+      font-family: $font-family-base;
+    }
+
+    li {
+      p.title {
+        font-weight: 300;
+        color: $text-color;
+
+        em {
+          font-weight: 700;
+          color: $emphasis-color;
+        }
+      }
+
+      &.active {
+        background: $st-orange;
+        border: none;
+        box-shadow: none;
+
+        p.title {
+          text-shadow: none;
+        }
+      }
+
+      &:first-child, &:last-child {
+        border-radius: 0;
+      }
+    }
+  }
+}

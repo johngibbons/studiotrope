@@ -27,13 +27,14 @@
         <a href="<?php echo home_url(); ?>" id="nav-logo" class="no-underline">
           <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo" class="logo-img">
         </a>
+        <?php get_search_form(true); ?>
         <?php html5blank_nav(); ?>
-     </div>
         <div id="nav-social">
           <i class="fa fa-facebook"></i>
           <i class="fa fa-instagram"></i>
           <i class="fa fa-twitter"></i>
         </div>
+      </div>
     </nav>
 
     <header class="header clear top-fixed transition-container" role="banner">
@@ -44,6 +45,10 @@
         <a href="<?php echo home_url(); ?>" class="no-underline">
           <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo" class="logo-img">
         </a>
+      </div>
+      <div id="header-search">
+        <?php get_search_form(true); ?>
+        <i class="fa fa-ellipsis-v close-btn"></i>
       </div>
     </header>
 

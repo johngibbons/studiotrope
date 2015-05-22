@@ -409,6 +409,9 @@ add_action( 'p2p_init', 'st_connection_types' ); //Troper to Project Connection
 // add_action( 'wp_ajax_nopriv_projects_filter', 'st_projects_filter' ); //Ajax Projects Filter
 // add_action( 'wp_ajax_projects_filter', 'st_projects_filter' ); //Ajax Projects Filter
 
+add_action('wp_head', 'swiftype_javascript_config');
+
+
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
 remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
@@ -437,7 +440,9 @@ add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove 
 add_filter('post_thumbnail_html', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter('image_send_to_editor', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter('pre_get_posts', 'query_post_type'); // Query Projects as well as blog posts for tags
+add_filter( 'swiftype_document_builder', 'update_swiftype_document_url', 10, 2 );
 
+add_filter( 'swiftype_search_params', 'swiftype_search_params_filter', 8, 1 );
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
@@ -538,10 +543,81 @@ function st_get_tax($tax_name) {
     return $terms = get_terms($tax_name, $args);
 }
 
+/*------------------------------------*\
+    Swiftype Search Settings
+\*------------------------------------*/
 
-// function st_projects_filter() {
-//     echo get_bloginfo( 'title' );
-//     die();
-// }
+function update_swiftype_document_url( $document, $post ) {
+    $document['fields'][] = array( 'name' => 'project_description',
+                                   'type' => 'text',
+                                   'value' => get_post_meta( $post->ID, 'st_project_description', true ));
 
+$document['fields'][] = array( 'name' => 'flex_description',
+                                   'type' => 'text',
+                                   'value' => get_post_meta( $post->ID, 'st_description', true ));
+
+$document['fields'][] = array( 'name' => 'troper_job',
+                                   'type' => 'string',
+                                   'value' => get_post_meta( $post->ID, 'st_job_title', true ));
+
+$document['fields'][] = array( 'name' => 'troper_bio',
+                                   'type' => 'text',
+                                   'value' => get_post_meta( $post->ID, 'st_bio', true ));
+
+    return $document;
+}
+
+function swiftype_search_params_filter( $params ) {
+    // set the fields to search and their boosts
+    $params['search_fields[posts]'] = array( 'title^3', 'tags^2', 'author^2', 'body', 'excerpt', 'project_description', 'flex_description', 'troper_job', 'troper_bio' );
+
+    return $params;
+}
+
+function swiftype_javascript_config() {
+?>
+<script type="text/javascript">
+var customRenderFunction = function(document_type, item) {
+    console.log("using this function");
+    var out = '<p class="title">' + item['title'] + '</p>';
+    return out.concat('<p class="post-type">' + item['object_type'] + '</p>');
+ };
+
+ var swiftypeConfig = {
+  renderFunction: customRenderFunction,
+  fetchFields: {'posts': ['title', 'object_type']},
+  searchFields: {'posts': ['title', 'tags', 'author', 'body', 'excerpt', 'project_description', 'flex_description', 'troper_job', 'troper_bio']}
+};
+</script>
+<?php
+}
+
+// Utility for showing all of the custom taxonomies of a post type
+// get taxonomies terms links
+function custom_taxonomies_terms_links(){
+  global $post;
+  // get post by post id
+  $post = get_post( $post->ID );
+
+  // get post type by post
+  $post_type = $post->post_type;
+
+  // get post type taxonomies
+  $taxonomies = get_object_taxonomies( $post_type, 'objects' );
+  // reorder so that tags are last
+  $tags = $taxonomies["post_tag"];
+  unset($taxonomies["post_tag"]);
+  $taxonomies["post_tag"] = $tags;
+  $out = array();
+  foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+
+    // get the terms related to post
+    $terms = get_the_terms( $post->ID, $taxonomy_slug );
+
+    if ( !empty( $terms ) ) {
+      echo "<li class='label'>" . $taxonomy->labels->name . "</li>";
+      echo "<li class='value'>" . the_terms($post->ID, $taxonomy_slug, "", " / ") . "</li>";
+    }
+  }
+}
 ?>

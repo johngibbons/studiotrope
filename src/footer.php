@@ -1,5 +1,6 @@
+      </div>
       <!-- footer -->
-      <footer class="footer" role="contentinfo">
+      <footer class="footer transition-container" role="contentinfo">
 
         <!-- copyright -->
         <p class="copyright">
@@ -10,7 +11,7 @@
       </footer>
       <!-- /footer -->
 
-    </div>
+  </div>
     <!-- /wrapper -->
 
     <?php wp_footer(); ?>
@@ -25,6 +26,5 @@ ga('create', 'UA-XXXXXXXX-XX', 'yourdomain.com');
 ga('send', 'pageview');
 </script>
 
-    </div>
   </body>
 </html>

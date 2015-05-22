@@ -7,6 +7,8 @@
 .footer {
   background-color: $st-lightest-gray;
   height: $footer-height;
+  position: relative;
+  z-index: 1;
 
   .copyright {
     text-align: center;
