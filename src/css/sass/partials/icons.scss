@@ -1,0 +1,33 @@
+.icon {
+  fill: $white;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  height: 20%;
+}
+
+.sdc-icons-container {
+  width:100%;
+}
+
+.sdc-icons {
+  position: relative;
+  width: 100%;
+}
+
+.architecture-icon, .graphics-icon, .interiors-icon {
+  width: 33.3333%;
+}
+
+.architecture-icon {
+  height: 8rem;
+}
+
+.graphics-icon {
+  height: 7rem;
+}
+
+.interiors-icon {
+  height: 8rem;
+}
+

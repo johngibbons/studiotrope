@@ -20,8 +20,9 @@ body {
       transform: translateX($mobile-nav-width);
 
       @include susy-breakpoint($desktop, $desktop-columns) {
+        transform: none;
         .is-fixed {
-          transform: nonei;
+          transform: none;
         }
       }
     }

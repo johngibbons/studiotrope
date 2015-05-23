@@ -73,6 +73,8 @@
       }
     });
 
+    $(".l-sidebar").stick_in_parent();
+
     //Mobile Only
       if (isMobile()) {
         // Dropdown for mobile filter
@@ -105,25 +107,6 @@
 
       }
       else {
-        // Sticky Sidebar
-        var $stickyEl = $(".sticky");
-        if ($stickyEl.length > 0) {
-          var elHeight = $stickyEl.innerHeight();
-          $(".sticky").css("position", "absolute");
-          var elTop = $stickyEl.offset().top;
-          $(".sticky").css("position", "");
-          $(window).scroll(function(){
-            var elBottom = elTop + elHeight + $(window).scrollTop();
-            var footerTop = Math.round($("footer").offset().top);
-
-            if (elBottom >= footerTop) {
-              $stickyEl.addClass("stuck");
-            }
-            else {
-              $stickyEl.removeClass("stuck");
-            }
-          });
-        }
       }
  });
 

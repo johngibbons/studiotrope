@@ -1,4 +1,4 @@
-<h1 class="detail">Other Tropers</h1>
+<h1 class="detail label">Other Tropers</h1>
 
 <?php
 $type = 'troper';

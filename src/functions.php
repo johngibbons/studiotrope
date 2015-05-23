@@ -105,6 +105,9 @@ function html5blank_header_scripts()
             // Mixitup
             wp_register_script('mixitup', get_template_directory_uri() . '/bower_components/bower-mixitup/build/jquery.mixitup.min.js', array(), '2.1.8');
 
+            // Sticky-kit
+            wp_register_script('stickykit', get_template_directory_uri(). '/bower_components/sticky-kit/jquery.sticky-kit.min.js');
+
             // Custom scripts
             wp_register_script(
                 'html5blankscripts',
@@ -113,7 +116,8 @@ function html5blank_header_scripts()
                     'conditionizr',
                     'modernizr',
                     'jquery',
-                    'mixitup'),
+                    'mixitup',
+                    'stickykit'),
                 '1.0.0');
 
             // global $wp_query;

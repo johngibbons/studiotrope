@@ -1,12 +1,6 @@
 #projects-filter-container {
 
   @include susy-breakpoint($desktop, $desktop-columns) {
-    display: block;
-    height: 100%;
-    background-color: $st-off-white;
-    padding: 3rem;
-    position: fixed;
-
     h2 {
       font-weight: 700;
     }

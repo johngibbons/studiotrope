@@ -14,6 +14,19 @@
   <div class="project-thumb" style="background-image: url( <?php echo $url ?> );"></div>
       </a>
     <?php endif; ?>
+  <div class="sdc-icons-container">
+    <svg class="sdc-icons">
+      <svg class="icon architecture-icon" width="33.33%" height="33.33%">
+        <use xlink:href="#architecture_icon"></use>
+      </svg>
+      <svg class="icon graphics-icon" width="33.33%" height="33.33%">
+        <use xlink:href="#graphics_icon"></use>
+      </svg>
+      <svg class="icon interiors-icon" width="33.33%" height="33.33%">
+        <use xlink:href="#interiors_icon"></use>
+      </svg>
+    </svg>
+  </div>
   </article>
 <?php endwhile; ?>
   <div class="gap"></div>

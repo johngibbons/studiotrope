@@ -185,8 +185,11 @@ body.is-pushed .is-fixed-mobile {
   transform: translateX(30rem);
 }
 @media (min-width: 1024px) {
+  body.is-pushed .is-fixed-mobile {
+    transform: none;
+  }
   body.is-pushed .is-fixed-mobile .is-fixed {
-    transform: nonei;
+    transform: none;
   }
 }
 
@@ -474,10 +477,10 @@ main:after {
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   z-index: 2;
+  position: relative;
 }
 .header.top-fixed {
   top: 0;
-  position: fixed;
 }
 
 .logo {
@@ -709,13 +712,18 @@ main:after {
  * partials/sidebar
  * ---
  */
+.l-sidebar {
+  padding: 3rem;
+}
 @media (min-width: 1024px) {
   .l-sidebar {
     width: 22.8571428571%;
     float: left;
     margin-right: 2.8571428571%;
+    border-right: 1px dashed #c8c8c8;
   }
   .l-sidebar.mobile-control-bar.l-wide, .l-sidebar.mobile-control-bar.l-narrow {
+    background-color: #fafafa;
     width: 22.8571428571%;
     float: left;
     margin-right: 2.8571428571%;
@@ -979,6 +987,39 @@ fieldset {
   }
 }
 
+.icon {
+  fill: #fff;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  height: 20%;
+}
+
+.sdc-icons-container {
+  width: 100%;
+}
+
+.sdc-icons {
+  position: relative;
+  width: 100%;
+}
+
+.architecture-icon, .graphics-icon, .interiors-icon {
+  width: 33.3333%;
+}
+
+.architecture-icon {
+  height: 8rem;
+}
+
+.graphics-icon {
+  height: 7rem;
+}
+
+.interiors-icon {
+  height: 8rem;
+}
+
 .mobile-control-bar {
   background-color: #fff;
   height: 5rem;
@@ -1090,40 +1131,20 @@ form.search input[type="search"] {
   border-radius: 0;
 }
 
+.single-project .project {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.single-project .project:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
 .project-details {
   background-color: #fafafa;
   padding: 4rem 2rem;
-}
-@media (min-width: 1024px) {
-  .project-details {
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    height: 100%;
-    border-right: 1px dashed #eee;
-    left: 0;
-  }
-}
-@media (min-width: 1024px) {
-  .project-details .project-details-content {
-    padding: 3em;
-    position: fixed;
-    overflow: auto;
-    top: 6rem;
-    left: 0;
-    max-height: 94%;
-  }
-  .project-details .project-details-content::-webkit-scrollbar {
-    display: none;
-  }
-}
-@media (min-width: 1024px) {
-  .project-details .stuck {
-    position: absolute;
-    bottom: 8rem;
-    top: auto;
-    width: 100%;
-  }
 }
 .project-details h1 {
   margin-top: 0;
@@ -1186,13 +1207,6 @@ form.search input[type="search"] {
 }
 
 @media (min-width: 1024px) {
-  #projects-filter-container {
-    display: block;
-    height: 100%;
-    background-color: #fafafa;
-    padding: 3rem;
-    position: fixed;
-  }
   #projects-filter-container h2 {
     font-weight: 700;
   }

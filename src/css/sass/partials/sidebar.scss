@@ -3,13 +3,15 @@
  * ---
  */
 
-
 .l-sidebar {
+  padding: 3rem;
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     @include span(3);
+    border-right: $base-border-medium-dashed;
 
     &.mobile-control-bar.l-wide, &.mobile-control-bar.l-narrow {
+      background-color: $st-off-white;
       @include span(3);
       right: auto;
     }
