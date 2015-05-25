@@ -246,7 +246,6 @@ main:after {
   -ms-flex: 1;
   flex: 1;
   background-color: #fff;
-  padding-top: 6rem;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   position: relative;
@@ -338,9 +337,7 @@ main:after {
     margin-right: 2.8571428571%;
   }
   .l-container-w-side.mobile-control-bar.l-wide {
-    width: 74.2857142857%;
-    float: right;
-    margin-right: 0;
+    width: 100%;
   }
 }
 @media (min-width: 1400px) {
@@ -350,9 +347,7 @@ main:after {
     margin-right: 2.1276595745%;
   }
   .l-container-w-side.mobile-control-bar.l-wide {
-    width: 74.4680851064%;
-    float: right;
-    margin-right: 0;
+    width: 100%;
   }
 }
 
@@ -518,6 +513,13 @@ main:after {
 .header.top-fixed {
   top: 0;
 }
+@media (min-width: 1024px) {
+  .header {
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
 
 .logo {
   position: absolute;
@@ -527,6 +529,14 @@ main:after {
   transform: translate(-50%, -50%);
   display: inline-block;
   width: 8em;
+}
+@media (min-width: 1024px) {
+  .logo {
+    position: static;
+    -webkit-transform: none;
+    transform: none;
+    display: block;
+  }
 }
 
 .logo-img {
@@ -540,6 +550,14 @@ main:after {
   left: 8rem;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+@media (min-width: 1024px) {
+  #header-search {
+    position: static;
+    -webkit-transform: none;
+    transform: none;
+    display: block;
+  }
 }
 #header-search.open .close-btn {
   display: inline-block;
@@ -580,6 +598,11 @@ main:after {
   width: 2rem;
   right: 0;
 }
+@media (min-width: 1024px) {
+  #header-search form {
+    position: static;
+  }
+}
 #header-search input[type="search"] {
   float: right;
   width: 0;
@@ -591,6 +614,11 @@ main:after {
   #header-search input[type="search"] {
     width: 20rem;
     border: 1px solid #eee;
+  }
+}
+@media (min-width: 1024px) {
+  #header-search input[type="search"] {
+    float: none;
   }
 }
 #header-search input[type="search"]:focus {
@@ -774,6 +802,7 @@ main:after {
     float: left;
     margin-right: 2.8571428571%;
     border-right: 1px dashed #c8c8c8;
+    background-color: #fafafa;
   }
   .l-sidebar.mobile-control-bar.l-wide, .l-sidebar.mobile-control-bar.l-narrow {
     background-color: #fafafa;
@@ -1102,9 +1131,19 @@ fieldset {
   width: 66.666%;
   margin: 0;
 }
+@media (min-width: 1024px) {
+  .mobile-control-bar.l-wide {
+    width: 100%;
+  }
+}
 .mobile-control-bar.l-narrow {
   width: 33.3333%;
   margin: 0;
+}
+@media (min-width: 1024px) {
+  .mobile-control-bar.l-narrow {
+    width: auto;
+  }
 }
 .mobile-control-bar.l-left {
   left: 0;

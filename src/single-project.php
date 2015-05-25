@@ -1,11 +1,9 @@
 <?php get_header(); ?>
-  <main role="main"> 
 
     <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-      <section id="project-<?php the_ID(); ?>" <?php post_class(""); ?>>
 
-      <div class="project-details l-sidebar">
+      <div class="project-details">
         <h1 class="project-title">
           <?php the_title(); ?>
         </h1>
@@ -18,10 +16,13 @@
           <?php echo get_post_meta(get_the_ID(), "st_project_description", true); ?>
         </p>
       </div>
+    </div>
 
-      <div class="project-contents l-container-w-side">
-        <?php get_template_part('project-flexible-content') ?>
-      </div>
+    <main role="main"> 
+      <section id="project-<?php the_ID(); ?>" <?php post_class(""); ?>>
+        <div class="project-contents l-container-w-side">
+          <?php get_template_part('project-flexible-content') ?>
+        </div>
       </section>
     <?php endwhile; ?>
     <?php else: ?>

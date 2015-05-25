@@ -24,11 +24,19 @@
   &.l-wide {
     width: 66.666%;
     margin: 0;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      width: 100%;
+    }
   }
 
   &.l-narrow {
     width: 33.3333%;
     margin: 0;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      width: auto;
+    }
   }
 
   &.l-left {

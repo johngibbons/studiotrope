@@ -17,6 +17,12 @@
   &.top-fixed {
     top: 0;
   }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
 
 // Logo
@@ -28,6 +34,12 @@
   transform: translate(-50%, -50%);
   display: inline-block;
   width: 8em;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    position: static;
+    transform: none;
+    display: block;
+  }
 }
 
 .logo-img {
@@ -40,6 +52,12 @@
   right: 2rem;
   left: 8rem;
   transition: all 0.3s ease;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    position: static;
+    transform: none;
+    display: block;
+  }
 
   &.open {
     .close-btn {
@@ -86,6 +104,10 @@
     transition: all .3s ease;
     width: 2rem;
     right: 0;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      position: static;
+    }
   }
 
   input[type="search"] {
@@ -97,6 +119,10 @@
     @include susy-breakpoint($tablet, $tablet-columns) {
       width: 20rem;
       border: $base-border;
+    }
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      float: none;
     }
 
     &:focus {

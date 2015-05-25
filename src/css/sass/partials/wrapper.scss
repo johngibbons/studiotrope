@@ -50,7 +50,6 @@ main {
 .l-wrapper {
   flex: 1;
   background-color: $white;
-  padding-top: $nav-bar-height;
   transition: 0.3s;
   position: relative;
   z-index: 1;
@@ -100,7 +99,7 @@ main {
     @include span(9);
 
     &.mobile-control-bar.l-wide {
-      @include span(9 last);
+      width: 100%;
     }
   }
 
@@ -108,7 +107,7 @@ main {
     @include span(12 of 16);
 
     &.mobile-control-bar.l-wide {
-      @include span(12 of 16 last);
+      width: 100%;
     }
   }
 

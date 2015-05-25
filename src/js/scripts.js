@@ -3,10 +3,20 @@
 
   $(function () {
 
-    $("html").on("click", "[aria-label='Toggle Navigation'], body.is-pushed .l-wrapper", function() {
-      $("[aria-label='Toggle Navigation']").toggleClass("close");
-      $("body").toggleClass("is-pushed");
-    });
+    var navOpen = function(e){
+        e.stopPropagation();
+        $("body").addClass("is-pushed");
+        $(this).addClass("close");
+        $("body.is-pushed .l-wrapper").one("click", function(){
+          $("[aria-label='Toggle Navigation']").removeClass("close");
+          $("body").removeClass("is-pushed");
+          $("[aria-label='Toggle Navigation']").one("click", navOpen);
+        });
+    };
+
+    $("[aria-label='Toggle Navigation']").one("click", navOpen);
+
+
 
     // Find all videos
     var $allVideos = $("iframe");
