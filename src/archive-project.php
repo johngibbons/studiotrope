@@ -1,9 +1,11 @@
 <?php get_header(); ?>
+<div class="l-sidebar">
+  <?php get_template_part("header-items"); ?>
+  <?php get_template_part("sidebar_selector"); ?>
+</div>
+
   <main role="main">
     <h1 class="page-title mobile-control-bar l-wide l-left is-fixed-mobile title-text l-container-w-side last"><?php _e( 'All Projects', 'html5blank' ); ?></h1>
-    <section id="projects-filter-container" class="mobile-control-bar l-sidebar l-narrow l-right is-fixed-mobile">
-      <?php get_template_part("projects-filter"); ?>
-    </section>
     <div class="l-container-w-side last">
       <section id="projects-index" class="container">
         <?php get_template_part('loop-project'); ?>
