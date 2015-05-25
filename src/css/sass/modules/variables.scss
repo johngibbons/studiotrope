@@ -101,9 +101,11 @@ $tablet-container-padding: 2rem;
 $desktop-container-padding: 5rem;
 $large-container-padding: 5rem;
 $mobile-nav-width: 30rem;
-$nav-bar-height: 6rem;
+$header-bar-height: 6rem;
 $footer-height: 8rem;
 $mobile-control-bar-height: 5rem;
+$nav-toggle-btn-size : 2rem; 
+$base-transition: all .3s ease; // increase this to see the transformations in slow-motion
 
 $padding-horizontal-base: 5px;
 $padding-vertical-base: 5px;

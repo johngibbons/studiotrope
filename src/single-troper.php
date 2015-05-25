@@ -48,10 +48,7 @@
 
         </div>
       </section>
-      <!-- /section -->
-      <section id="troper-sidebar" class="l-sidebar left">
-<?php get_template_part('troper-sidebar'); ?>
-      </section>
     </main>
 
+<?php get_template_part("contextual-module"); ?>
 <?php get_footer(); ?>

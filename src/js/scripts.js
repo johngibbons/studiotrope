@@ -3,8 +3,8 @@
 
   $(function () {
 
-    $("html").on("click", "[aria-label='Toggle Navigation'], body.is-pushed .l-wrapper", function() {
-      $("[aria-label='Toggle Navigation']").toggleClass("close");
+    $("html").on("click", "#nav-toggle, #nav-open-overlay", function() {
+      $("#nav-toggle").toggleClass("close");
       $("body").toggleClass("is-pushed");
     });
 

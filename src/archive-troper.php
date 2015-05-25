@@ -8,4 +8,5 @@
     </section>
   </main>
 </div>
+<?php get_template_part("contextual-module"); ?>
 <?php get_footer(); ?>

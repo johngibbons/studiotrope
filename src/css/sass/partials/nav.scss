@@ -4,7 +4,16 @@
  * Menus
  */
 
-.nav {
+nav {
+  li {
+    font-family: $font-family-nav;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+#nav-mobile {
   position: fixed;
   left: 0;
   top: 0;
@@ -39,10 +48,6 @@
   }
 
   li {
-    font-family: $font-family-nav;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     border-bottom: $base-border-medium-dashed;
 
     a {
@@ -74,10 +79,23 @@
     padding-right: 2em;
   }
 }
-.menu {}
 
-.sub-menu {}
+#nav-open-overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: rgba(0,0,0,.7);
+  z-index: 2;
+  transition: $base-transition;
+}
 
-.menu-item {}
-
-
+body.is-pushed {
+  #nav-open-overlay {
+    visibility: visible;
+    opacity: 1;
+  }
+}
