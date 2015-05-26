@@ -6,13 +6,17 @@
 
 // Header container
 #header-bar {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   height: $header-bar-height;
   background-color: $white;
   box-shadow: $base-box-shadow;
   z-index: 2;
+
+  &.show {
+    position: fixed;
+  }
 
   // Logo
 
@@ -49,6 +53,9 @@
     li {
       display: inline-block;
       margin-right: 2rem;
+      font-size: $font-size-base * 0.6;
+      font-weight: 100;
+      letter-spacing: 0.2em;
     }
   }
 }

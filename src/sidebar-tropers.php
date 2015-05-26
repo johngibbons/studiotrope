@@ -1,2 +1,2 @@
-<div class="mobile-dropdown">
+<div class="mobile-dropdown transition-container">
 </div>

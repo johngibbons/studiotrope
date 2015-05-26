@@ -24,12 +24,14 @@
   }
 
   div {
-    background-color: $st-lightest-gray;
+    background-color: $st-off-white;
     border-top: $base-border-medium-dashed;
+    padding-left: 2rem;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
       background-color: transparent;
       border-top: none;
+      padding-left: 0;
     }
   }
 

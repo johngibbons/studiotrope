@@ -1,10 +1,9 @@
 <?php get_header(); ?>
 
-    <main role="main">
+    <main class="l-container-w-side" role="main">
       <!-- section -->
       <section>
 
-        <div class="l-container-w-side right last">
       <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
         <!-- article -->
@@ -46,7 +45,6 @@
 
       <?php endif; ?>
 
-        </div>
       </section>
     </main>
 

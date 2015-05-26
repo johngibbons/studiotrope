@@ -1,0 +1,48 @@
+.mix, .gap {
+  display: inline-block;
+  width: span(4 of 4);
+
+  @include susy-breakpoint($tablet, $tablet-columns) {
+    width: span(4 of 8);
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    width: span(3 of 12);
+  }
+
+  @include susy-breakpoint($large, $large-columns) {
+    width: span(4 of 16);
+  }
+}
+
+.mix {
+  position: relative;
+  display: none;
+  text-align: left;
+  margin-bottom: gutter();
+  height: 15rem;
+
+  @include susy-breakpoint($tablet, $tablet-columns) {
+    margin-bottom: gutter();
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    margin-bottom: gutter();
+  }
+
+  @include susy-breakpoint($large, $large-columns) {
+    margin-bottom: gutter();
+  }
+}
+
+.search, .archive {
+  .mix {
+    display: inline-block;
+  }
+}
+
+.post-type-archive {
+  .mix {
+    display: none;
+  }
+}

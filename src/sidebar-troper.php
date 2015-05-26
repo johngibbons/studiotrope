@@ -1,5 +1,5 @@
-<div class="mobile-dropdown">
-  <h1 class="detail label">Other Tropers</h1>
+<div class="mobile-dropdown transition-container">
+  <h2 class="detail label">Other Tropers</h1>
 
   <?php
     $type = 'troper';
@@ -22,4 +22,5 @@
   }
   wp_reset_query();  // Restore global post data stomped by the_post().
   ?>
+  <?php get_template_part("prev-next-links"); ?>
 </div>

@@ -1,10 +1,9 @@
 <?php get_header(); ?>
-<main role="main"> 
+<?php get_template_part("contextual-module"); ?>
+<main class="l-container-w-side" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
     <section id="project-<?php the_ID(); ?>" <?php post_class(""); ?>>
-      <div class="project-contents l-container-w-side">
-        <?php get_template_part('project-flexible-content') ?>
-      </div>
+      <?php get_template_part('project-flexible-content') ?>
     </section>
   <?php endwhile; ?>
   <?php else: ?>
@@ -13,5 +12,4 @@
     </section>
   <?php endif; ?>
 </main>
-<?php get_template_part("contextual-module"); ?>
 <?php get_footer(); ?>

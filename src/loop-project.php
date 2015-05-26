@@ -1,4 +1,6 @@
+<?php p2p_type( 'project_to_troper' )->each_connected( $wp_query ); ?>
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+<?php if($post->post_type === "project") : ?>
   <?php $i = 0;
   foreach ( $post->connected as $post ) : setup_postdata( $post );
     $troper_ids[$i] = "troper-" . get_the_ID();
@@ -14,20 +16,8 @@
   <div class="project-thumb" style="background-image: url( <?php echo $url ?> );"></div>
       </a>
     <?php endif; ?>
-  <div class="sdc-icons-container">
-    <svg class="sdc-icons">
-      <svg class="icon architecture-icon" width="33.33%" height="33.33%">
-        <use xlink:href="#architecture_icon"></use>
-      </svg>
-      <svg class="icon graphics-icon" width="33.33%" height="33.33%">
-        <use xlink:href="#graphics_icon"></use>
-      </svg>
-      <svg class="icon interiors-icon" width="33.33%" height="33.33%">
-        <use xlink:href="#interiors_icon"></use>
-      </svg>
-    </svg>
-  </div>
   </article>
+  <?php endif; ?>
 <?php endwhile; ?>
   <div class="gap"></div>
   <div class="gap"></div>

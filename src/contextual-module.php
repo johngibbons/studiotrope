@@ -12,9 +12,11 @@
     get_sidebar("troper");
   elseif(is_singular("post")):
     get_sidebar("blogpost");
+  elseif(is_search()):
+    get_sidebar("search");
   else:
     get_sidebar();
   endif;
-  ?>
+?>
 </aside>
 

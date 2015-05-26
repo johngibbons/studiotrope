@@ -1,12 +1,21 @@
-.mobile-control-bar {
-  background-color: $white;
-  height: $mobile-control-bar-height;
-  line-height: $mobile-control-bar-height;
-  position: fixed;
+.mobile-dropdown {
+  position: absolute;
   top: $header-bar-height;
+  background-color: $st-off-white;
+  width: 100%;
+  height: $header-bar-height;
+  line-height: $header-bar-height;
   box-shadow: $base-box-shadow;
   border-bottom: $base-border;
-  z-index: 2;
+  z-index: 1;
+
+  &.show {
+    position: fixed;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      position: static;
+    }
+  }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     background-color: transparent;
@@ -21,44 +30,49 @@
     margin: 0;
   }
 
-  &.l-wide {
-    width: 66.666%;
-    margin: 0;
-  }
-
-  &.l-narrow {
-    width: 33.3333%;
-    margin: 0;
-  }
-
-  &.l-left {
-    left: 0;
-  }
-
-  &.l-right {
-    right: 0;
-    border-left: $base-border-medium-dashed;
+  h2 {
+    padding-left: 2rem;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
-      border-left: none;
+      padding-left: 0;
     }
+
   }
 
   &+div, &+section {
-    margin-top: $mobile-control-bar-height;
+    margin-top: $header-bar-height;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
       margin-top: 0;
     }
   }
-}
 
-.title-text {
-  padding-left: 2rem;
+  form {
+    input[type="checkbox"] {
+      position: absolute;
+      left: -9999px;
 
-  @include susy-breakpoint($desktop, $desktop-columns) {
-    padding-left: 0;
-    padding-bottom: 2rem;
-    text-align: left;
+      &:checked+label {
+        font-weight: 700;
+        color: $st-orange;
+      }
+    }
+
+    legend {
+      color: $emphasis-color;
+      font-weight: 700;
+    }
+
+    button {
+      border: none;
+      outline: none;
+    }
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      legend {
+        padding: 0;
+        padding-top: 1rem;
+      }
+    }
   }
 }

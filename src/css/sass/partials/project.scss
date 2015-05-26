@@ -5,27 +5,6 @@
 }
 
 .project-details {
-  background-color: $st-off-white;
-  padding: 4rem $mobile-container-padding;
-
-  h1 {
-    margin-top: 0
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 2em;
-  }
-
-  li {
-  }
-
-  p {
-    font-size: $font-size-base * 0.7;
-  }
-
   .troper-avatar {
     margin: 1em 0;
     width: 5em;
@@ -40,7 +19,7 @@
 }
 
 .project-detail-value {
-  margin-bottom: 1em;
+  margin-bottom: 2rem;
 }
 
 .project-contents {
@@ -53,8 +32,8 @@
   }
 }
 
-.project-video {
-
+#project-detail-description {
+  margin-top: 6rem;
 }
 
 .project-testimonial {

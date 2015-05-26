@@ -97,19 +97,12 @@ main {
   }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
-    @include span(9);
-
-    &.mobile-control-bar.l-wide {
-      @include span(9 last);
-    }
+    @include span(isolate 7 at 5);
+    padding: 5rem 0;
   }
 
   @include susy-breakpoint($large, $large-columns) {
-    @include span(12 of 16);
-
-    &.mobile-control-bar.l-wide {
-      @include span(12 of 16 last);
-    }
+    @include span(isolate 10 at 6);
   }
 
 }

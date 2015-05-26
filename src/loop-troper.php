@@ -1,6 +1,6 @@
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-
-        <article id="troper-<?php the_ID(); ?>" <?php post_class(); ?>>
+<?php if($post->post_type === "troper") : ?>
+        <article id="troper-<?php the_ID(); ?>" <?php post_class("mix"); ?>>
 
                 <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
                         <?php $avatar = get_field("st_profile_picture"); ?>
@@ -8,13 +8,11 @@
                 <img src="<?php echo $thumb; ?>" alt="<?php echo $avatar['alt']; ?>" class="troper-avatar">
                 </a>
 
-                <h2 class="troper-name">
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-                </h2>
-
                 <?php html5wp_excerpt('html5wp_index'); // Build your custom callback length in functions.php ?>
 
         </article>
+
+<?php endif; ?>
 
 <?php endwhile; ?>
 

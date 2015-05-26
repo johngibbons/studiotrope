@@ -73,8 +73,58 @@
       }
     });
 
-    $(".l-sidebar").stick_in_parent();
+    var $headerHeight = $("#header-bar").outerHeight();
+    var currentTop = $(window).scrollTop();
+    console.log(currentTop);
 
+    if(currentTop > 0) {
+      console.log("here");
+      $("#header-bar, .mobile-dropdown").addClass("show");
+    }
+    // Header hide/show on scroll
+    $(window).scroll(
+    {
+        previousTop: 0
+    }, 
+    function () {
+        console.log("here too");
+      // get current distance from top of viewport
+        currentTop = $(window).scrollTop();
+      // define the header height here
+      // if user has scrolled past header, initiate the scroll up/scroll down hide show effect
+      if( $(window).scrollTop() > $headerHeight ) {
+        if (currentTop < this.previousTop) {
+          $("#header-bar, .mobile-dropdown").addClass("show");
+        } else {
+          $("#header-bar, .mobile-dropdown").removeClass("show");
+        }
+      } else if($(window).scrollTop() === 0) {
+        $("#header-bar, .mobile-dropdown").removeClass("show");
+      }
+    this.previousTop = currentTop;
+});
+
+    var screenWidth = $(window).width();
+    if (screenWidth > 768) {
+
+      $(window).on("load", function() {
+        var $sidebarHeight = $(".contextual-module").outerHeight();
+        var $contentHeight = $(".l-wrapper").outerHeight();
+        var $windowHeight = $(window).height();
+
+        if($sidebarHeight < $windowHeight) {
+          if($headerHeight + $contentHeight < $windowHeight) {
+            $(".contextual-module").outerHeight($contentHeight);
+          } else {
+            $(".contextual-module").outerHeight($windowHeight - $headerHeight);
+          }
+          $(document.body).trigger("sticky_kit:recalc");
+        }
+
+      });
+      console.log($headerHeight);
+      $(".contextual-module, .l-container-w-side").stick_in_parent({offset_top: $headerHeight});
+    }
     //Mobile Only
       if (isMobile()) {
         // Dropdown for mobile filter

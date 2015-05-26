@@ -10,5 +10,6 @@
   <p id="project-detail-description">
     <?php echo get_post_meta(get_the_ID(), "st_project_description", true); ?>
   </p>
+  <?php get_template_part("prev-next-links"); ?>
 <?php endwhile ?>
 <?php endif ?>

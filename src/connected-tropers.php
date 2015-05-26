@@ -7,8 +7,8 @@
 
   // Display connected tropers
   if ( $tropers->have_posts() ) : ?>
-    <li class="project-detail-label">Contributers:</li>
-    <li class="project-detail-value">
+    <li class="label">Contributers:</li>
+    <li class="value">
       <?php while ( $tropers->have_posts() ) : $tropers->the_post(); ?>
         <a href="<?php the_permalink(); ?>" class="troper-thumb no-underline">
           <?php $avatar = get_field("st_profile_picture"); ?>
