@@ -34,7 +34,7 @@
     padding-left: 2rem;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
-      padding-left: 0;
+      display: none;
     }
 
   }
@@ -52,7 +52,7 @@
       position: absolute;
       left: -9999px;
 
-      &:checked+label {
+      &:checked~label, &:checked~.fa {
         font-weight: 700;
         color: $st-orange;
       }

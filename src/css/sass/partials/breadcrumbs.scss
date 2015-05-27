@@ -1,0 +1,11 @@
+#breadcrumbs {
+  font-size: $font-size-base * 0.6;
+  z-index: 2;
+  margin-top: 0;
+  position: relative;
+  top: -2em;
+
+  .breadcrumb_last {
+    color: $emphasis-color;
+  }
+}

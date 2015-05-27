@@ -940,15 +940,6 @@ q {
   line-height: 1;
 }
 
-.label {
-  font-weight: 600;
-  color: #444;
-}
-
-.value {
-  margin-bottom: 1em;
-}
-
 .white-btn, button, .btn, input[type="submit"] {
   display: inline-block;
   font-family: "jaf-facitweb", Helvetica, Arial, "Open Sans", sans-serif;
@@ -1028,17 +1019,19 @@ fieldset {
   .dropdown-sublist div {
     background-color: transparent;
     border-top: none;
-    padding-left: 0;
   }
+}
+.dropdown-sublist .fa {
+  padding-right: .25em;
 }
 .dropdown-sublist label {
   padding: 1em;
   cursor: pointer;
-  display: block;
+  display: inline-block;
 }
 @media (min-width: 1024px) {
   .dropdown-sublist label {
-    padding: 0 0 0 1em;
+    padding: 0;
   }
 }
 
@@ -1126,7 +1119,7 @@ fieldset {
 }
 @media (min-width: 1024px) {
   .mobile-dropdown h2 {
-    padding-left: 0;
+    display: none;
   }
 }
 .mobile-dropdown + div, .mobile-dropdown + section {
@@ -1141,7 +1134,7 @@ fieldset {
   position: absolute;
   left: -9999px;
 }
-.mobile-dropdown form input[type="checkbox"]:checked + label {
+.mobile-dropdown form input[type="checkbox"]:checked ~ label, .mobile-dropdown form input[type="checkbox"]:checked ~ .fa {
   font-weight: 700;
   color: #d18b00;
 }
@@ -1160,6 +1153,17 @@ fieldset {
   }
 }
 
+#breadcrumbs {
+  font-size: 84%;
+  z-index: 2;
+  margin-top: 0;
+  position: relative;
+  top: -2em;
+}
+#breadcrumbs .breadcrumb_last {
+  color: #444;
+}
+
 .mix, .gap {
   display: inline-block;
   width: 100%;
@@ -1171,7 +1175,7 @@ fieldset {
 }
 @media (min-width: 1024px) {
   .mix, .gap {
-    width: 22.8571428571%;
+    width: 31.4285714286%;
   }
 }
 @media (min-width: 1800px) {
@@ -1185,7 +1189,8 @@ fieldset {
   display: none;
   text-align: left;
   margin-bottom: 9.0909090909%;
-  height: 15rem;
+  height: 20rem;
+  overflow: hidden;
 }
 @media (min-width: 768px) {
   .mix {
@@ -1195,6 +1200,7 @@ fieldset {
 @media (min-width: 1024px) {
   .mix {
     margin-bottom: 2.8571428571%;
+    height: 20rem;
   }
 }
 @media (min-width: 1800px) {
@@ -1287,10 +1293,6 @@ form.search input[type="search"] {
   color: #444;
 }
 
-.project-detail-value {
-  margin-bottom: 2rem;
-}
-
 .project-contents {
   float: right;
   margin-right: 0;
@@ -1332,11 +1334,30 @@ form.search input[type="search"] {
   font-weight: 400;
   padding-left: 1em;
 }
+#filter-reset:disabled {
+  color: #eee;
+}
 @media (min-width: 1024px) {
   #filter-reset {
     padding: 1rem 0 0 0;
-    float: none;
   }
+}
+
+#filter-instructions {
+  display: none;
+}
+@media (min-width: 1024px) {
+  #filter-instructions {
+    display: block;
+    margin-bottom: 1em;
+  }
+}
+
+#filter-description .category {
+  color: #444;
+}
+#filter-description .value {
+  color: #d18b00;
 }
 
 .filter {
@@ -1364,7 +1385,6 @@ form.search input[type="search"] {
 
 #projects-index, #people-index {
   text-align: justify;
-  font-size: 0;
   padding: 2rem 0;
 }
 #projects-index:after, #people-index:after {
@@ -1373,22 +1393,53 @@ form.search input[type="search"] {
   width: 100%;
 }
 
-.mix .project-thumb {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.project-thumb {
+  display: block;
+  filter: grayscale(100%) contrast(70%);
+  transform: translate3d(-2rem, 0, 0);
+  transition: all 0.3s ease;
+  width: calc(100% + 2rem);
+  min-height: 100%;
   background-size: cover;
   background-position: center;
 }
 
-.mix.project .a {
+.mix h3 {
+  display: block;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  text-transform: uppercase;
+  letter-spacing: .25rem;
+  color: #fff;
+  opacity: 0.6;
+  margin: 0;
+  font-size: 84%;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  transition: all 0.3s ease;
+  z-index: 4;
+  bottom: -1rem;
+  font-family: "proxima-nova-condensed", sans-serif;
+  max-width: 20rem;
+  left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (min-width: 1024px) {
+  .mix h3 {
+    max-width: 20rem;
+  }
+}
+.mix:hover h3 {
+  opacity: 1;
+  transform: rotate(0);
+  bottom: 1rem;
+  left: 1rem;
+  white-space: normal;
+}
+.mix:hover .project-thumb {
+  filter: grayscale(0);
+  transform: translate3d(0, 0, 0);
 }
 
 #people-index .troper {

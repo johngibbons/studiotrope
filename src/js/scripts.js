@@ -42,9 +42,6 @@
     }).resize();
 
 
-
-
-
     checkboxFilter.init();
 
     //Projects Filter
@@ -73,12 +70,52 @@
       }
     });
 
+    //Projects filter labeling and description behavior
+    var filterParams = {};
+    $("#projects-filter label").click(function(){
+      $("#filter-reset").attr("disabled", false);
+      $(this).find("i").toggleClass("fa-square-o fa-check-square");
+      var category = $(this).closest("fieldset").children("legend:first").text();
+      var term = $(this).text();
+      if(filterParams[category]) {
+        if(filterParams[category].indexOf(term) > -1) { // check if value is already in array
+          var index = filterParams[category].indexOf(term);
+          filterParams[category].splice(index, 1);
+        } else {
+          filterParams[category].push(term);
+        }
+      } else {
+        filterParams[category] = [term];
+      }
+      var filterDescription = Array("Nice filtering, now you're only seeing projects that match: ");
+      var categories = Object.keys(filterParams);
+      $.each(categories, function(index, value){
+        console.log(filterParams[value]);
+        if (filterParams[value].length > 0) {
+          if (index > 0) {
+            filterDescription.push(" and ");
+          }
+          filterDescription.push(" <span class='category'>" + value.toProperCase() + ": </span><span class='value'>");
+          filterDescription.push(filterParams[value].join("</span> or <span class='value'>") + "</span>");
+          $("#filter-description").html(filterDescription.join(""));
+        } else {
+          $("#filter-description").html(filterDescription.join(""));
+        }
+      });
+    });
+
+    $("#projects-index").on("mixEnd", function(e, state){
+      if (state.activeFilter === ".mix") {
+        $("#filter-reset").attr("disabled", true);
+      }
+    });
+
+
+
     var $headerHeight = $("#header-bar").outerHeight();
     var currentTop = $(window).scrollTop();
-    console.log(currentTop);
 
     if(currentTop > 0) {
-      console.log("here");
       $("#header-bar, .mobile-dropdown").addClass("show");
     }
     // Header hide/show on scroll
@@ -87,7 +124,6 @@
         previousTop: 0
     }, 
     function () {
-        console.log("here too");
       // get current distance from top of viewport
         currentTop = $(window).scrollTop();
       // define the header height here
@@ -122,7 +158,6 @@
         }
 
       });
-      console.log($headerHeight);
       $(".contextual-module, .l-container-w-side").stick_in_parent({offset_top: $headerHeight});
     }
     //Mobile Only
@@ -290,7 +325,6 @@ var checkboxFilter = {
 
     !self.outputString.length && (self.outputString = "all"); 
 
-    //console.log(self.outputString); 
 
     // ^ we can check the console here to take a look at the filter string that is produced
 
@@ -300,4 +334,8 @@ var checkboxFilter = {
       self.$container.mixItUp("filter", self.outputString);
     }
   }
+};
+
+String.prototype.toProperCase = function () {
+  return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };

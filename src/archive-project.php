@@ -1,5 +1,6 @@
 <?php get_header(); ?>
   <main class="l-container-w-side" role="main">
+    <section id="filter-description"></section>
     <section id="projects-index" class="container">
       <?php get_template_part('loop-project'); ?>
     </section>

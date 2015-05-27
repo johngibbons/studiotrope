@@ -31,17 +31,20 @@
     @include susy-breakpoint($desktop, $desktop-columns) {
       background-color: transparent;
       border-top: none;
-      padding-left: 0;
     }
+  }
+
+  .fa {
+    padding-right: .25em;
   }
 
   label {
     padding: 1em;
     cursor: pointer;
-    display: block;
+    display: inline-block;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
-      padding: 0 0 0 1em;
+      padding: 0;
     }
   }
 }

@@ -3,9 +3,31 @@
   font-weight: 400;
   padding-left: 1em;
 
+  &:disabled {
+    color: $st-lightest-gray;
+  }
+
   @include susy-breakpoint($desktop, $desktop-columns) {
     padding: 1rem 0 0 0;
-    float: none;
+  }
+}
+
+#filter-instructions {
+  display: none;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    display: block; 
+    margin-bottom: 1em;
+  }
+}
+
+#filter-description {
+  .category {
+    color: $emphasis-color;
+  }
+
+  .value {
+    color: $link-color;
   }
 }
 
@@ -33,32 +55,70 @@
 
 #projects-index, #people-index {
   text-align: justify;
-  font-size: 0;
   padding: $mobile-container-padding 0;
 
   &:after {
     content: "";
     display: inline-block;
     width: 100%;
+  } 
+}
+
+.project-thumb {
+  display: block;
+  filter: grayscale(100%) contrast(70%);
+  transform: translate3d(-2rem, 0, 0);
+  transition: $base-transition;
+  width: calc(100% + 2rem);
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+
+  &:hover {
   }
 }
 
-.mix .project-thumb {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-size: cover;
-  background-position: center;
-}
+.mix {
 
-.mix.project .a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
+  h3 {
+    display: block;
+    position: absolute;
+    text-transform: uppercase;
+    letter-spacing: .25rem;
+    color: $white;
+    opacity: 0.6;
+    margin: 0;
+    font-size: $font-size-base * 0.6;
+    transform: rotate(-90deg);
+    transform-origin: left top 0;
+    transition: $base-transition;
+    z-index: 4;
+    bottom: -1rem;
+    font-family: $proxima-cond;
+    max-width: $thumb-height;
+    left: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      max-width: $thumb-height;
+    }
+  }
+
+  &:hover {
+    h3 {
+      opacity: 1;
+      transform: rotate(0);
+      bottom: 1rem;
+      left: 1rem;
+      white-space: normal;
+    }
+
+    .project-thumb {
+      filter: grayscale(0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
 

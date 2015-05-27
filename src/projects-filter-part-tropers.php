@@ -17,9 +17,9 @@
     Contributers</legend><div class="dropdown-sublist">';
   $i = 0;
   foreach($troper_ids as $troper_id) {
-    $term_list .= '<div class="checkbox"><input type="checkbox" value=".troper-'.
+    $term_list .= '<div class="checkbox-wrapper"><input type="checkbox" value=".troper-'.
       $troper_id . '" id=".troper-' . $troper_id . '"><label for=".troper-' .
-      $troper_id . '" class="detail">' . $troper_names[$troper_id] . '</label></div>';
+      $troper_id . '" class="detail"><i class="fa fa-square-o"></i>' . $troper_names[$troper_id] . '</label></div>';
     $i++;
   }
   echo $term_list;

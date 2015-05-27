@@ -10,10 +10,10 @@
   wp_reset_postdata(); // set $post back to original post ?>
   <article id="post-<?php the_ID(); ?>" <?php post_class($troper_ids); ?>>
     <?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-<?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' )[0]; ?>
-<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"
-  class="no-underline">
-  <div class="project-thumb" style="background-image: url( <?php echo $url ?> );"></div>
+      <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' )[0]; ?>
+      <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
+        <h3 class="thumb-title"><?php echo the_title(); ?></h3>
+        <span class="project-thumb" style="background-image: url( <?php echo $url ?> );">
       </a>
     <?php endif; ?>
   </article>

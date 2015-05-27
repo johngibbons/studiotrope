@@ -1,4 +1,4 @@
-<header id="header-bar" class="transition-container" role="banner">
+<header id="header-bar" role="banner">
   <div id="nav-open-overlay"></div>
   <button id="nav-toggle" class="lines-button x" type="button" role="button" data-label="nav-toggle">
     <span class="lines"></span>

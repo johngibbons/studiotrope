@@ -16,10 +16,10 @@
 
       foreach ( $filter_param as $term ) {
 
-        $term_list .= '<div class="checkbox"><input type="checkbox" value=' .
+        $term_list .= '<div class="checkbox-wrapper"><input type="checkbox" value=' .
           "." . $term->taxonomy . "-" . $term->slug . ' id=' . $term->taxonomy .
           "-" . $term->slug . '><label for=' . $term->taxonomy . "-" .
-          $term->slug . ' class="detail">' . $term->name . '</label></div>';
+          $term->slug . ' class="detail"><i class="fa fa-square-o"></i>' . $term->name . '</label></div>';
 
       }
 

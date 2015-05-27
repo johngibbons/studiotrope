@@ -7,7 +7,7 @@
   }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
-    width: span(3 of 12);
+    width: span(4 of 12);
   }
 
   @include susy-breakpoint($large, $large-columns) {
@@ -20,7 +20,8 @@
   display: none;
   text-align: left;
   margin-bottom: gutter();
-  height: 15rem;
+  height: $thumb-height;
+  overflow: hidden;
 
   @include susy-breakpoint($tablet, $tablet-columns) {
     margin-bottom: gutter();
@@ -28,6 +29,7 @@
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     margin-bottom: gutter();
+    height: $thumb-height;
   }
 
   @include susy-breakpoint($large, $large-columns) {
