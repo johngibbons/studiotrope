@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 
+  <?php get_template_part("contextual-module"); ?>
   <main class="l-container-w-side" role="main">
     <!-- section -->
     <section>
@@ -15,7 +16,5 @@
     </section>
     <!-- /section -->
   </main>
-
-<?php get_template_part("contextual-module"); ?>
 
 <?php get_footer(); ?>

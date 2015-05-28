@@ -13,7 +13,8 @@
       <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' )[0]; ?>
       <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
         <h3 class="thumb-title"><?php echo the_title(); ?></h3>
-        <span class="project-thumb" style="background-image: url( <?php echo $url ?> );">
+        <span class="project-voice-thumb is-hidden"><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span>
+        <span class="project-thumb" style="background-image: url( <?php echo $url ?> );"></span>
       </a>
     <?php endif; ?>
   </article>

@@ -12,7 +12,7 @@
     @include span(3);
     padding: 4rem;
     border-right: $base-border-medium-dashed;
-    position: fixed;
+    margin-right: 0;
   }
 
   @include susy-breakpoint($large, $large-columns) {

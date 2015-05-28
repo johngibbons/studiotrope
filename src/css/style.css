@@ -303,9 +303,9 @@ main:after {
 }
 @media (min-width: 1024px) {
   .l-container-w-side {
-    width: 57.1428571429%;
+    width: 60%;
     float: left;
-    margin-left: 34.2857142857%;
+    margin-left: 8.5714285714%;
     margin-right: -100%;
     padding: 5rem 0;
   }
@@ -785,7 +785,7 @@ nav li {
     margin-right: 2.8571428571%;
     padding: 4rem;
     border-right: 1px dashed #c8c8c8;
-    position: fixed;
+    margin-right: 0;
   }
 }
 @media (min-width: 1800px) {
@@ -1091,7 +1091,7 @@ fieldset {
   line-height: 6rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #eee;
-  z-index: 1;
+  z-index: 2;
 }
 .mobile-dropdown.show {
   position: fixed;
@@ -1155,7 +1155,7 @@ fieldset {
 
 #breadcrumbs {
   font-size: 84%;
-  z-index: 2;
+  z-index: 1;
   margin-top: 0;
   position: relative;
   top: -2em;
@@ -1329,6 +1329,15 @@ form.search input[type="search"] {
   }
 }
 
+.archive .l-wrapper {
+  padding-top: 12rem;
+}
+@media (min-width: 1024px) {
+  .archive .l-wrapper {
+    padding-top: 6rem;
+  }
+}
+
 #filter-reset {
   color: #d18b00;
   font-weight: 400;
@@ -1353,6 +1362,9 @@ form.search input[type="search"] {
   }
 }
 
+#filter-description {
+  padding: 1em 0;
+}
 #filter-description .category {
   color: #444;
 }
@@ -1393,6 +1405,14 @@ form.search input[type="search"] {
   width: 100%;
 }
 
+.toggle-option {
+  cursor: pointer;
+}
+.toggle-option.is-selected {
+  color: #444;
+  font-weight: 700;
+}
+
 .project-thumb {
   display: block;
   filter: grayscale(100%) contrast(70%);
@@ -1402,6 +1422,29 @@ form.search input[type="search"] {
   min-height: 100%;
   background-size: cover;
   background-position: center;
+}
+.project-thumb.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.project-voice-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-height: 80%;
+  padding: 2rem 3rem;
+  font-size: 168%;
+  font-weight: 700;
+  font-family: "bookmania", sans-serif;
+  color: #444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+}
+.project-voice-thumb.is-hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .mix h3 {
@@ -1416,7 +1459,7 @@ form.search input[type="search"] {
   transform: rotate(-90deg);
   transform-origin: left top 0;
   transition: all 0.3s ease;
-  z-index: 4;
+  z-index: 1;
   bottom: -1rem;
   font-family: "proxima-nova-condensed", sans-serif;
   max-width: 20rem;
@@ -1425,10 +1468,8 @@ form.search input[type="search"] {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media (min-width: 1024px) {
-  .mix h3 {
-    max-width: 20rem;
-  }
+.mix h3.is-dark {
+  color: #999;
 }
 .mix:hover h3 {
   opacity: 1;
@@ -1440,6 +1481,11 @@ form.search input[type="search"] {
 .mix:hover .project-thumb {
   filter: grayscale(0);
   transform: translate3d(0, 0, 0);
+}
+.mix:hover .project-voice-thumb {
+  left: -2rem;
+  padding-right: 5rem;
+  color: #d18b00;
 }
 
 #people-index .troper {

@@ -72,6 +72,7 @@
 
     //Projects filter labeling and description behavior
     var filterParams = {};
+    var filterDescription = [];
     $("#projects-filter label").click(function(){
       $("#filter-reset").attr("disabled", false);
       $(this).find("i").toggleClass("fa-square-o fa-check-square");
@@ -87,10 +88,9 @@
       } else {
         filterParams[category] = [term];
       }
-      var filterDescription = Array("Nice filtering, now you're only seeing projects that match: ");
+      filterDescription = ["Nice filtering, now you're only seeing projects that match: "];
       var categories = Object.keys(filterParams);
       $.each(categories, function(index, value){
-        console.log(filterParams[value]);
         if (filterParams[value].length > 0) {
           if (index > 0) {
             filterDescription.push(" and ");
@@ -110,7 +110,30 @@
       }
     });
 
+    $("#filter-reset").click(function() {
+      $("#projects-filter i").removeClass("fa-check-square").addClass("fa-square-o");
+      $(this).attr("disabled", true);
+      filterDescription = [];
+      filterParams = {};
+      $("#filter-description").html("");
+    });
 
+    //Projects index images/voice toggle
+    $("#toggle-voice").on("click", function(){
+      $(this).addClass("is-selected");
+      $("#toggle-images").removeClass("is-selected");
+      $(".project-thumb").addClass("is-hidden");
+      $(".project-voice-thumb").removeClass("is-hidden");
+      $(".mix h3").addClass("is-dark");
+    });
+
+    $("#toggle-images").on("click", function(){
+      $(this).addClass("is-selected");
+      $("#toggle-voice").removeClass("is-selected");
+      $(".project-voice-thumb").addClass("is-hidden");
+      $(".project-thumb").removeClass("is-hidden");
+      $(".mix h3").removeClass("is-dark");
+    });
 
     var $headerHeight = $("#header-bar").outerHeight();
     var currentTop = $(window).scrollTop();
@@ -158,20 +181,21 @@
         }
 
       });
-      $(".contextual-module, .l-container-w-side").stick_in_parent({offset_top: $headerHeight});
+      $(".contextual-module").stick_in_parent({offset_top: $headerHeight});
+    } else {
+        $(".dropdown-button").click(function() {
+          $(".dropdown-sublist-title").next().hide();
+          $(".filter").slideToggle(100);
+        });
+
+        $(".dropdown-sublist-title").click(function() {
+          $(this).next().slideToggle(100);
+        });
     }
     //Mobile Only
       if (isMobile()) {
         // Dropdown for mobile filter
         $(function(){
-          $(".dropdown-button").click(function() {
-            $(".dropdown-sublist-title").next().hide();
-            $(".filter").slideToggle(100);
-          });
-
-          $(".dropdown-sublist-title").click(function() {
-            $(this).next().slideToggle(100);
-          });
         });
 
         // Mobile Search Bar

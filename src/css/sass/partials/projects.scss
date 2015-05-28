@@ -1,3 +1,15 @@
+.archive {
+  .l-wrapper {
+    padding-top: 12rem;
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    .l-wrapper {
+      padding-top: 6rem;
+    }
+  }
+}
+
 #filter-reset {
   color: $link-color;
   font-weight: 400;
@@ -22,6 +34,8 @@
 }
 
 #filter-description {
+  padding: 1em 0;
+
   .category {
     color: $emphasis-color;
   }
@@ -64,6 +78,15 @@
   } 
 }
 
+.toggle-option {
+  cursor: pointer;
+
+  &.is-selected {
+    color: $emphasis-color;
+    font-weight: 700;
+  }
+}
+
 .project-thumb {
   display: block;
   filter: grayscale(100%) contrast(70%);
@@ -74,7 +97,29 @@
   background-size: cover;
   background-position: center;
 
-  &:hover {
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.project-voice-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-height: 80%;
+  padding: 2rem 3rem;
+  font-size: $font-size-base * 1.2;
+  font-weight: 700;
+  font-family: $font-family-header;
+  color: $emphasis-color;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: $base-transition;
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -92,7 +137,7 @@
     transform: rotate(-90deg);
     transform-origin: left top 0;
     transition: $base-transition;
-    z-index: 4;
+    z-index: 1;
     bottom: -1rem;
     font-family: $proxima-cond;
     max-width: $thumb-height;
@@ -101,8 +146,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    @include susy-breakpoint($desktop, $desktop-columns) {
-      max-width: $thumb-height;
+    &.is-dark {
+      color: $text-color;
     }
   }
 
@@ -118,6 +163,12 @@
     .project-thumb {
       filter: grayscale(0);
       transform: translate3d(0, 0, 0);
+    }
+
+    .project-voice-thumb {
+      left: -2rem;
+      padding-right: 5rem;
+      color: $link-color;
     }
   }
 }
