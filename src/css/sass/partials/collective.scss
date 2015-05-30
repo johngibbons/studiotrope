@@ -1,0 +1,90 @@
+body.the-collective {
+}
+
+#the-collective {
+  position: relative;
+  height: 10000vh;
+
+  #slides-container {
+    position: fixed;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+  }
+
+  .is-toAnimate {
+    visibility: hidden;
+  }
+
+  #collective {
+    position: relative;
+  }
+
+  #scrollInstr {
+    position: absolute;
+    top: 5rem;
+  }
+
+  .studiotrope-text {
+    position: relative;
+    color: $emphasis-color;
+    font-size: $font-size-base * 3;
+    margin-bottom: 0;
+    line-height: 0.25;
+    margin-top: 10rem;
+  }
+
+  .pronunciation {
+    position: relative;
+    color: $link-color;
+  }
+
+  .definition {
+    position: relative;
+    margin: 0;
+    font-size: $font-size-base;
+  }
+
+  p {
+    position: relative;
+  }
+
+  .studio-name {
+    position: relative;
+    font-size: $font-size-base * 2;
+    font-weight: 100;
+    color: $link-color;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+  }
+
+
+  .description {
+    margin-top: 5rem;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+    @include span(isolate 50% at 2);
+    }
+  }
+
+  .studio-title {
+    font-size: $font-size-base;
+    color: $emphasis-color;
+  }
+
+}
+
+  .collective-link,
+  .architecture-link,
+  .graphics-link,
+  .interiors-link {
+    cursor: pointer;
+
+  }
+
+  li.current {
+    font-weight: 700;
+    color: $emphasis-color;
+  }

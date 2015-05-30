@@ -1,9 +1,5 @@
 .icon {
-  fill: $white;
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  height: 20%;
+  fill: $st-orange;
 }
 
 .sdc-icons-container {
@@ -31,3 +27,14 @@
   height: 8rem;
 }
 
+.header-icon {
+  opacity: .1;
+  position: absolute;
+}
+
+.icons-combined {
+  width: 10rem;
+  height: 5rem;
+  bottom: 0rem;
+  left: -5rem;
+}

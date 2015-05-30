@@ -105,16 +105,15 @@
 
 .project-voice-thumb {
   position: absolute;
-  top: 0;
+  bottom: 3rem;
   left: 0;
   max-height: 80%;
-  padding: 2rem 3rem;
+  padding: 1rem 0 1rem 3rem;
   font-size: $font-size-base * 1.2;
   font-weight: 700;
   font-family: $font-family-header;
   color: $emphasis-color;
   overflow: hidden;
-  text-overflow: ellipsis;
   transition: $base-transition;
 
   &.is-hidden {
@@ -128,6 +127,7 @@
   h3 {
     display: block;
     position: absolute;
+    max-width: $thumb-height;
     text-transform: uppercase;
     letter-spacing: .25rem;
     color: $white;
@@ -137,14 +137,13 @@
     transform: rotate(-90deg);
     transform-origin: left top 0;
     transition: $base-transition;
-    z-index: 1;
     bottom: -1rem;
-    font-family: $proxima-cond;
-    max-width: $thumb-height;
     left: 1rem;
+    font-family: $proxima-cond;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    z-index: 1;
 
     &.is-dark {
       color: $text-color;
@@ -167,7 +166,7 @@
 
     .project-voice-thumb {
       left: -2rem;
-      padding-right: 5rem;
+      padding-right: 2rem;
       color: $link-color;
     }
   }

@@ -8,6 +8,9 @@
       $("body").toggleClass("is-pushed");
     });
 
+
+
+
     // Find all videos
     var $allVideos = $("iframe");
 
@@ -71,69 +74,90 @@
     });
 
     //Projects filter labeling and description behavior
-    var filterParams = {};
-    var filterDescription = [];
-    $("#projects-filter label").click(function(){
-      $("#filter-reset").attr("disabled", false);
-      $(this).find("i").toggleClass("fa-square-o fa-check-square");
-      var category = $(this).closest("fieldset").children("legend:first").text();
-      var term = $(this).text();
-      if(filterParams[category]) {
-        if(filterParams[category].indexOf(term) > -1) { // check if value is already in array
-          var index = filterParams[category].indexOf(term);
-          filterParams[category].splice(index, 1);
-        } else {
-          filterParams[category].push(term);
-        }
-      } else {
-        filterParams[category] = [term];
-      }
-      filterDescription = ["Nice filtering, now you're only seeing projects that match: "];
-      var categories = Object.keys(filterParams);
-      $.each(categories, function(index, value){
-        if (filterParams[value].length > 0) {
-          if (index > 0) {
-            filterDescription.push(" and ");
+    if($("#projects-filter").length){
+      var filterParams = {};
+      var filterDescription = [];
+      $("#projects-filter label").click(function(){
+        $("#filter-reset").attr("disabled", false);
+        $(this).find("i").toggleClass("fa-square-o fa-check-square");
+        var category = $(this).closest("fieldset").children("legend:first").text();
+        var term = $(this).text();
+        if(filterParams[category]) {
+          if(filterParams[category].indexOf(term) > -1) { // check if value is already in array
+            var index = filterParams[category].indexOf(term);
+            filterParams[category].splice(index, 1);
+          } else {
+            filterParams[category].push(term);
           }
-          filterDescription.push(" <span class='category'>" + value.toProperCase() + ": </span><span class='value'>");
-          filterDescription.push(filterParams[value].join("</span> or <span class='value'>") + "</span>");
-          $("#filter-description").html(filterDescription.join(""));
         } else {
-          $("#filter-description").html(filterDescription.join(""));
+          filterParams[category] = [term];
+        }
+        filterDescription = ["Nice filtering, now you're only seeing projects that match: "];
+        var categories = Object.keys(filterParams);
+        $.each(categories, function(index, value){
+          if (filterParams[value].length > 0) {
+            if (index > 0) {
+              filterDescription.push(" and ");
+            }
+            filterDescription.push(" <span class='category'>" + value.toProperCase() + ": </span><span class='value'>");
+            filterDescription.push(filterParams[value].join("</span> or <span class='value'>") + "</span>");
+            $("#filter-description").html(filterDescription.join(""));
+          } else {
+            $("#filter-description").html(filterDescription.join(""));
+          }
+        });
+      });
+
+      $("#projects-index").on("mixEnd", function(e, state){
+        if (state.activeFilter === ".mix") {
+          $("#filter-reset").attr("disabled", true);
+          $("#filter-description").html("");
         }
       });
-    });
 
-    $("#projects-index").on("mixEnd", function(e, state){
-      if (state.activeFilter === ".mix") {
-        $("#filter-reset").attr("disabled", true);
-      }
-    });
+      $("#filter-reset").click(function() {
+        $("#projects-filter i").removeClass("fa-check-square").addClass("fa-square-o");
+        $(this).attr("disabled", true);
+        filterDescription = [];
+        filterParams = {};
+        $("#filter-description").html("");
+      });
+    }
 
-    $("#filter-reset").click(function() {
-      $("#projects-filter i").removeClass("fa-check-square").addClass("fa-square-o");
-      $(this).attr("disabled", true);
-      filterDescription = [];
-      filterParams = {};
-      $("#filter-description").html("");
-    });
 
-    //Projects index images/voice toggle
-    $("#toggle-voice").on("click", function(){
-      $(this).addClass("is-selected");
-      $("#toggle-images").removeClass("is-selected");
-      $(".project-thumb").addClass("is-hidden");
-      $(".project-voice-thumb").removeClass("is-hidden");
-      $(".mix h3").addClass("is-dark");
-    });
+    if ($(".project-voice-thumb").length){
+      //Voice text sizing to fit container
+      var voiceTexts = $(".project-voice-thumb");
+      var sample = document.getElementsByClassName("project-voice-thumb")[0];
+      resize_to_fit(sample, sample.offsetHeight);
+      voiceTexts.each(function(){
+        var actualHeight = this.scrollHeight;
+        var maxHeight = this.offsetHeight;
+        var sizeRatio = actualHeight / maxHeight;
+        if (sizeRatio > 1) {
+          resize_to_fit(this, maxHeight);
+          // do {
+          //} while (actualHeight > maxHeight);
+        }
+      });
 
-    $("#toggle-images").on("click", function(){
-      $(this).addClass("is-selected");
-      $("#toggle-voice").removeClass("is-selected");
-      $(".project-voice-thumb").addClass("is-hidden");
-      $(".project-thumb").removeClass("is-hidden");
-      $(".mix h3").removeClass("is-dark");
-    });
+      //Projects index images/voice toggle
+      $("#toggle-voice").on("click", function(){
+        $(this).addClass("is-selected");
+        $("#toggle-images").removeClass("is-selected");
+        $(".project-thumb").addClass("is-hidden");
+        $(".project-voice-thumb").removeClass("is-hidden");
+        $(".mix h3").addClass("is-dark");
+      });
+
+      $("#toggle-images").on("click", function(){
+        $(this).addClass("is-selected");
+        $("#toggle-voice").removeClass("is-selected");
+        $(".project-voice-thumb").addClass("is-hidden");
+        $(".project-thumb").removeClass("is-hidden");
+        $(".mix h3").removeClass("is-dark");
+      });
+    }
 
     var $headerHeight = $("#header-bar").outerHeight();
     var currentTop = $(window).scrollTop();
@@ -143,25 +167,25 @@
     }
     // Header hide/show on scroll
     $(window).scroll(
-    {
-        previousTop: 0
-    }, 
-    function () {
-      // get current distance from top of viewport
-        currentTop = $(window).scrollTop();
-      // define the header height here
-      // if user has scrolled past header, initiate the scroll up/scroll down hide show effect
-      if( $(window).scrollTop() > $headerHeight ) {
-        if (currentTop < this.previousTop) {
-          $("#header-bar, .mobile-dropdown").addClass("show");
-        } else {
-          $("#header-bar, .mobile-dropdown").removeClass("show");
-        }
-      } else if($(window).scrollTop() === 0) {
-        $("#header-bar, .mobile-dropdown").removeClass("show");
-      }
-    this.previousTop = currentTop;
-});
+        {
+          previousTop: 0
+        }, 
+        function () {
+          // get current distance from top of viewport
+          currentTop = $(window).scrollTop();
+          // define the header height here
+          // if user has scrolled past header, initiate the scroll up/scroll down hide show effect
+          if( $(window).scrollTop() > $headerHeight ) {
+            if (currentTop < this.previousTop) {
+              $("#header-bar, .mobile-dropdown").addClass("show");
+            } else {
+              $("#header-bar, .mobile-dropdown").removeClass("show");
+            }
+          } else if($(window).scrollTop() === 0) {
+            $("#header-bar, .mobile-dropdown").removeClass("show");
+          }
+          this.previousTop = currentTop;
+        });
 
     var screenWidth = $(window).width();
     if (screenWidth > 768) {
@@ -175,7 +199,7 @@
           if($headerHeight + $contentHeight < $windowHeight) {
             $(".contextual-module").outerHeight($contentHeight);
           } else {
-            $(".contextual-module").outerHeight($windowHeight - $headerHeight);
+            $(".contextual-module").outerHeight($windowHeight);
           }
           $(document.body).trigger("sticky_kit:recalc");
         }
@@ -183,43 +207,52 @@
       });
       $(".contextual-module").stick_in_parent({offset_top: $headerHeight});
     } else {
-        $(".dropdown-button").click(function() {
-          $(".dropdown-sublist-title").next().hide();
-          $(".filter").slideToggle(100);
-        });
+      $(".dropdown-button").click(function() {
+        $(".dropdown-sublist-title").next().hide();
+        $(".filter").slideToggle(100);
+      });
 
-        $(".dropdown-sublist-title").click(function() {
-          $(this).next().slideToggle(100);
-        });
+      $(".dropdown-sublist-title").click(function() {
+        $(this).next().slideToggle(100);
+      });
     }
     //Mobile Only
-      if (isMobile()) {
-        // Dropdown for mobile filter
-        $(function(){
+    if (isMobile()) {
+      // Dropdown for mobile filter
+      $(function(){
+      });
+
+      // Mobile Search Bar
+      var $searchOpen = $("#header-search").find(".search-submit");
+      $searchOpen.addClass("open-btn");
+      var setOpenEvent = function() {
+        $(".open-btn").on("click", function(e) {
+          e.preventDefault();
+          $("#header-search").toggleClass("open");
+          $("#header-search").find("input").focus();
         });
+      };
+      setOpenEvent();
 
-        // Mobile Search Bar
-        var $searchOpen = $("#header-search").find(".search-submit");
-        $searchOpen.addClass("open-btn");
-        var setOpenEvent = function() {
-          $(".open-btn").on("click", function(e) {
-            e.preventDefault();
-            $("#header-search").toggleClass("open");
-            $("#header-search").find("input").focus();
-          });
-        };
-        setOpenEvent();
+      $("#header-search").on("click", ".close-btn", function() {
+        $("#header-search").removeClass("open");
+      });
 
-        $("#header-search").on("click", ".close-btn", function() {
-          $("#header-search").removeClass("open");
-        });
-
-      }
-      else {
-      }
- });
+    }
+    else {
+    }
+  });
 
 } ( this, jQuery ));
+
+function resize_to_fit(el){
+  var fontsize = $(el).css("font-size");
+  $(el).css("fontSize", parseFloat(fontsize) - 1);
+
+  //   if($(el).height() >= maxHeight){
+  //       resize_to_fit(el, maxHeight);
+  //  }
+}
 
 function isMobile() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -362,4 +395,97 @@ var checkboxFilter = {
 
 String.prototype.toProperCase = function () {
   return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+
+//////////////////////////////////////////////////////////////////
+// The Collective animations
+//////////////////////////////////////////////////////////////////
+/* jshint undef: true, unused: false */
+/* global TimelineLite: false */
+
+window.onload = function(){
+  var tl = new TimelineLite({paused: true});
+  var scrollInstr = $("#scrollInstr");
+  var studiotropeText = $(".studiotrope-text");
+  var pronunciation = $(".pronunciation");
+  var definition = $(".definition");
+  var firstParagraph = $(".first");
+  var studioNames = $(".studio-name");
+  var secondParagraph = $(".second");
+  var collective = $("#collective");
+  var architecture = $("#architecture");
+  var graphics = $("#graphic-design");
+  var interiors = $("#interiors");
+  tl.to(scrollInstr, 0.3, {left: "20rem", autoAlpha: 0})
+    .from(studiotropeText, 0.3, {left: "20rem", autoAlpha: 0})
+    .from(pronunciation, 0.3, {left: "20rem", autoAlpha: 0})
+    .from(definition, 0.3, {left: "20rem", autoAlpha:0})
+    .addLabel("collective")
+    .addPause()
+    .from(firstParagraph, 0.3, {top: "30rem", autoAlpha:0})
+    .staggerFrom(studioNames, 1, {top: "30rem", autoAlpha:0}, 0.25)
+    .from(secondParagraph, 1, {autoAlpha:0}, "+=0.5")
+    .addPause()
+    .to(collective, 0.3, {left: "20rem", autoAlpha: 0})
+    .call(changeSlide, ["collective"])
+    .addLabel("architecture")
+    .call(changeSlide, ["architecture"])
+    .from(architecture, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
+    .addPause()
+    .call(changeSlide, ["architecture"])
+    .to(architecture, 0.3, {left: "20rem", autoAlpha: 0})
+    .addLabel("graphics")
+    .call(changeSlide, ["graphics"])
+    .from(graphics, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
+    .addPause()
+    .call(changeSlide, ["graphics"])
+    .to(graphics, 0.3, {left: "20rem", autoAlpha: 0})
+    .addLabel("interiors")
+    .call(changeSlide, ["interiors"])
+    .from(interiors, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75");
+
+
+  var $window = $(window);
+  //var documentHeight = $(document).height();
+  var windowHeight = $window.height();
+  var scrollTop = $window.scrollTop();
+
+  //let's add the animation into TimelineMax
+
+  $window.on("resize", function(){
+    windowHeight = $window.height();
+  }).resize();
+
+  $window.on("scroll", function() {
+    scrollTop = $(window).scrollTop();
+    // var scrollPercent = (scrollTop) / (documentHeight - windowHeight);
+
+    //tl.progress(scrollPercent).pause()
+
+  });
+
+  var lastScrollTop = 0;
+  $(window).scroll(function(){
+    var st = $(this).scrollTop();
+    if (st > lastScrollTop){
+      tl.play();
+    } else {
+      tl.reverse();
+    }
+    lastScrollTop = st;
+  });
+
+  function changeSlide(slide) {
+    var slideSelector = "." + slide + "-link";
+    $("li").removeClass("current");
+    $(slideSelector).addClass("current");
+  }
+
+  $("body").on("click", ".slide-link", function(){
+    var s = ($(this).attr("class"));
+    var n = s.indexOf("-");
+    s = s.substring(0, n);
+    changeSlide(s);
+    tl.play(s);
+  });
 };

@@ -17,6 +17,8 @@ yoast_breadcrumb('<p id="breadcrumbs">','</p>');
     get_sidebar("blogpost");
   elseif(is_search()):
     get_sidebar("search");
+  elseif(is_page_template("template-collective.php")):
+    get_sidebar("collective");
   else:
     get_sidebar();
   endif;
