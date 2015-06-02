@@ -52,13 +52,24 @@
 
   label {
     padding: 1em;
-    cursor: pointer;
     display: inline-block;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
       padding: 0;
     }
   }
+
+  input {
+    &:not([disabled]) + label {
+      cursor: pointer;
+    }
+
+    &:disabled + label {
+      color: $st-lightest-gray;
+    }
+  }
+
+
 }
 
 .dropdown-sublist-title {

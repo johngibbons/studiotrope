@@ -84,15 +84,11 @@
       }
     });
 
-    //Projects filter labeling and description behavior
+    var filterParams = {};
+    var filterDescription = [];
 
-    if($("#projects-filter").length) {
-
-      var filterParams = {};
-      var filterDescription = [];
-
-      $("#projects-filter label").click(function(){
-
+    var filterProjects = function() {
+    
         // When Filter Applied, Enable Reset
         $("#filter-reset").attr("disabled", false);
 
@@ -129,8 +125,13 @@
             $("#filter-description").html(filterDescription.join(""));
           }
         });
+    };
 
-      });
+    //Projects filter labeling and description behavior
+
+    if($("#projects-filter").length) {
+
+      $("#projects-filter input:not([disabled]) + label").click(filterProjects);
 
       //If No Filters Are Applied, Reset Disabled, Remove Description
 
@@ -212,7 +213,6 @@
       while (newElem.outerHeight() < height) {
         fontSize += increment;
         newElem.css("font-size", fontSize + "rem");
-        console.log(newElem.css("font-size"));
       }
 
       if (newElem.outerWidth() > width || newElem.outerHeight() > height) {

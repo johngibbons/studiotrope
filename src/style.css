@@ -1103,13 +1103,18 @@ fieldset {
 }
 .dropdown-sublist label {
   padding: 1em;
-  cursor: pointer;
   display: inline-block;
 }
 @media (min-width: 1024px) {
   .dropdown-sublist label {
     padding: 0;
   }
+}
+.dropdown-sublist input:not([disabled]) + label {
+  cursor: pointer;
+}
+.dropdown-sublist input:disabled + label {
+  color: #eee;
 }
 
 .dropdown-sublist-title {
@@ -1309,14 +1314,6 @@ fieldset {
   }
 }
 
-.search .mix, .archive .mix {
-  display: inline-block;
-}
-
-.post-type-archive .mix {
-  display: none;
-}
-
 form.search {
   position: relative;
 }
@@ -1478,6 +1475,12 @@ form.search input[type="search"] {
   }
 }
 
+.archive .category {
+  color: #444;
+}
+.archive .value {
+  color: #d18b00;
+}
 .archive .l-wrapper {
   padding-top: 12rem;
 }
@@ -1485,6 +1488,13 @@ form.search input[type="search"] {
   .archive .l-wrapper {
     padding-top: 6rem;
   }
+}
+.archive .query-text {
+  margin-bottom: 0;
+}
+.archive .all-projects-link {
+  display: block;
+  margin-bottom: 2em;
 }
 
 #filter-reset {
@@ -1513,12 +1523,6 @@ form.search input[type="search"] {
 
 #filter-description {
   padding: 1em 0;
-}
-#filter-description .category {
-  color: #444;
-}
-#filter-description .value {
-  color: #d18b00;
 }
 
 .filter {
