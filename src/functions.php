@@ -472,8 +472,8 @@ function query_post_type($query) {
     if($post_type)
       $post_type = $post_type;
     else
-      $post_type = array('post','project'); // replace cpt to your custom post type
-    $query->set('post_type',$post_type);
+      $post_type = array('post', 'project'); // replace cpt to your custom post type
+    $query->set('post_type', $post_type);
     return $query;
   }
 }
@@ -612,11 +612,12 @@ function custom_taxonomies_terms_links(){
 
   // get post type taxonomies
   $taxonomies = get_object_taxonomies( $post_type, 'objects' );
+
   // reorder so that tags are last
   $tags = $taxonomies["post_tag"];
   unset($taxonomies["post_tag"]);
   $taxonomies["post_tag"] = $tags;
-  $out = array();
+
   foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
 
     // get the terms related to post

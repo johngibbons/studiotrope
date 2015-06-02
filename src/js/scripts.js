@@ -1,15 +1,24 @@
+/* jshint devel: true */
+
 (function( root, $, undefined ) {
   "use strict";
 
   $(function () {
+
+    // JQuery Document Ready
+
+    /**************************************************
+      Mobile Navigation Sliding Menu
+     **************************************************/
 
     $("html").on("click", "#nav-toggle, #nav-open-overlay", function() {
       $("#nav-toggle").toggleClass("close");
       $("body").toggleClass("is-pushed");
     });
 
-
-
+    /**************************************************
+      Video Sizing Responsive to Container Size
+     **************************************************/
 
     // Find all videos
     var $allVideos = $("iframe");
@@ -32,7 +41,6 @@
       $allVideos.each(function() {
 
         var $el = $(this);
-
         var newWidth = $el.closest(".video").width();
 
         $el
@@ -44,6 +52,9 @@
       // Kick off one resize to fix all videos on page load
     }).resize();
 
+    /**************************************************
+      Projects Index Filter Functionality
+     **************************************************/
 
     checkboxFilter.init();
 
@@ -74,14 +85,24 @@
     });
 
     //Projects filter labeling and description behavior
-    if($("#projects-filter").length){
+
+    if($("#projects-filter").length) {
+
       var filterParams = {};
       var filterDescription = [];
+
       $("#projects-filter label").click(function(){
+
+        // When Filter Applied, Enable Reset
         $("#filter-reset").attr("disabled", false);
+
+        // Check Box for Applied Filters
         $(this).find("i").toggleClass("fa-square-o fa-check-square");
+
+        // Set Up Filter Description Text
         var category = $(this).closest("fieldset").children("legend:first").text();
         var term = $(this).text();
+
         if(filterParams[category]) {
           if(filterParams[category].indexOf(term) > -1) { // check if value is already in array
             var index = filterParams[category].indexOf(term);
@@ -92,8 +113,10 @@
         } else {
           filterParams[category] = [term];
         }
+
         filterDescription = ["Nice filtering, now you're only seeing projects that match: "];
         var categories = Object.keys(filterParams);
+
         $.each(categories, function(index, value){
           if (filterParams[value].length > 0) {
             if (index > 0) {
@@ -106,7 +129,10 @@
             $("#filter-description").html(filterDescription.join(""));
           }
         });
+
       });
+
+      //If No Filters Are Applied, Reset Disabled, Remove Description
 
       $("#projects-index").on("mixEnd", function(e, state){
         if (state.activeFilter === ".mix") {
@@ -114,6 +140,8 @@
           $("#filter-description").html("");
         }
       });
+
+      //Filter Resets Checkboxes, Description
 
       $("#filter-reset").click(function() {
         $("#projects-filter i").removeClass("fa-check-square").addClass("fa-square-o");
@@ -125,138 +153,355 @@
     }
 
 
-    if ($(".project-voice-thumb").length){
-      //Voice text sizing to fit container
-      var voiceTexts = $(".project-voice-thumb");
-      var sample = document.getElementsByClassName("project-voice-thumb")[0];
-      resize_to_fit(sample, sample.offsetHeight);
-      voiceTexts.each(function(){
-        var actualHeight = this.scrollHeight;
-        var maxHeight = this.offsetHeight;
-        var sizeRatio = actualHeight / maxHeight;
-        if (sizeRatio > 1) {
-          resize_to_fit(this, maxHeight);
-          // do {
-          //} while (actualHeight > maxHeight);
+    /**************************************************
+      Projects Index Image/Voice Toggle
+     **************************************************/
+
+    $("#toggle-voice").on("click", function(){
+
+      $(this).addClass("is-selected");
+      $("#toggle-images").removeClass("is-selected");
+      $(".project-thumb").addClass("is-hidden");
+      $(".project-voice-thumb").removeClass("is-hidden");
+      $(".mix h3").addClass("is-dark");
+
+    });
+
+    $("#toggle-images").on("click", function(){
+
+      $(this).addClass("is-selected");
+      $("#toggle-voice").removeClass("is-selected");
+      $(".project-voice-thumb").addClass("is-hidden");
+      $(".project-thumb").removeClass("is-hidden");
+      $(".mix h3").removeClass("is-dark");
+
+    });
+
+  /***********************************************************
+    Resize Text Based on Container Size
+   ************************************************************/
+
+  $.fn.resizeText = function () {
+    var width = $(this).innerWidth();
+    var height = $(this).innerHeight();
+    var html =  $(this).html();
+    var newElem = $("<div>", {
+      html: html,
+      style: "display: inline-block;overflow:hidden;font-size:0.1em;padding:0;margin:0;border:0;outline:0"
+    });
+
+    $(this).html(newElem);
+    $.resizeText.increaseSize(1, 0.5, newElem, width, height);
+
+    $(window).resize(function () {
+      if ($.resizeText.interval) {
+        clearTimeout($.resizeText.interval)
+
+        $.resizeText.interval = setTimeout(function () {
+          elem.html(elem.find("div.createdResizeObject").first().html());
+          elem.resizeText();
+        }, 300);
+      }
+    });
+  };
+
+  $.resizeText = {
+    increaseSize: function (increment, start, newElem, width, height) {
+      var fontSize = start;
+
+      while (newElem.outerHeight() < height) {
+        fontSize += increment;
+        newElem.css("font-size", fontSize + "rem");
+        console.log(newElem.css("font-size"));
+      }
+
+      if (newElem.outerWidth() > width || newElem.outerHeight() > height) {
+        fontSize -= increment;
+        newElem.css("font-size", fontSize + "rem");
+        if (increment > 0.1) {
+          $.resizeText.increaseSize(increment / 10, fontSize, newElem, width, height);
         }
-      });
-
-      //Projects index images/voice toggle
-      $("#toggle-voice").on("click", function(){
-        $(this).addClass("is-selected");
-        $("#toggle-images").removeClass("is-selected");
-        $(".project-thumb").addClass("is-hidden");
-        $(".project-voice-thumb").removeClass("is-hidden");
-        $(".mix h3").addClass("is-dark");
-      });
-
-      $("#toggle-images").on("click", function(){
-        $(this).addClass("is-selected");
-        $("#toggle-voice").removeClass("is-selected");
-        $(".project-voice-thumb").addClass("is-hidden");
-        $(".project-thumb").removeClass("is-hidden");
-        $(".mix h3").removeClass("is-dark");
-      });
+      }
     }
+  };
 
-    var $headerHeight = $("#header-bar").outerHeight();
-    var currentTop = $(window).scrollTop();
 
-    if(currentTop > 0) {
-      $("#header-bar, .mobile-dropdown").addClass("show");
-    }
-    // Header hide/show on scroll
-    $(window).scroll(
-        {
-          previousTop: 0
-        }, 
-        function () {
-          // get current distance from top of viewport
-          currentTop = $(window).scrollTop();
-          // define the header height here
-          // if user has scrolled past header, initiate the scroll up/scroll down hide show effect
-          if( $(window).scrollTop() > $headerHeight ) {
-            if (currentTop < this.previousTop) {
-              $("#header-bar, .mobile-dropdown").addClass("show");
-            } else {
-              $("#header-bar, .mobile-dropdown").removeClass("show");
-            }
-          } else if($(window).scrollTop() === 0) {
-            $("#header-bar, .mobile-dropdown").removeClass("show");
-          }
-          this.previousTop = currentTop;
-        });
+  /**************************************************
+    Project Voice Text Sizing to Fill Container
+   **************************************************/
+
+  if ($(".project-voice-thumb").length){
+
+    $(".project-voice-thumb").each(function(){
+
+      $(this).resizeText();
+
+    });
+  }
+
+  if ($(".project-voice").length){
+
+      $(".project-voice").resizeText();
+
+  }
+
+
+    /**************************************************
+      Scripts Based on Window Width
+     **************************************************/
 
     var screenWidth = $(window).width();
+
     if (screenWidth > 768) {
 
+      // Scripts to only apply on Desktop
+
+      /**************************************************
+        Resize Sidebar on Load so that it takes up full height
+       **************************************************/
+
       $(window).on("load", function() {
+
         var $sidebarHeight = $(".contextual-module").outerHeight();
         var $contentHeight = $(".l-wrapper").outerHeight();
         var $windowHeight = $(window).height();
 
         if($sidebarHeight < $windowHeight) {
+
           if($headerHeight + $contentHeight < $windowHeight) {
             $(".contextual-module").outerHeight($contentHeight);
           } else {
             $(".contextual-module").outerHeight($windowHeight);
           }
+
           $(document.body).trigger("sticky_kit:recalc");
+
         }
 
       });
+
+      /**************************************************
+        Sticky Sidebar
+       **************************************************/
+
+      var $headerHeight = $("#header-bar").outerHeight();
+
       $(".contextual-module").stick_in_parent({offset_top: $headerHeight});
+
+      /**************************************************
+        Header Hide on Scroll Down, Show on Scroll Up
+       **************************************************/
+
+      $(window).scroll(
+
+          {
+            previousTop: 0
+          }, 
+
+          function () {
+
+            var currentTop = $(window).scrollTop();
+
+            // If Past Header Hide or Show Header Based on scroll direction
+            if( currentTop > $headerHeight ) {
+
+              if (currentTop < this.previousTop) {
+                // Show header if scroll up
+                $("#header-bar, .mobile-dropdown").addClass("show");
+              } else {
+                // Hide header if scroll down
+                $("#header-bar, .mobile-dropdown").removeClass("show");
+              }
+
+            } else if($(window).scrollTop() === 0) {
+              // Return to absolute positioning once at top of page
+              $("#header-bar, .mobile-dropdown").removeClass("show");
+
+            }
+
+            // Recalculate Previous Scroll Position
+            this.previousTop = currentTop;
+
+          });
+
+      /***********************************************************
+        Single Project Page Hide Voice and Show Image as Scroll Down
+       ************************************************************/
+
+      var speed = 2.5;
+      var imageHeight = $(".featured-image").height();
+      var initialOverlayOpacity = $("#voice-heading").find(".overlay").css("opacity");
+
+      $(window).scroll(function(){
+
+        var dist = $(window).scrollTop();
+        var textOpacity = (imageHeight - speed * dist) / imageHeight;
+        var overlayOpacity = initialOverlayOpacity * (imageHeight - speed * dist) / imageHeight;
+
+        $(".project-voice").css("opacity", textOpacity);
+        $("#voice-heading").find(".overlay").css("opacity", overlayOpacity);
+
+      });
+
     } else {
+
+      //  For Screens Tablet and Below Width Only
+
+      /***********************************************************
+        Mobile Dropdown Menu Functionality
+       ************************************************************/
+
       $(".dropdown-button").click(function() {
         $(".dropdown-sublist-title").next().hide();
-        $(".filter").slideToggle(100);
+        $(".dropdown").slideToggle(100);
       });
 
       $(".dropdown-sublist-title").click(function() {
         $(this).next().slideToggle(100);
       });
-    }
-    //Mobile Only
-    if (isMobile()) {
-      // Dropdown for mobile filter
-      $(function(){
-      });
 
-      // Mobile Search Bar
+      /***********************************************************
+        Mobile Header Search Bar
+       ************************************************************/
+
       var $searchOpen = $("#header-search").find(".search-submit");
       $searchOpen.addClass("open-btn");
+
       var setOpenEvent = function() {
+
         $(".open-btn").on("click", function(e) {
           e.preventDefault();
           $("#header-search").toggleClass("open");
           $("#header-search").find("input").focus();
         });
+
       };
+
       setOpenEvent();
 
       $("#header-search").on("click", ".close-btn", function() {
         $("#header-search").removeClass("open");
       });
 
+      // End of Tablet and Below Screen Size Only
     }
-    else {
-    }
+
+    // End of Document Ready
+
   });
 
 } ( this, jQuery ));
 
-function resize_to_fit(el){
-  var fontsize = $(el).css("font-size");
-  $(el).css("fontSize", parseFloat(fontsize) - 1);
+// Prevent JShint from throwing unknown variable errors with GSAP
 
-  //   if($(el).height() >= maxHeight){
-  //       resize_to_fit(el, maxHeight);
-  //  }
-}
+/* jshint undef: true, unused: false */
+/* global TimelineLite: false */
 
-function isMobile() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
+window.onload = function(){
+
+
+
+  /***********************************************************
+    Custom GSAP animations for The Collective Page
+   ************************************************************/
+
+  // Elements to be Animated
+  var scrollInstr = $("#scrollInstr");
+  var studiotropeText = $(".studiotrope-text");
+  var pronunciation = $(".pronunciation");
+  var definition = $(".definition");
+  var firstParagraph = $(".first");
+  var studioNames = $(".studio-name");
+  var secondParagraph = $(".second");
+  var collective = $("#collective");
+  var architecture = $("#architecture");
+  var graphics = $("#graphic-design");
+  var interiors = $("#interiors");
+
+  // Initialize TimelineLite in a paused state
+  var tl = new TimelineLite({paused: true});
+
+  // Apply animations as user scrolls or clicks on navs in a paused state
+  tl.to(scrollInstr, 0.3, {left: "20rem", autoAlpha: 0})
+    .from(studiotropeText, 0.3, {left: "20rem", autoAlpha: 0})
+    .from(pronunciation, 0.3, {left: "20rem", autoAlpha: 0})
+    .from(definition, 0.3, {left: "20rem", autoAlpha:0})
+    .addLabel("collective")
+    .addPause()
+    .from(firstParagraph, 0.3, {top: "30rem", autoAlpha:0})
+    .staggerFrom(studioNames, 1, {top: "30rem", autoAlpha:0}, 0.25)
+    .from(secondParagraph, 1, {autoAlpha:0}, "+=0.5")
+    .addPause()
+    .to(collective, 0.3, {left: "20rem", autoAlpha: 0})
+    .call(changeSlide, ["collective"])
+    .addLabel("architecture")
+    .call(changeSlide, ["architecture"])
+    .from(architecture, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
+    .addPause()
+    .call(changeSlide, ["architecture"])
+    .to(architecture, 0.3, {left: "20rem", autoAlpha: 0})
+    .addLabel("graphics")
+    .call(changeSlide, ["graphics"])
+    .from(graphics, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
+    .addPause()
+    .call(changeSlide, ["graphics"])
+    .to(graphics, 0.3, {left: "20rem", autoAlpha: 0})
+    .addLabel("interiors")
+    .call(changeSlide, ["interiors"])
+    .from(interiors, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75");
+
+  var $window = $(window);
+  var windowHeight = $window.height();
+  var scrollTop = $window.scrollTop();
+
+  //Animate based on amount scrolled directly
+  $window.on("resize", function(){
+    windowHeight = $window.height();
+  }).resize();
+
+  $window.on("scroll", function() {
+    scrollTop = $(window).scrollTop();
+    // var scrollPercent = (scrollTop) / (documentHeight - windowHeight);
+
+    //tl.progress(scrollPercent).pause()
+  });
+
+  //Animate based on slides rather than direct scrolling distance
+  var lastScrollTop = 0;
+  $(window).scroll(function(){
+    var st = $(this).scrollTop();
+    if (st > lastScrollTop){
+      tl.play();
+    } else {
+      tl.reverse();
+    }
+    lastScrollTop = st;
+  });
+
+  //Show current slide on sidebar navigation
+  function changeSlide(slide) {
+    var slideSelector = "." + slide + "-link";
+    $("li").removeClass("current");
+    $(slideSelector).addClass("current");
+  }
+
+  //Sidebar slide navigation functionality
+  $("body").on("click", ".slide-link", function(){
+    var s = ($(this).attr("class"));
+    var n = s.indexOf("-");
+    s = s.substring(0, n);
+    changeSlide(s);
+    tl.play(s);
+  });
+
+};
+/***********************************************************
+  Functions
+ ************************************************************/
+
+/***********************************************************
+  Custom Projects Filter using Mixitup Plugin
+ ************************************************************/
 
 // To keep our code clean and modular, all custom functionality will be contained inside a single object literal called "checkboxFilter".
 
@@ -393,99 +638,12 @@ var checkboxFilter = {
   }
 };
 
+/***********************************************************
+  Make All Words Start With an Uppercase Letter
+ ************************************************************/
+
 String.prototype.toProperCase = function () {
   return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
 
-//////////////////////////////////////////////////////////////////
-// The Collective animations
-//////////////////////////////////////////////////////////////////
-/* jshint undef: true, unused: false */
-/* global TimelineLite: false */
 
-window.onload = function(){
-  var tl = new TimelineLite({paused: true});
-  var scrollInstr = $("#scrollInstr");
-  var studiotropeText = $(".studiotrope-text");
-  var pronunciation = $(".pronunciation");
-  var definition = $(".definition");
-  var firstParagraph = $(".first");
-  var studioNames = $(".studio-name");
-  var secondParagraph = $(".second");
-  var collective = $("#collective");
-  var architecture = $("#architecture");
-  var graphics = $("#graphic-design");
-  var interiors = $("#interiors");
-  tl.to(scrollInstr, 0.3, {left: "20rem", autoAlpha: 0})
-    .from(studiotropeText, 0.3, {left: "20rem", autoAlpha: 0})
-    .from(pronunciation, 0.3, {left: "20rem", autoAlpha: 0})
-    .from(definition, 0.3, {left: "20rem", autoAlpha:0})
-    .addLabel("collective")
-    .addPause()
-    .from(firstParagraph, 0.3, {top: "30rem", autoAlpha:0})
-    .staggerFrom(studioNames, 1, {top: "30rem", autoAlpha:0}, 0.25)
-    .from(secondParagraph, 1, {autoAlpha:0}, "+=0.5")
-    .addPause()
-    .to(collective, 0.3, {left: "20rem", autoAlpha: 0})
-    .call(changeSlide, ["collective"])
-    .addLabel("architecture")
-    .call(changeSlide, ["architecture"])
-    .from(architecture, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
-    .addPause()
-    .call(changeSlide, ["architecture"])
-    .to(architecture, 0.3, {left: "20rem", autoAlpha: 0})
-    .addLabel("graphics")
-    .call(changeSlide, ["graphics"])
-    .from(graphics, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
-    .addPause()
-    .call(changeSlide, ["graphics"])
-    .to(graphics, 0.3, {left: "20rem", autoAlpha: 0})
-    .addLabel("interiors")
-    .call(changeSlide, ["interiors"])
-    .from(interiors, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75");
-
-
-  var $window = $(window);
-  //var documentHeight = $(document).height();
-  var windowHeight = $window.height();
-  var scrollTop = $window.scrollTop();
-
-  //let's add the animation into TimelineMax
-
-  $window.on("resize", function(){
-    windowHeight = $window.height();
-  }).resize();
-
-  $window.on("scroll", function() {
-    scrollTop = $(window).scrollTop();
-    // var scrollPercent = (scrollTop) / (documentHeight - windowHeight);
-
-    //tl.progress(scrollPercent).pause()
-
-  });
-
-  var lastScrollTop = 0;
-  $(window).scroll(function(){
-    var st = $(this).scrollTop();
-    if (st > lastScrollTop){
-      tl.play();
-    } else {
-      tl.reverse();
-    }
-    lastScrollTop = st;
-  });
-
-  function changeSlide(slide) {
-    var slideSelector = "." + slide + "-link";
-    $("li").removeClass("current");
-    $(slideSelector).addClass("current");
-  }
-
-  $("body").on("click", ".slide-link", function(){
-    var s = ($(this).attr("class"));
-    var n = s.indexOf("-");
-    s = s.substring(0, n);
-    changeSlide(s);
-    tl.play(s);
-  });
-};

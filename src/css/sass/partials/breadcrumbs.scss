@@ -1,9 +1,14 @@
 #breadcrumbs {
+  display: none;
   font-size: $font-size-base * 0.6;
   z-index: 1;
   margin-top: 0;
   position: relative;
   top: -2em;
+
+  @include susy-breakpoint($desktop, $desktop-columns){
+    display: block;
+  }
 
   .breadcrumb_last {
     color: $emphasis-color;

@@ -57,7 +57,11 @@
   }
 }
 
-.last { @include last; }
+.last {
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    @include last;
+  }
+}
 
 .l-content-module {
   margin: gutter()/2 0;

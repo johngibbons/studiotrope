@@ -6,7 +6,7 @@
 
 // Header container
 #header-bar {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: $header-bar-height;
@@ -16,6 +16,10 @@
 
   &.show {
     position: fixed;
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    position: absolute;
   }
 
   // Logo

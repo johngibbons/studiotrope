@@ -5,6 +5,18 @@
   @include susy-breakpoint($desktop, $desktop-columns) {
     display: block;
   }
+
+  li {
+    background-color: $st-off-white;
+    border-top: $base-border-medium-dashed;
+    padding: 1em;
+    padding-left: 2rem;
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      background-color: transparent;
+      border-top: none;
+    }
+  }
 }
 
 .dropdown-button {
@@ -61,4 +73,3 @@
     padding: .5em;
   }
 }
-

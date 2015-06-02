@@ -3,12 +3,10 @@
 yoast_breadcrumb('<p id="breadcrumbs">','</p>');
 } ?>
 <?php 
-  if(is_post_type_archive("project")):
-    get_sidebar("projects");
-  elseif(is_post_type_archive("troper")):
+  if(is_post_type_archive("troper")):
     get_sidebar("tropers");
-  elseif(is_post_type_archive("post")):
-    get_sidebar("blog");
+  elseif(is_archive()):
+    get_sidebar("projects");
   elseif(is_singular("project")):
     get_sidebar("project");
   elseif(is_singular("troper")):

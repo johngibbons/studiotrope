@@ -2,7 +2,7 @@
 <?php get_template_part("contextual-module") ?>
 <main role="main" id="the-collective" class="l-container-w-side">
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-    <div id="slides-container">
+    <div id="slides-container" class="transition-container">
       <div id="collective">
         <h1 class="page-title">
           <svg class="icon icons-combined header-icon">

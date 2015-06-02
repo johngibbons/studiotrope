@@ -1,4 +1,11 @@
-body.the-collective {
+.the-collective {
+  .l-wrapper {
+    padding-top: 12rem;
+
+    @include susy-breakpoint($desktop, $desktop-columns){
+      padding-top: inherit;
+    }
+  }
 }
 
 #the-collective {
@@ -7,6 +14,14 @@ body.the-collective {
 
   #slides-container {
     position: fixed;
+    top: 14rem;
+    left: auto;
+    width: 90%;
+
+    @include susy-breakpoint($desktop, $desktop-columns){
+      top: 7rem;
+      width: auto;
+    }
   }
 
   .slide {
