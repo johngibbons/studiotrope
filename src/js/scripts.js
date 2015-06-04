@@ -38,14 +38,28 @@
     // When the window is resized
     $(window).resize(function() {
       // Resize all videos according to their own aspect ratio
+      var windowRatio = $(window).height() / $(window).width();
+      console.log(windowRatio);
       $allVideos.each(function() {
 
         var $el = $(this);
+      console.log($el.data("aspectRatio"));
+      if ($el.data("aspectRatio") < windowRatio) {
+        $el.closest(".video").css({"width": "auto", "height": "100%" });
+        var newHeight = $el.closest(".video").height();
+
+        $el
+          .height(newHeight)
+          .width(newHeight / $el.data("aspectRatio"));
+      } else {
+        $el.closest(".video").css({"width": "100%", "height": "auto" });
         var newWidth = $el.closest(".video").width();
 
         $el
           .width(newWidth)
           .height(newWidth * $el.data("aspectRatio"));
+
+      }
 
       });
 
@@ -131,6 +145,11 @@
 
     if($("#projects-filter").length) {
 
+
+      if($("#projects-filter input:checked + label").length) {
+        $("#filter-reset").click();
+      }
+
       $("#projects-filter input:not([disabled]) + label").click(filterProjects);
 
       //If No Filters Are Applied, Reset Disabled, Remove Description
@@ -196,11 +215,11 @@
 
     $(window).resize(function () {
       if ($.resizeText.interval) {
-        clearTimeout($.resizeText.interval)
+        clearTimeout($.resizeText.interval);
 
         $.resizeText.interval = setTimeout(function () {
-          elem.html(elem.find("div.createdResizeObject").first().html());
-          elem.resizeText();
+          newElem.html(newElem.find("div.createdResizeObject").first().html());
+          newElem.resizeText();
         }, 300);
       }
     });
@@ -381,6 +400,13 @@
 
       $("#header-search").on("click", ".close-btn", function() {
         $("#header-search").removeClass("open");
+      });
+
+      $("#header-search").keyup(function(e){
+        if(e.which === 13){//Enter key pressed
+            
+            $("#header-search").find("form").submit();//Trigger search form submit
+        }
       });
 
       // End of Tablet and Below Screen Size Only

@@ -1,0 +1,21 @@
+.emphasis {
+  padding-top: gutter();
+  padding-bottom: gutter();
+  border-top: $base-border-medium-dashed;
+  border-bottom: $base-border-medium-dashed;
+  box-sizing: content-box;
+  text-align: center;
+  font-family: $font-family-testimonial;
+  font-weight: 100;
+  letter-spacing: 1px;
+
+  .source {
+    font-size: $font-size-base;
+    color: $emphasis-color;
+    display: block;
+
+    @include susy-breakpoint($tablet, $tablet-columns) {
+      display: inline;
+    }
+  }
+}

@@ -1,31 +1,68 @@
 %btn {
   display: inline-block;
+  position: relative;
   font-family: $font-family-button;
   text-decoration: none;
-  color: $st-dark-gray;
-  font-size: 0.8em;
-  line-height: 1.5em;
-  font-weight: 700;
+  color: $white;
+  font-size: $font-size-base * 0.8;
+  line-height: 1.5;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 1em 2em;
-  border: 2px solid $st-dark-gray;
+  letter-spacing: 2px;
+  padding: 0.5em 1em;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  background-color:transparent;
+  transition: all 0.3s ease;
+  background-color: transparent;
+
+  .btn-text {
+    position: relative;
+    z-index: 1;
+  }
+
 
   // hovering on the btn
   &:hover, &:focus {
-    color: lighten($st-dark-gray, 10%);
+    color: $link-color;
     text-decoration: none;
   } // end hover
 
   // clicking on the button
   &:active {
-    top: 1px; // adds a tiny hop to the click
   } // end active
 
 } // end .button
+
+.underline-btn {
+  @extend %btn;
+  border-bottom: 1px dashed $link-color;
+  margin: 1rem;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    border-top: 1px dashed $link-color;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    z-index: 0;
+  }
+
+  &:hover,
+  &:focus {
+    &:after {
+      height: 100%;
+      opacity: 1;
+    }
+  } // end hover
+
+  &:active {
+    // border-color: $white;
+  } // end active
+}
 
 .white-btn {
   @extend %btn; // here we load the btn defaults

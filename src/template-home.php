@@ -2,14 +2,12 @@
 <main role="main">
   <section id="home-hero" class="hero">
     <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-      <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
           <div id="home-video" class="l-full video">
             <iframe src="https://player.vimeo.com/video/7809605?autoplay=1&loop=1&title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" volume="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
           <?php $image = get_field('home_mobile_image'); ?>
           <div id="home-mobile-image" style="background-image: url(<?php echo $image["url"]; ?>)">
           </div>
-      </article>
     <?php endwhile; ?>
     <?php else: ?>
       <article>
@@ -22,17 +20,17 @@
         every project is born from an idea.  studiotrope is the action which 
         gives life and significance to that idea.  want to know more?
       </p>
-    </div>
-  </section>
-  <section id="home-studios-wrapper">
-    <div id="home-architecture" class="home-studio">
-     <h2>Architecture</h2> 
-    </div>
-    <div id="home-graphics" class="home-studio">
-     <h2>Graphic Design</h2> 
-    </div>
-    <div id="home-interiors" class="home-studio">
-     <h2>Interior Design</h2> 
+      <?php $page = get_page_by_title("The Collective"); ?>
+      <a href="<?php echo get_page_link($page->ID); ?>">
+        <button class="cta-home underline-btn">
+          <span class="btn-text">Learn About The Collective</span>
+        </button>
+      </a>
+      <a href="<?php echo get_post_type_archive_link("project"); ?>">
+        <button class="cta-home underline-btn">
+          <span class="btn-text">See Our Work</span>
+        </button>
+      </a>
     </div>
   </section>
 </main>

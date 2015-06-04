@@ -4,7 +4,7 @@
     $taxonomies = get_object_taxonomies( 'project', 'objects' );
 
     // Don't Show Tags in Filter
-    unset($taxonomies["post_tag"]);
+    unset($taxonomies["project_tag"]);
 
     // If this is an archive page, don't show filter for the Taxonomy which is
     // being queried, since the query is already filtering

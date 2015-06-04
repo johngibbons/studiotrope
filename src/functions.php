@@ -111,6 +111,9 @@ function html5blank_header_scripts()
       // GSAP
       wp_register_script('gsap', get_template_directory_uri(). '/bower_components/gsap/src/minified/TweenMax.min.js');
 
+      // Smoothstate for page transitions
+      wp_register_script('smoothstate', get_template_directory_uri(). '/bower_components/smoothstate/jquery.smoothState.min.js');
+
       // Custom scripts
       wp_register_script(
         'html5blankscripts',
@@ -121,7 +124,9 @@ function html5blank_header_scripts()
           'jquery',
           'mixitup',
           'stickykit',
-          'gsap'),
+          'gsap',
+          'smoothstate'
+        ),
         '1.0.0');
 
       // global $wp_query;
@@ -614,9 +619,9 @@ function custom_taxonomies_terms_links(){
   $taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
   // reorder so that tags are last
-  $tags = $taxonomies["post_tag"];
+  $tags = $taxonomies["project_tag"];
   unset($taxonomies["post_tag"]);
-  $taxonomies["post_tag"] = $tags;
+  $taxonomies["project_tag"] = $tags;
 
   foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
 
@@ -628,6 +633,11 @@ function custom_taxonomies_terms_links(){
       the_terms($post->ID, $taxonomy_slug, "<li class='value'>", " / ", "</li>");
     }
   }
+}
+
+// ACF options page
+if( function_exists('acf_add_options_page') ) {
+  acf_add_options_page();
 }
 
 //Previous and Next Posts Based on Menu Order Rather than Chronologically

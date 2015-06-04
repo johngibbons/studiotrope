@@ -89,7 +89,7 @@ body.is-pushed {
 #nav-toggle {
   float: left;
   margin: 0;
-  padding: 2.2rem 2rem;
+  padding: 1.8rem 2rem;
   transition: $base-transition;
   cursor: pointer;
   user-select: none;
@@ -104,6 +104,7 @@ body.is-pushed {
     //create middle line
     @include line;
     position: relative; 
+    bottom: 0.49rem;
 
     /*create the upper and lower lines as pseudo-elements of the middle line*/
     &:before, &:after {
@@ -198,14 +199,14 @@ body.is-pushed {
     }
   }
 
-  @include susy-breakpoint($tablet, $tablet-columns) {
+  @include susy-breakpoint($desktop, $desktop-columns) {
     width: auto;
   }
 
   .search-submit {
     left: 1rem;
 
-    @include susy-breakpoint($tablet, $tablet-columns) {
+    @include susy-breakpoint($desktop, $desktop-columns) {
       left: auto;
     }
   }
@@ -227,7 +228,7 @@ body.is-pushed {
     border: none;
     transition: all 0.3s ease;
 
-    @include susy-breakpoint($tablet, $tablet-columns) {
+    @include susy-breakpoint($desktop, $desktop-columns) {
       width: 20rem;
       border: $base-border;
     }
@@ -235,7 +236,7 @@ body.is-pushed {
     &:focus {
       border-color: $st-orange;
 
-      @include susy-breakpoint($tablet, $tablet-columns) {
+      @include susy-breakpoint($desktop, $desktop-columns) {
         width: 24rem;
       }
     }

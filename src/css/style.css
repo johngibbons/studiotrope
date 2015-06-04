@@ -547,7 +547,7 @@ body.is-pushed #nav-open-overlay {
 #nav-toggle {
   float: left;
   margin: 0;
-  padding: 2.2rem 2rem;
+  padding: 1.8rem 2rem;
   transition: all 0.3s ease;
   cursor: pointer;
   user-select: none;
@@ -565,6 +565,7 @@ body.is-pushed #nav-open-overlay {
   background: #444;
   transition: 0.1s;
   position: relative;
+  bottom: 0.49rem;
   /*create the upper and lower lines as pseudo-elements of the middle line*/
 }
 #nav-toggle .lines:before, #nav-toggle .lines:after {
@@ -638,7 +639,7 @@ body.is-pushed #nav-open-overlay {
   border: 1px solid #eee;
   padding-left: 3rem;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #header-search {
     width: auto;
   }
@@ -646,7 +647,7 @@ body.is-pushed #nav-open-overlay {
 #header-search .search-submit {
   left: 1rem;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #header-search .search-submit {
     left: auto;
   }
@@ -666,7 +667,7 @@ body.is-pushed #nav-open-overlay {
   border: none;
   transition: all 0.3s ease;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #header-search input[type="search"] {
     width: 20rem;
     border: 1px solid #eee;
@@ -675,7 +676,7 @@ body.is-pushed #nav-open-overlay {
 #header-search input[type="search"]:focus {
   border-color: #d18b00;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #header-search input[type="search"]:focus {
     width: 24rem;
   }
@@ -704,9 +705,8 @@ nav li {
 }
 #nav-mobile #nav-contents {
   position: absolute;
-  top: 50%;
+  top: 0;
   width: 100%;
-  transform: translate(0, -50%);
 }
 #nav-mobile #nav-logo {
   display: inline-block;
@@ -949,28 +949,51 @@ q {
   line-height: 1;
 }
 
-.white-btn, button, .btn, input[type="submit"] {
+.underline-btn, .white-btn, button, .btn, input[type="submit"] {
   display: inline-block;
+  position: relative;
   font-family: "jaf-facitweb", Helvetica, Arial, "Open Sans", sans-serif;
   text-decoration: none;
-  color: #444;
-  font-size: 0.8em;
-  line-height: 1.5em;
-  font-weight: 700;
+  color: #fff;
+  font-size: 112%;
+  line-height: 1.5;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 1em 2em;
-  border: 2px solid #444;
+  letter-spacing: 2px;
+  padding: 0.5em 1em;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease;
   background-color: transparent;
 }
-.white-btn:hover, button:hover, .btn:hover, input[type="submit"]:hover, .white-btn:focus, button:focus, .btn:focus, input[type="submit"]:focus {
-  color: #5e5e5e;
+.underline-btn .btn-text, .white-btn .btn-text, button .btn-text, .btn .btn-text, input[type="submit"] .btn-text {
+  position: relative;
+  z-index: 1;
+}
+.underline-btn:hover, .white-btn:hover, button:hover, .btn:hover, input[type="submit"]:hover, .underline-btn:focus, .white-btn:focus, button:focus, .btn:focus, input[type="submit"]:focus {
+  color: #d18b00;
   text-decoration: none;
 }
-.white-btn:active, button:active, .btn:active, input[type="submit"]:active {
-  top: 1px;
+
+.underline-btn {
+  border-bottom: 1px dashed #d18b00;
+  margin: 1rem;
+}
+.underline-btn:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  border-top: 1px dashed #d18b00;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 0;
+}
+.underline-btn:hover:after, .underline-btn:focus:after {
+  height: 100%;
+  opacity: 1;
 }
 
 .white-btn:hover, .white-btn:focus {
@@ -1270,6 +1293,8 @@ form.search button {
   right: 0;
   bottom: 0;
   padding: 0;
+  background-color: transparent;
+  color: #999;
   padding-right: 1rem;
 }
 form.search input[type="search"] {
@@ -1394,28 +1419,6 @@ form.search input[type="search"] {
   margin-top: 6rem;
 }
 
-.project-testimonial {
-  padding-top: 9.0909090909%;
-  padding-bottom: 9.0909090909%;
-  border-top: 1px dashed #c8c8c8;
-  border-bottom: 1px dashed #c8c8c8;
-  box-sizing: content-box;
-  text-align: center;
-  font-family: "adelle", serif;
-  font-weight: 100;
-  letter-spacing: 1px;
-}
-.project-testimonial .testimonial-source {
-  font-size: 140%;
-  color: #444;
-  display: block;
-}
-@media (min-width: 768px) {
-  .project-testimonial .testimonial-source {
-    display: inline;
-  }
-}
-
 .archive .category {
   color: #444;
 }
@@ -1442,6 +1445,8 @@ form.search input[type="search"] {
   color: #d18b00;
   font-weight: 400;
   padding-left: 1em;
+  background-color: transparent;
+  font-size: 84%;
 }
 #filter-reset:disabled {
   color: #eee;
@@ -1597,14 +1602,22 @@ form.search input[type="search"] {
 
 #home-hero {
   position: relative;
+  height: calc(100vh - 6rem);
+  overflow: hidden;
 }
 #home-hero #home-video-overlay {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  top: 2rem;
   color: #fff;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  #home-hero #home-video-overlay {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem;
+  }
 }
 #home-hero .logo-img {
   padding: 1em;
@@ -1618,6 +1631,10 @@ form.search input[type="search"] {
 @media (min-width: 768px) {
   #home-video {
     display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -1650,6 +1667,11 @@ form.search input[type="search"] {
   .home-studio {
     width: 33%;
   }
+}
+
+#home-statement {
+  font-size: 140%;
+  padding: 2em 0;
 }
 
 #troper-profile-picture {
@@ -1685,6 +1707,7 @@ form.search input[type="search"] {
 #the-collective .slide {
   position: absolute;
   top: 0;
+  margin-right: 10rem;
 }
 #the-collective .is-toAnimate {
   visibility: hidden;

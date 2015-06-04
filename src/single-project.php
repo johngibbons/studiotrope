@@ -10,7 +10,8 @@
           <div class="overlay"></div>
           <p class="project-voice"><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></p>
         </div>
-      <?php get_template_part('project-flexible-content') ?>
+      <?php $flexible_content_type = "project"; ?>
+      <?php include(locate_template('flexible-content.php')); ?>
     </section>
     <?php endif; ?>
   <?php endwhile; ?>

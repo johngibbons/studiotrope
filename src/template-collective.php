@@ -3,7 +3,7 @@
 <main role="main" id="the-collective" class="l-container-w-side">
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
     <div id="slides-container" class="transition-container">
-      <div id="collective">
+      <div id="collective" class="slide">
         <h1 class="page-title">
           <svg class="icon icons-combined header-icon">
             <use xlink:href="#icons_combined"></use>
@@ -34,7 +34,8 @@
           </svg>
           <span class="text">Architecture</span>
         </h1>
-        <p>architecture content here.</p>
+        <?php $flexible_content_type = "architecture"; ?>
+        <?php include(locate_template('flexible-content.php')); ?>
       </div>
       <div id="graphic-design" class="slide is-toAnimate">
         <h1 class="page-title">
@@ -43,7 +44,8 @@
           </svg>
           <span class="text">Graphic Design</span>
         </h1>
-        <p>Graphic Design content goes here.</p>
+        <?php $flexible_content_type = "graphics"; ?>
+        <?php include(locate_template('flexible-content.php')); ?>
       </div>
       <div id="interiors" class="slide is-toAnimate">
         <h1 class="page-title">
@@ -52,7 +54,8 @@
           </svg>
           <span class="text">Interior Design</span>
         </h1>
-        <p>Interior Design content goes here.</p>
+        <?php $flexible_content_type = "interiors"; ?>
+        <?php include(locate_template('flexible-content.php')); ?>
       </div>
     </div>
   <?php endwhile; ?>

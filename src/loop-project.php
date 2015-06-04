@@ -1,10 +1,10 @@
 <?php p2p_type( 'project_to_troper' )->each_connected( $wp_query ); ?>
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 <?php if($post->post_type === "project") : ?>
-  <?php $i = 0;
+  <?php
+  $troper_ids = [];
   foreach ( $post->connected as $post ) : setup_postdata( $post );
-    $troper_ids[$i] = "troper-" . get_the_ID();
-    $i++;
+    $troper_ids[] = "troper-" . get_the_ID();
   endforeach;
   $troper_ids[] = "mix";
   wp_reset_postdata(); // set $post back to original post ?>
