@@ -4,16 +4,17 @@
  */
 
 .contextual-module {
-  padding: 0 2rem;
+  padding: 2rem;
   z-index: 1;
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     @include span(3);
     background-color: $st-off-white;
-    padding: ($header-bar-height + 4) 4rem 4rem;
+    padding: ($header-bar-height + 4) 4rem 6rem;
     border-right: $base-border-medium-dashed;
     margin-right: 0;
     margin-top: -$header-bar-height;
+    margin-bottom: 0;
   }
 
   @include susy-breakpoint($large, $large-columns) {
@@ -34,5 +35,11 @@
 
   .value {
     margin-bottom: 1em;
+  }
+
+  &.is-fixed {
+    position: fixed;
+    top: 8rem;
+    width: 100%;
   }
 }

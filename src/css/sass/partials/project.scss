@@ -68,6 +68,21 @@
   color: $emphasis-color;
 }
 
+.troper-thumb {
+  margin: 1rem 0;
+}
+
+#troper-name {
+  display: block;
+  height: 1em;
+  opacity: 0;
+  transition: $base-transition;
+
+  &.is-shown {
+    opacity: 1;
+  }
+}
+
 .project-contents {
   @include last;
 
@@ -79,6 +94,6 @@
 }
 
 #project-detail-description {
-  margin-top: 6rem;
+  margin-top: 3rem;
 }
 

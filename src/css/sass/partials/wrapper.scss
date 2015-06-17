@@ -40,11 +40,18 @@ body {
 }
 
 main {
+  margin-top: 2rem;
+
   &:after {
     content: "";
     display: table;
     clear: both;
   }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    margin-top: 0;
+  }
+
 }
 
 .l-wrapper {
@@ -98,11 +105,12 @@ main {
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     @include span(isolate 7 at 2 wide);
-    padding: 5rem 0;
+    padding: $header-bar-height 0;
+    margin-top: 2rem;
   }
 
   @include susy-breakpoint($large, $large-columns) {
-    @include span(isolate 10 at 6);
+    @include span(isolate 10 at 2);
   }
 
 }

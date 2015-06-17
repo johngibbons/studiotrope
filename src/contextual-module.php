@@ -1,4 +1,4 @@
-<aside class="contextual-module">
+<aside class="contextual-module animsition" data-animsition-in="fade-in-left-sm">
 <?php if ( function_exists('yoast_breadcrumb') ) {
 yoast_breadcrumb('<p id="breadcrumbs">','</p>');
 } ?>
@@ -17,6 +17,8 @@ yoast_breadcrumb('<p id="breadcrumbs">','</p>');
     get_sidebar("search");
   elseif(is_page_template("template-collective.php")):
     get_sidebar("collective");
+  elseif(is_page_template("template-contact.php")):
+    get_sidebar("contact");
   else:
     get_sidebar();
   endif;

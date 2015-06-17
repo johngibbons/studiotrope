@@ -80,7 +80,15 @@ nav {
 }
 
 #prev-next-links {
-  color: $st-orange;
+  display: none;
+  position: absolute;
+  bottom: 2rem;
+  width: 100%;
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    display: block;
+  }
+
   a {
     display: block;
     font-size: $font-size-base * 0.5;

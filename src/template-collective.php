@@ -1,9 +1,9 @@
 <?php /* Template Name: The Collective Page Template */ get_header(); ?>
 <?php get_template_part("contextual-module") ?>
-<main role="main" id="the-collective" class="l-container-w-side">
+<main id="the-collective" class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-    <div id="slides-container" class="transition-container">
-      <div id="collective" class="slide">
+    <div id="fullpage">
+      <div class="section is-hidden">
         <h1 class="page-title">
           <svg class="icon icons-combined header-icon">
             <use xlink:href="#icons_combined"></use>
@@ -11,53 +11,69 @@
           <span class="text"><?php the_title(); ?></span>
         </h1>
 
-        <p id="scrollInstr">scroll down to learn about us.</p>
-        <h2 class="studiotrope-text is-toAnimate">Studiotrope:</h2>
-        <p class="pronunciation is-toAnimate">| ˈst(y)o͞odēˌō | trōp |</p>
-        <p class="definition is-toAnimate">• verb • the act of revealing latent beauty, or the inability to capture with photography.</p>
-        <p class="definition is-toAnimate">• synonyms • shared intuition, transcendent, allusive, experiential, phenomenological</p>
+        <h2 class="studiotrope-text">studiotrope:</h2>
+        <p class="pronunciation">| ˈst(y)o͞odēˌō | trōp |</p>
+        <p class="definition">• verb • the act of revealing latent beauty, or the inability to capture with photography.</p>
+        <p class="definition">• synonyms • shared intuition, transcendent, allusive, experiential, phenomenological</p>
         <div class="description">
-          <p class="first is-toAnimate">
-            Studiotrope Design Collective is organized around three main studios:</p>
-          <span class="architecture-link slide-link studio-name is-toAnimate">Architecture</span>
-          <span class="graphics-link studio-name slide-link is-toAnimate">Graphic Design</span>
-          <span class="interiors-link studio-name slide-link is-toAnimate">Interior Design</span>
-          <p class="second is-toAnimate">
-            Click on any of the studios to learn more.
-          </p>
+          <p class="first">
+            studiotrope design collective is organized around three main studios:</p>
+          <a href="#architecture">
+            <span class="architecture-link slide-link studio-name">Architecture</span>
+          </a>
+          <a href="#interiors">
+            <span class="interiors-link studio-name slide-link">Interior Design</span>
+          </a>
+          <a href="#graphics">
+            <span class="graphics-link studio-name slide-link">Graphic Design</span>
+          </a>
         </div>
+
+        <p id="scrollInstr">
+          click on any of the studios or scroll down to learn more about us. 
+          <i class="fa fa-arrow-circle-o-down"></i>
+        </p>
+
       </div>
-      <div id="architecture" class="slide is-toAnimate">
-        <h1 class="page-title">
-          <svg class="icon icons-combined header-icon">
-            <use xlink:href="#architecture_icon"></use>
-          </svg>
-          <span class="text">Architecture</span>
-        </h1>
-        <?php $flexible_content_type = "architecture"; ?>
-        <?php include(locate_template('flexible-content.php')); ?>
-      </div>
-      <div id="graphic-design" class="slide is-toAnimate">
-        <h1 class="page-title">
-          <svg class="icon icons-combined header-icon">
-            <use xlink:href="#graphics_icon"></use>
-          </svg>
-          <span class="text">Graphic Design</span>
-        </h1>
-        <?php $flexible_content_type = "graphics"; ?>
-        <?php include(locate_template('flexible-content.php')); ?>
-      </div>
-      <div id="interiors" class="slide is-toAnimate">
-        <h1 class="page-title">
-          <svg class="icon icons-combined header-icon">
-            <use xlink:href="#interiors_icon"></use>
-          </svg>
-          <span class="text">Interior Design</span>
-        </h1>
-        <?php $flexible_content_type = "interiors"; ?>
-        <?php include(locate_template('flexible-content.php')); ?>
-      </div>
-    </div>
+
+      <?php $studios = ["architecture", "interiors", "graphics"]; ?>
+      <?php $slides = ["", "manifesto", "services"]; ?>
+
+      <?php foreach ($studios as $studio) { ?>
+        <?php foreach ($slides as $slide) { ?>
+
+          <div class="section is-hidden">
+            <div class="heading">
+              <h1 class="page-title">
+                <?php if ( $studio == "architecture" ): ?>
+                  <svg class="icon icons-combined header-icon">
+                    <use xlink:href="#architecture_icon"></use>
+                  </svg>
+                  <span class="text">Architecture</span>
+                <?php elseif ( $studio == "interiors" ): ?>
+                  <svg class="icon icons-combined header-icon">
+                    <use xlink:href="#interiors_icon"></use>
+                  </svg>
+                  <span class="text">Interior Design</span>
+                <?php elseif ( $studio == "graphics" ): ?>
+                  <svg class="icon icons-combined header-icon">
+                    <use xlink:href="#graphics_icon"></use>
+                  </svg>
+                  <span class="text">Graphic Design</span>
+                <?php endif; ?>
+              </h1>
+              <p class="detail"><?php echo $slide ?></p>
+            </div>
+            <?php if ($slide == ""): ?>
+              <?php $flexible_content_type = $studio ?>
+            <?php else: ?>
+              <?php $flexible_content_type = $studio . "_" . $slide; ?>
+            <?php endif; ?>
+            <?php include(locate_template('flexible-content.php')); ?>
+          </div>
+
+        <?php }
+      } ?>
   <?php endwhile; ?>
   <?php else: ?>
     <article>

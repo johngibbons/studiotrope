@@ -17,8 +17,7 @@
     <div id="home-video-overlay">
       <img src="<?php echo get_template_directory_uri(); ?>/img/logo_white.svg" alt="Logo" class="logo-img">
       <p id="home-statement">
-        every project is born from an idea.  studiotrope is the action which 
-        gives life and significance to that idea.  want to know more?
+        <?php the_field("home_statement") ?>
       </p>
       <?php $page = get_page_by_title("The Collective"); ?>
       <a href="<?php echo get_page_link($page->ID); ?>">

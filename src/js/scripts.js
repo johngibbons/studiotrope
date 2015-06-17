@@ -8,6 +8,19 @@
     // JQuery Document Ready
 
     /**************************************************
+      Animsition for page transition animations
+     **************************************************/
+
+    $(".animsition").animsition({
+      inClass: "fade-in-right",
+      outClass: "fade-out-up",
+      linkElement: "a:not([target='_blank']):not([href^=#]):not([href*=mailto])",
+      touchSupport: true,
+      inDuration: 300,
+      outDuration: 300,
+    });
+
+    /**************************************************
       Mobile Navigation Sliding Menu
      **************************************************/
 
@@ -20,11 +33,11 @@
       Video Sizing Responsive to Container Size
      **************************************************/
 
-    // Find all videos
-    var $allVideos = $("iframe");
+    // Find all embedded content
+    var $embeds = $("iframe");
 
     // Figure out and save aspect ratio for each video
-    $allVideos.each(function() {
+    $embeds.each(function() {
 
       $(this)
         .data("aspectRatio", this.height / this.width)
@@ -39,27 +52,28 @@
     $(window).resize(function() {
       // Resize all videos according to their own aspect ratio
       var windowRatio = $(window).height() / $(window).width();
-      console.log(windowRatio);
-      $allVideos.each(function() {
+
+      $embeds.each(function() {
 
         var $el = $(this);
-      console.log($el.data("aspectRatio"));
-      if ($el.data("aspectRatio") < windowRatio) {
-        $el.closest(".video").css({"width": "auto", "height": "100%" });
-        var newHeight = $el.closest(".video").height();
+        var $container = $el.closest("div");
 
-        $el
-          .height(newHeight)
-          .width(newHeight / $el.data("aspectRatio"));
-      } else {
-        $el.closest(".video").css({"width": "100%", "height": "auto" });
-        var newWidth = $el.closest(".video").width();
+        if ($el.data("aspectRatio") < windowRatio) {
+          $container.css({"width": "auto", "height": "100%" });
+          var newHeight = $container.height();
 
-        $el
-          .width(newWidth)
-          .height(newWidth * $el.data("aspectRatio"));
+          $el
+            .height(newHeight)
+            .width(newHeight / $el.data("aspectRatio"));
+        } else {
+          $container.css({"width": "100%", "height": "auto" });
+          var newWidth = $container.width();
 
-      }
+          $el
+            .width(newWidth)
+            .height(newWidth * $el.data("aspectRatio"));
+
+        }
 
       });
 
@@ -69,6 +83,7 @@
     /**************************************************
       Projects Index Filter Functionality
      **************************************************/
+
 
     checkboxFilter.init();
 
@@ -100,6 +115,7 @@
 
     var filterParams = {};
     var filterDescription = [];
+    var initialDescription = $("#filter-description").text();
 
     var filterProjects = function() {
     
@@ -124,7 +140,7 @@
           filterParams[category] = [term];
         }
 
-        filterDescription = ["Nice filtering, now you're only seeing projects that match: "];
+        filterDescription = [initialDescription];
         var categories = Object.keys(filterParams);
 
         $.each(categories, function(index, value){
@@ -139,11 +155,12 @@
             $("#filter-description").html(filterDescription.join(""));
           }
         });
+        $("#filter-description").addClass("is-shown");
     };
 
     //Projects filter labeling and description behavior
 
-    if($("#projects-filter").length) {
+    if( $("#projects-filter").length ) {
 
 
       if($("#projects-filter input:checked + label").length) {
@@ -157,7 +174,7 @@
       $("#projects-index").on("mixEnd", function(e, state){
         if (state.activeFilter === ".mix") {
           $("#filter-reset").attr("disabled", true);
-          $("#filter-description").html("");
+          $("#filter-description").removeClass("is-shown");
         }
       });
 
@@ -168,7 +185,7 @@
         $(this).attr("disabled", true);
         filterDescription = [];
         filterParams = {};
-        $("#filter-description").html("");
+        $("#filter-description").removeClass("is-shown");
       });
     }
 
@@ -197,71 +214,62 @@
 
     });
 
-  /***********************************************************
-    Resize Text Based on Container Size
-   ************************************************************/
-
-  $.fn.resizeText = function () {
-    var width = $(this).innerWidth();
-    var height = $(this).innerHeight();
-    var html =  $(this).html();
-    var newElem = $("<div>", {
-      html: html,
-      style: "display: inline-block;overflow:hidden;font-size:0.1em;padding:0;margin:0;border:0;outline:0"
-    });
-
-    $(this).html(newElem);
-    $.resizeText.increaseSize(1, 0.5, newElem, width, height);
-
-    $(window).resize(function () {
-      if ($.resizeText.interval) {
-        clearTimeout($.resizeText.interval);
-
-        $.resizeText.interval = setTimeout(function () {
-          newElem.html(newElem.find("div.createdResizeObject").first().html());
-          newElem.resizeText();
-        }, 300);
-      }
-    });
-  };
-
-  $.resizeText = {
-    increaseSize: function (increment, start, newElem, width, height) {
-      var fontSize = start;
-
-      while (newElem.outerHeight() < height) {
-        fontSize += increment;
-        newElem.css("font-size", fontSize + "rem");
-      }
-
-      if (newElem.outerWidth() > width || newElem.outerHeight() > height) {
-        fontSize -= increment;
-        newElem.css("font-size", fontSize + "rem");
-        if (increment > 0.1) {
-          $.resizeText.increaseSize(increment / 10, fontSize, newElem, width, height);
-        }
-      }
-    }
-  };
-
-
   /**************************************************
     Project Voice Text Sizing to Fill Container
    **************************************************/
 
-  if ($(".project-voice-thumb").length){
+  if ( $(".project-voice-thumb").length ){
 
     $(".project-voice-thumb").each(function(){
 
-      $(this).resizeText();
+      $(this).textfill({
+        maxFontPixels: -1,
+        changeLineHeight: true,
+      });
 
     });
   }
 
   if ($(".project-voice").length){
 
-      $(".project-voice").resizeText();
+    $(".project-voice").textfill({
+      maxFontPixels: -1,
+    });
 
+  }
+
+  /**************************************************
+    Fullpage slides for The Collective
+   **************************************************/
+
+  if ( $("#fullpage").length ) {
+    $("#fullpage").fullpage({
+      anchors: ["collective", "architecture", "architecture-manifesto", "architecture-services", "interiors", "interiors-manifesto", "interiors-services", "graphics", "graphics-manifesto", "graphics-services"],
+      animateAnchor: false,
+      menu: "#slides-nav",
+      scrollingSpeed: 700,
+      recordHistory: false,
+      responsiveWidth: 768,
+      onLeave: function( ){
+        var leavingSection = $(this);
+        leavingSection.addClass("is-hidden");
+      },
+      afterLoad: function( ){
+        var loadedSection = $(this);
+        loadedSection.removeClass("is-hidden");
+      },
+    });
+  }
+  /**************************************************
+    Troper Name shows on hover
+    **************************************************/
+
+  if ( $("#troper-name").length ) {
+    $(".troper-thumb").mouseenter(function(){
+      $("#troper-name").text($(this).data("troperName")).addClass("is-shown");
+    }).mouseleave(function(){
+      $("#troper-name").removeClass("is-shown");
+    });
   }
 
 
@@ -307,6 +315,19 @@
 
       $(".contextual-module").stick_in_parent({offset_top: $headerHeight});
 
+      //fix sticky kit position relative bug
+      $(window).scroll(function(){
+        $(".is_stuck").closest("div").css("position", "static");
+      });
+
+      /**************************************************
+        Sticky Profile Picture on Troper Profile
+       **************************************************/
+
+      if ( $("#troper-profile-picture").length ) {
+        $("#troper-profile-picture").stick_in_parent();
+      }
+
       /**************************************************
         Header Hide on Scroll Down, Show on Scroll Up
        **************************************************/
@@ -347,7 +368,7 @@
         Single Project Page Hide Voice and Show Image as Scroll Down
        ************************************************************/
 
-      var speed = 2.5;
+      var speed = 10.5;
       var imageHeight = $(".featured-image").height();
       var initialOverlayOpacity = $("#voice-heading").find(".overlay").css("opacity");
 
@@ -361,6 +382,67 @@
         $("#voice-heading").find(".overlay").css("opacity", overlayOpacity);
 
       });
+
+      // Prevent JShint from throwing unknown variable errors with GSAP
+      /* global TimelineLite: false */
+      /* jshint undef: true, unused: false */
+
+      window.onload = function(){
+
+
+
+        /***********************************************************
+          Custom GSAP animations for The Collective Page
+        ************************************************************/
+
+        // Elements to be Animated
+        var scrollInstr = $("#scrollInstr");
+        var studiotropeText = $(".studiotrope-text");
+        var pronunciation = $(".pronunciation");
+        var definition = $(".definition");
+        var firstParagraph = $(".first");
+        var studioNames = $(".studio-name");
+        var secondParagraph = $(".second");
+        var collective = $("#collective");
+        var architecture = $("#architecture");
+        var interiors = $("#interiors");
+        var graphics = $("#graphic-design");
+
+        // Initialize TimelineLite in a paused state
+        var tl = new TimelineLite();
+
+        // Apply animations as user scrolls or clicks on navs in a paused state
+        tl.from(studiotropeText, 0.3, {autoAlpha: 0})
+          .from(pronunciation, 0.3, {autoAlpha: 0})
+          .from(definition, 0.3, {autoAlpha: 0})
+          .from(firstParagraph, 0.3, {top: "30rem", autoAlpha:0})
+          .staggerFrom(studioNames, 1, {top: "30rem", autoAlpha:0}, 0.25)
+          .from(scrollInstr, 1, {autoAlpha:0}, "+=0.5")
+          .addPause()
+          .to(collective, 0.3, {autoAlpha: 0})
+          .addLabel("architecture")
+          .from(architecture, 0.3, {autoAlpha: 0}, "+=0.75")
+          .addPause()
+          .to(architecture, 0.3, {autoAlpha: 0})
+          .addLabel("interiors")
+          .from(interiors, 0.3, {autoAlpha: 0}, "+=0.75")
+          .addPause()
+          .to(interiors, 0.3, {autoAlpha: 0})
+          .addLabel("graphics")
+          .from(graphics, 0.3, {autoAlpha: 0}, "+=0.75");
+
+        //Animate based on slides rather than direct scrolling distance
+        var lastScrollTop = 0;
+        $(window).scroll(function(){
+          var st = $(this).scrollTop();
+          if (st > lastScrollTop){
+            tl.play();
+          } else {
+            tl.reverse();
+          }
+          lastScrollTop = st;
+        });
+      };
 
     } else {
 
@@ -409,6 +491,15 @@
         }
       });
 
+      /***********************************************************
+        Auto height for mobile slides
+       ************************************************************/
+
+      if ($(".section").length) {
+        $(".section").css("height", "auto");
+        $(".fp-tableCell").css("height", "auto");
+      }
+
       // End of Tablet and Below Screen Size Only
     }
 
@@ -418,109 +509,6 @@
 
 } ( this, jQuery ));
 
-// Prevent JShint from throwing unknown variable errors with GSAP
-
-/* jshint undef: true, unused: false */
-/* global TimelineLite: false */
-
-window.onload = function(){
-
-
-
-  /***********************************************************
-    Custom GSAP animations for The Collective Page
-   ************************************************************/
-
-  // Elements to be Animated
-  var scrollInstr = $("#scrollInstr");
-  var studiotropeText = $(".studiotrope-text");
-  var pronunciation = $(".pronunciation");
-  var definition = $(".definition");
-  var firstParagraph = $(".first");
-  var studioNames = $(".studio-name");
-  var secondParagraph = $(".second");
-  var collective = $("#collective");
-  var architecture = $("#architecture");
-  var graphics = $("#graphic-design");
-  var interiors = $("#interiors");
-
-  // Initialize TimelineLite in a paused state
-  var tl = new TimelineLite({paused: true});
-
-  // Apply animations as user scrolls or clicks on navs in a paused state
-  tl.to(scrollInstr, 0.3, {left: "20rem", autoAlpha: 0})
-    .from(studiotropeText, 0.3, {left: "20rem", autoAlpha: 0})
-    .from(pronunciation, 0.3, {left: "20rem", autoAlpha: 0})
-    .from(definition, 0.3, {left: "20rem", autoAlpha:0})
-    .addLabel("collective")
-    .addPause()
-    .from(firstParagraph, 0.3, {top: "30rem", autoAlpha:0})
-    .staggerFrom(studioNames, 1, {top: "30rem", autoAlpha:0}, 0.25)
-    .from(secondParagraph, 1, {autoAlpha:0}, "+=0.5")
-    .addPause()
-    .to(collective, 0.3, {left: "20rem", autoAlpha: 0})
-    .call(changeSlide, ["collective"])
-    .addLabel("architecture")
-    .call(changeSlide, ["architecture"])
-    .from(architecture, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
-    .addPause()
-    .call(changeSlide, ["architecture"])
-    .to(architecture, 0.3, {left: "20rem", autoAlpha: 0})
-    .addLabel("graphics")
-    .call(changeSlide, ["graphics"])
-    .from(graphics, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75")
-    .addPause()
-    .call(changeSlide, ["graphics"])
-    .to(graphics, 0.3, {left: "20rem", autoAlpha: 0})
-    .addLabel("interiors")
-    .call(changeSlide, ["interiors"])
-    .from(interiors, 0.3, {left: "-20rem", autoAlpha: 0}, "+=0.75");
-
-  var $window = $(window);
-  var windowHeight = $window.height();
-  var scrollTop = $window.scrollTop();
-
-  //Animate based on amount scrolled directly
-  $window.on("resize", function(){
-    windowHeight = $window.height();
-  }).resize();
-
-  $window.on("scroll", function() {
-    scrollTop = $(window).scrollTop();
-    // var scrollPercent = (scrollTop) / (documentHeight - windowHeight);
-
-    //tl.progress(scrollPercent).pause()
-  });
-
-  //Animate based on slides rather than direct scrolling distance
-  var lastScrollTop = 0;
-  $(window).scroll(function(){
-    var st = $(this).scrollTop();
-    if (st > lastScrollTop){
-      tl.play();
-    } else {
-      tl.reverse();
-    }
-    lastScrollTop = st;
-  });
-
-  //Show current slide on sidebar navigation
-  function changeSlide(slide) {
-    var slideSelector = "." + slide + "-link";
-    $("li").removeClass("current");
-    $(slideSelector).addClass("current");
-  }
-
-  //Sidebar slide navigation functionality
-  $("body").on("click", ".slide-link", function(){
-    var s = ($(this).attr("class"));
-    var n = s.indexOf("-");
-    s = s.substring(0, n);
-    changeSlide(s);
-    tl.play(s);
-  });
-
-};
 /***********************************************************
   Functions
  ************************************************************/

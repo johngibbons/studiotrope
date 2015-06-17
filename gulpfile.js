@@ -13,6 +13,18 @@ var gulp = require( "gulp" ),
       "src/js/lib/conditionizr-4.3.0.min.js",
       /** jQuery */
       "src/bower_components/jquery/dist/jquery.js",
+      /** MixItUp */
+      "src/bower_components/bower-mixitup/src/jquery.mixitup.js",
+      /** Sticky Kit */
+      "src/bower_components/sticky-kit/jquery.sticky-kit.js",
+      /** GSAP */
+      "src/bower_components/gsap/src/uncompressed/TweenMax.js",
+      /** Fullpage.js */
+      "src/bower_components/fullpage.js/jquery.fullPage.js",
+      /** Animsition */
+      "src/bower_components/animsition/dist/js/jquery.animsition.js",
+      /** TextFill */
+      "src/bower_components/jquery-textfill/source/jquery.textfill.js",
       /** Page scripts */
       "src/js/scripts.js"
     ],
@@ -21,6 +33,8 @@ var gulp = require( "gulp" ),
       development: [
         /** The banner of `style.css` */
         "src/css/banner.css",
+        /** Animsition */
+        "src/bower_components/animsition/dist/css/animsition.css",
         /** Theme style */
         "src/css/style.css"
       ],
@@ -28,7 +42,9 @@ var gulp = require( "gulp" ),
         /** The banner of `style.css` */
         "src/css/banner.css",
         /** Normalize */
-        "src/bower_components/normalize.css/normalize.css",
+        "src/bower_components/normalize/normalize.css",
+        /** Animsition **/
+        "src/bower_components/animsition/dist/css/animsition.css",
         /** Theme style */
         "src/css/style.css"
       ]
@@ -133,18 +149,18 @@ gulp.task( "uglify", function() {
 gulp.task('svgstore', function () {
   var svgs = gulp
     .src('src/img/**/*.svg')
-    .pipe($.svgmin())
-    .pipe($.svgstore({ inlineSvg: true }));
+                      .pipe($.svgmin())
+                      .pipe($.svgstore({ inlineSvg: true }));
 
-    function fileContents (filePath, file) {
-      return file.contents.toString();
-    }
+                      function fileContents (filePath, file) {
+                      return file.contents.toString();
+                      }
 
-    return gulp
-    .src('src/header.php')
-    .pipe($.inject(svgs, { transform: fileContents }))
-    .pipe(gulp.dest('src'));
-});
+                      return gulp
+                      .src('src/header.php')
+                      .pipe($.inject(svgs, { transform: fileContents }))
+                      .pipe(gulp.dest('src'));
+                      });
 
 /** `env` to 'production' */
 gulp.task( "envProduction", function() {
@@ -181,13 +197,13 @@ gulp.task( "watch", [ "template", "styles", "jshint", "svgstore" ], function() {
 
 gulp.task('default', function () {
   return gulp.src('src/img/*')
-          .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()]
-          }))
-          .pipe(gulp.dest('dist/img'));
-          });
+                            .pipe(imagemin({
+                            progressive: true,
+                            svgoPlugins: [{removeViewBox: false}],
+                            use: [pngquant()]
+                            }))
+                            .pipe(gulp.dest('dist/img'));
+                            });
 
 /** Build */
 gulp.task( "build", [

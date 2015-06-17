@@ -52,6 +52,8 @@
 
     @include susy-breakpoint($desktop, $desktop-columns) {
       display: inline-block;
+      margin-left: 12.5714285714%;
+      margin-right: -100%;
     }
 
     li {
@@ -243,3 +245,17 @@ body.is-pushed {
   }
 }
 
+#header-social {
+  display: none;
+  position: absolute;
+  top: 125%;
+  right: 3.25rem;
+
+  a {
+    display: block;
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    display: block;
+  }
+}

@@ -11,6 +11,7 @@
 @import "modules/mixins";
 @import "modules/variables";
 @import "modules/fonts";
+@import "modules/animations";
 
 // Partials
 @import "partials/reset";
@@ -29,13 +30,16 @@
 @import "partials/dropdown";
 @import "partials/icons";
 @import "partials/mobile-ui";
+@import "partials/animsition";
 @import "partials/breadcrumbs";
 @import "partials/page";
 @import "partials/index";
 @import "partials/search";
+@import "partials/flexible-content";
 @import "partials/project";
 @import "partials/projects";
 @import "partials/tropers";
 @import "partials/home";
 @import "partials/troper";
 @import "partials/collective";
+@import "partials/contact";

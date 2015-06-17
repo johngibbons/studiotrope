@@ -11,9 +11,9 @@
   <article id="post-<?php the_ID(); ?>" <?php post_class($troper_ids); ?>>
     <?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
       <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' )[0]; ?>
-      <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
+      <a href="<?php the_permalink(); ?>">
         <h3 class="thumb-title"><?php echo the_title(); ?></h3>
-        <span class="project-voice-thumb is-hidden"><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span>
+        <span class="project-voice-thumb is-hidden"><span><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span></span>
         <span class="project-thumb" style="background-image: url( <?php echo $url ?> );"></span>
       </a>
     <?php endif; ?>
@@ -25,6 +25,6 @@
   <div class="gap"></div>
 <?php else: ?>
   <article>
-    <h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+    <h2><?php _e( 'No results. Please try again.', 'html5blank' ); ?></h2>
   </article>
 <?php endif; ?>

@@ -1,10 +1,14 @@
 <?php
 
     // Get All Project Taxonomies
-    $taxonomies = get_object_taxonomies( 'project', 'objects' );
+    $taxonomies = get_object_taxonomies( $filter_post_type, 'objects' );
 
     // Don't Show Tags in Filter
-    unset($taxonomies["project_tag"]);
+    if (array_key_exists("project_tag", $taxonomies)) {
+      unset($taxonomies["project_tag"]);
+    } elseif (array_key_exists("post_tag")) {
+      unset($taxonomies["post_tag"]);
+    }
 
     // If this is an archive page, don't show filter for the Taxonomy which is
     // being queried, since the query is already filtering
@@ -28,22 +32,25 @@
   endwhile;
   endif;
 
-  foreach($taxonomy_values as $taxonomy_name => $value) {
-    foreach($value as $term) {
-      $tax_term_ids[$taxonomy_name][] = $term->term_id;
+  if (isset($taxonomy_values)) {
+
+    foreach($taxonomy_values as $taxonomy_name => $value) {
+      foreach($value as $term) {
+        $tax_term_ids[$taxonomy_name][] = $term->term_id;
+      }
     }
-  }
-  foreach($tax_term_ids as $taxonomy => $term_ids) {
-    sort($term_ids);
-    $query_project_term_ids[$taxonomy] = array_values(array_unique($term_ids));
-    foreach($query_project_term_ids[$taxonomy] as $term_id) {
-      $term = get_term($term_id, $taxonomy);
-      $available_params[$taxonomy][$term->slug] = $term;
+
+    foreach($tax_term_ids as $taxonomy => $term_ids) {
+      sort($term_ids);
+      $query_project_term_ids[$taxonomy] = array_values(array_unique($term_ids));
+      foreach($query_project_term_ids[$taxonomy] as $term_id) {
+        $term = get_term($term_id, $taxonomy);
+        $available_params[$taxonomy][$term->slug] = $term;
+      }
     }
-  }
 
 
-  foreach ($available_params as $taxonomy => $filter_param) {
+    foreach ($available_params as $taxonomy => $filter_param) {
 
       $term_list = '<fieldset class="single-filter">';
       $taxonomy_title = str_replace('_', ' ', $taxonomy);
@@ -64,4 +71,6 @@
       echo "</fieldset>";
 
     }
+
+  }
 ?>

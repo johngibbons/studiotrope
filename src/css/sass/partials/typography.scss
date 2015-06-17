@@ -13,6 +13,11 @@ h1 {
   color: $emphasis-color;
 }
 
+h2 {
+  font-size: $font-size-base;
+  color: $emphasis-color;
+}
+
 p {
   font-size: 0.8*$font-size-base;
 }
@@ -35,6 +40,7 @@ a {
   }
 
   &:active, &:visited, &:focus {
+    text-decoration: none;
   }
 
 }
@@ -46,5 +52,16 @@ q {
   font-style: italic;
   color: $text-color;
   line-height: 1;
+
+  &:before {
+    content: open-quote;
+  }
+
+  &:after {
+    content: close-quote;
+  }
 }
 
+.gold {
+  color: $st-orange;
+}

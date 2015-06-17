@@ -1,21 +1,6 @@
 .mobile-dropdown {
-  position: absolute;
-  top: $header-bar-height;
-  background-color: $st-off-white;
   width: 100%;
-  height: $header-bar-height;
-  line-height: $header-bar-height;
-  box-shadow: $base-box-shadow;
-  border-bottom: $base-border;
   z-index: 1;
-
-  &.show {
-    position: fixed;
-
-    @include susy-breakpoint($desktop, $desktop-columns) {
-      position: static;
-    }
-  }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     background-color: transparent;

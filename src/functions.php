@@ -27,9 +27,9 @@ if (function_exists('add_theme_support'))
 
   // Add Thumbnail Theme Support
   add_theme_support('post-thumbnails');
-  add_image_size('large', 700, '', true); // Large Thumbnail
-  add_image_size('medium', 250, '', true); // Medium Thumbnail
-  add_image_size('small', 120, '', true); // Small Thumbnail
+  add_image_size('large', 1500, '', true); // Large Thumbnail
+  add_image_size('medium', 750, '', true); // Medium Thumbnail
+  add_image_size('small', 250, '', true); // Small Thumbnail
   add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
   // Add Support for Custom Backgrounds - Uncomment below if you're going to use
@@ -103,16 +103,22 @@ function html5blank_header_scripts()
       wp_register_script('modernizr', get_template_directory_uri() . '/bower_components/modernizr/modernizr.js', array(), '2.8.3');
 
       // Mixitup
-      wp_register_script('mixitup', get_template_directory_uri() . '/bower_components/bower-mixitup/build/jquery.mixitup.min.js', array(), '2.1.8');
+      wp_register_script('mixitup', get_template_directory_uri() . '/bower_components/bower-mixitup/src/jquery.mixitup.js', array(), '2.1.8');
 
       // Sticky-kit
-      wp_register_script('stickykit', get_template_directory_uri(). '/bower_components/sticky-kit/jquery.sticky-kit.min.js');
+      wp_register_script('stickykit', get_template_directory_uri(). '/bower_components/sticky-kit/jquery.sticky-kit.js');
 
       // GSAP
-      wp_register_script('gsap', get_template_directory_uri(). '/bower_components/gsap/src/minified/TweenMax.min.js');
+      wp_register_script('gsap', get_template_directory_uri(). '/bower_components/gsap/src/uncompressed/TweenMax.js');
 
-      // Smoothstate for page transitions
-      wp_register_script('smoothstate', get_template_directory_uri(). '/bower_components/smoothstate/jquery.smoothState.min.js');
+      // Fullpage.js
+      wp_register_script('fullpage', get_template_directory_uri(). '/bower_components/fullpage.js/jquery.fullPage.min.js');
+
+      // Animsition for page transitions
+      wp_register_script('animsition', get_template_directory_uri(). '/bower_components/animsition/dist/js/jquery.animsition.js');
+
+      // Text resizing by container size
+      wp_register_script('textfill', get_template_directory_uri(). '/bower_components/jquery-textfill/source/jquery.textfill.js');
 
       // Custom scripts
       wp_register_script(
@@ -125,7 +131,9 @@ function html5blank_header_scripts()
           'mixitup',
           'stickykit',
           'gsap',
-          'smoothstate'
+          'fullpage',
+          'animsition',
+          'textfill',
         ),
         '1.0.0');
 
@@ -163,13 +171,21 @@ function html5blank_styles()
 {
   if (HTML5_DEBUG) {
     // normalize-css
-    wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize.css/normalize.css', array(), '3.0.1');
+    wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize/normalize.css', array(), '3.0.1');
+
+    // Animsition
+    wp_register_style('animsition', get_template_directory_uri() . '/bower_components/animsition/dist/css/animsition.min.css', array('normalize'), '1.0');
+
+    // Fullpage.js
+    wp_register_style('fullpage', get_template_directory_uri() . '/bower_components/fullpage.js/jquery.fullPage.css', array('fullpage'), '1.0');
 
     // Custom CSS
-    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize'), '1.0');
+    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize', 'animsition'), '1.0');
 
     // Register CSS
     wp_enqueue_style('html5blank');
+
+
   } else {
     // Custom CSS
     wp_register_style('html5blankcssmin', get_template_directory_uri() . '/style.css', array(), '1.0');
@@ -183,6 +199,7 @@ function fontAwesome_styles()
   wp_register_style('fontAwesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array());
   wp_enqueue_style('fontAwesome');
 }
+
 // Register HTML5 Blank Navigation
 function register_html5_menu()
 {
@@ -565,9 +582,9 @@ function update_swiftype_document_url( $document, $post ) {
     'type' => 'text',
     'value' => get_post_meta( $post->ID, 'st_project_description', true ));
 
-  $document['fields'][] = array( 'name' => 'flex_description',
+  $document['fields'][] = array( 'name' => 'flex_text',
     'type' => 'text',
-    'value' => get_post_meta( $post->ID, 'st_description', true ));
+    'value' => get_post_meta( $post->ID, 'text', true ));
 
   $document['fields'][] = array( 'name' => 'troper_job',
     'type' => 'string',
@@ -577,12 +594,16 @@ function update_swiftype_document_url( $document, $post ) {
     'type' => 'text',
     'value' => get_post_meta( $post->ID, 'st_bio', true ));
 
+  $document['fields'][] = array( 'name' => 'project_tags',
+    'type' => 'string',
+    'value' => get_post_meta( $post->ID, 'project_tag' ));
+
   return $document;
 }
 
 function swiftype_search_params_filter( $params ) {
   // set the fields to search and their boosts
-  $params['search_fields[posts]'] = array( 'title^3', 'tags^2', 'author^2', 'body', 'excerpt', 'project_description', 'flex_description', 'troper_job', 'troper_bio' );
+  $params['search_fields[posts]'] = array( 'title^3', 'project_tag^2', 'author^2', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio' );
 
   return $params;
 }
@@ -590,16 +611,9 @@ function swiftype_search_params_filter( $params ) {
 function swiftype_javascript_config() {
 ?>
   <script type="text/javascript">
-  var customRenderFunction = function(document_type, item) {
-    console.log("using this function");
-    var out = '<p class="title">' + item['title'] + '</p>';
-    return out.concat('<p class="post-type">' + item['object_type'] + '</p>');
-  };
-
   var swiftypeConfig = {
-  renderFunction: customRenderFunction,
     fetchFields: {'posts': ['title', 'object_type']},
-    searchFields: {'posts': ['title', 'tags', 'author', 'body', 'excerpt', 'project_description', 'flex_description', 'troper_job', 'troper_bio']}
+    searchFields: {'posts': ['title', 'project_tag', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
   };
   </script>
 <?php
@@ -620,7 +634,7 @@ function custom_taxonomies_terms_links(){
 
   // reorder so that tags are last
   $tags = $taxonomies["project_tag"];
-  unset($taxonomies["post_tag"]);
+  unset($taxonomies["project_tag"]);
   $taxonomies["project_tag"] = $tags;
 
   foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
@@ -637,7 +651,27 @@ function custom_taxonomies_terms_links(){
 
 // ACF options page
 if( function_exists('acf_add_options_page') ) {
-  acf_add_options_page();
+
+  acf_add_options_page(array(
+    'page_title' 	=> 'Studiotrope General Options',
+    'menu_title'	=> 'Studiotrope Options',
+    'menu_slug' 	=> 'general-options',
+    'capability'	=> 'edit_posts',
+    'redirect'		=> false
+  ));
+
+  acf_add_options_sub_page(array(
+    'page_title' 	=> 'Projects Filter Options',
+    'menu_title'	=> 'Projects Filter',
+    'parent_slug'	=> 'general-options',
+  ));
+
+  acf_add_options_sub_page(array(
+    'page_title' 	=> 'Tropers Index Options',
+    'menu_title'	=> 'Tropers Index',
+    'parent_slug'	=> 'general-options',
+  ));
+
 }
 
 //Previous and Next Posts Based on Menu Order Rather than Chronologically
@@ -668,4 +702,20 @@ function my_next_post_sort() {
   return "ORDER BY p.menu_order asc LIMIT 1";
 }
 add_filter( 'get_next_post_sort', 'my_next_post_sort' );
+
+// Check if query returned any of Post Type
+
+function any_of_post_type($post_type) {
+  global $post;
+  if (have_posts()): while (have_posts()) : the_post(); 
+    $returned_types[] = get_post_type($post);
+  endwhile;
+  endif;
+
+  if (isset($returned_types)) {
+    return in_array($post_type, $returned_types);
+  } else {
+    return false;
+  }
+}
 ?>

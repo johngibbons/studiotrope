@@ -1,15 +1,86 @@
 #people-index {
+
+  .mix, .gap {
+    width: span(4 of 4);
+    height: auto;
+
+    @include susy-breakpoint($tablet, $tablet-columns) {
+      width: span(4 of 8);
+    }
+
+    @include susy-breakpoint($desktop, $desktop-columns) {
+      width: span(3 of 12);
+    }
+
+    @include susy-breakpoint($large, $large-columns) {
+      width: span(4 of 16);
+    }
+  }
+
   .troper {
     display: inline-block;
   }
+
   .troper-name {
+    position: absolute;
+    opacity: 0;
+    top: 100%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    color: $white;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: $font-size-base * 0.8;
+    transition: $base-transition;
+  }
+
+  .abbrev {
+    position: absolute;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    color: $white;
+    font-size: $font-size-base * 2;
+    transition: $base-transition;
+  }
+
+  a {
+    &:hover {
+      .troper-avatar {
+        border-radius: 0;
+        filter: none;
+      }
+
+      .abbrev {
+        opacity: 0;
+        top: 110%;
+      }
+
+      .troper-name {
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+      }
+    }
   }
 }
 
 .troper-avatar {
   border-radius: 100%;
+  transition: $base-transition;
+  filter: grayscale(100%) contrast(70%) brightness(80%);
+  width: 100%;
+
+  &:hover {
+    border-radius: 0;
+    filter: none;
+  }
 }
+
+

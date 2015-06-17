@@ -1,25 +1,42 @@
 .dropdown {
   display: none;
   line-height: 1.5;
+  background-color: $white;
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     display: block;
+    background-color: transparent;
   }
 
+
+  &> li:first-child {
+    border-top: none;
+  }
   li {
-    background-color: $st-off-white;
-    border-top: $base-border-medium-dashed;
+    border-top: $base-border-dashed;
     padding: 1em;
     padding-left: 2rem;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
       background-color: transparent;
       border-top: none;
+      padding: 0;
     }
   }
+
+  a:first-child {
+    li {
+      border-top: none;
+    }
+  }
+
 }
 
 .dropdown-button {
+  padding: 1em 0;
+  border-top: $base-border-dashed;
+  border-bottom: $base-border-dashed;
+
   &:after {
     content: ' \25BE';
     @include susy-breakpoint($desktop, $desktop-columns) {
@@ -37,7 +54,7 @@
 
   div {
     background-color: $st-off-white;
-    border-top: $base-border-medium-dashed;
+    border-top: $base-border-dashed;
     padding-left: 2rem;
 
     @include susy-breakpoint($desktop, $desktop-columns) {
@@ -76,7 +93,7 @@
   display: block;
   width: 100%;
   padding: 1em;
-  border-top: $base-border-medium-dashed;
+  border-top: $base-border-dashed;
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     background-color: transparent;

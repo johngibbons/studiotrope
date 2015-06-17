@@ -1,22 +1,17 @@
-.the-collective {
-  .l-wrapper {
-    padding-top: 12rem;
-
-    @include susy-breakpoint($desktop, $desktop-columns){
-      padding-top: inherit;
-    }
-  }
-}
 
 #the-collective {
-  position: relative;
-  height: 10000vh;
+
+  margin-top: 4rem;
+
+  @include susy-breakpoint($desktop, $desktop-columns){
+    position: relative;
+    height: 10000vh;
+    margin-top: 0;
+  }
 
   #slides-container {
-    position: fixed;
     top: 14rem;
     left: auto;
-    width: 90%;
 
     @include susy-breakpoint($desktop, $desktop-columns){
       top: 7rem;
@@ -24,14 +19,35 @@
     }
   }
 
-  .slide {
-    position: absolute;
-    top: 0;
-    margin-right: 10rem;
+  .section {
+    opacity: 1;
+    transition: $base-transition;
+    margin-bottom: 10rem;
+
+    @include susy-breakpoint($desktop, $desktop-columns){
+      margin-bottom: 0;
+    }
+
+    &.is-hidden {
+      @include susy-breakpoint($desktop, $desktop-columns){
+        opacity: 0;
+      }
+    }
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
   }
 
-  .is-toAnimate {
-    visibility: hidden;
+  .heading {
+    position: relative;
+
+    p {
+      position: relative;
+      top: -1.8em;
+    }
   }
 
   #collective {
@@ -39,8 +55,16 @@
   }
 
   #scrollInstr {
-    position: absolute;
-    top: 5rem;
+    margin-top: 5rem;
+
+    .fa {
+      margin-left: 0.5em;
+      animation: pulse 2s ease infinite;
+    }
+
+    @include susy-breakpoint($desktop, $desktop-columns){
+      display: block;
+    }
   }
 
   .studiotrope-text {
@@ -49,7 +73,7 @@
     font-size: $font-size-base * 3;
     margin-bottom: 0;
     line-height: 0.25;
-    margin-top: 10rem;
+    margin-top: 5rem;
   }
 
   .pronunciation {
@@ -68,21 +92,20 @@
   }
 
   .studio-name {
+    display: block;
     position: relative;
-    font-size: $font-size-base * 2;
     font-weight: 100;
     color: $link-color;
     text-transform: uppercase;
-    letter-spacing: .25em;
+    letter-spacing: .1em;
+    font-size: $font-size-base * 1.5;
+    margin-top: 0;
   }
 
 
   .description {
     margin-top: 5rem;
-
-    @include susy-breakpoint($desktop, $desktop-columns) {
-    @include span(isolate 50% at 2);
-    }
+    font-size: $font-size-base * 0.8;
   }
 
   .studio-title {
@@ -92,15 +115,42 @@
 
 }
 
-  .collective-link,
-  .architecture-link,
-  .graphics-link,
-  .interiors-link {
-    cursor: pointer;
+.the-collective {
+  .mobile-dropdown {
+    background-color: $white;
+    position: fixed;
+    top: $header-bar-height;
+    left: 0;
 
+    @include susy-breakpoint($desktop, $desktop-columns){
+      position: static;
+      background-color: transparent;
+    }
+  }
+}
+
+.slide-link {
+  cursor: pointer;
+  color: $emphasis-color;
+  font-weight: 700;
+  border-bottom: $base-border-dashed;
+
+  @include susy-breakpoint($desktop, $desktop-columns){
+    margin-top: 1em;
+    border-bottom: none;
   }
 
-  li.current {
-    font-weight: 700;
-    color: $emphasis-color;
+  &.active {
+    color: $link-color;
   }
+
+}
+
+.sub-slide-link {
+  cursor: pointer;
+
+  &.active {
+    color: $link-color;
+  }
+
+}
