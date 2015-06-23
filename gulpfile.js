@@ -107,6 +107,8 @@ gulp.task( "styles", [ "sass" ], function() {
     .pipe( $.concat( "style.css" ))
     .pipe( $.autoprefixer( "last 2 version" ) );
 
+  console.log(cssminSrc[ env ]);
+
   if ( env === "production" ) {
     stream = stream.pipe( $.csso() );
   }

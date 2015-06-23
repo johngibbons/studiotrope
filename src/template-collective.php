@@ -5,10 +5,10 @@
     <div id="fullpage">
       <div class="section is-hidden">
         <h1 class="page-title">
+          <span class="text"><?php the_title(); ?></span>
           <svg class="icon icons-combined header-icon">
             <use xlink:href="#icons_combined"></use>
           </svg>
-          <span class="text"><?php the_title(); ?></span>
         </h1>
 
         <h2 class="studiotrope-text">studiotrope:</h2>

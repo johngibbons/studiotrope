@@ -63,6 +63,15 @@
   }
 }
 
+.project-title {
+  position: relative;
+
+  .text {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 .project-detail-label {
   font-weight: 600;
   color: $emphasis-color;
@@ -96,4 +105,3 @@
 #project-detail-description {
   margin-top: 3rem;
 }
-

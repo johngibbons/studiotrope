@@ -19,3 +19,17 @@
     }
   }
 }
+
+.timelapse {
+  position: relative;
+  overflow: auto;
+}
+
+.scroll-container {
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  overflow: hidden;
+}

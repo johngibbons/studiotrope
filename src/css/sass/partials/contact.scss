@@ -1,7 +1,3 @@
-.address, .phone, .email {
-  color: $emphasis-color;
-  font-weight: 700;
-}
 
 #contact-image {
   @include susy-breakpoint($desktop, $desktop-columns) {
@@ -31,6 +27,12 @@
 }
 
 .contact {
+
+  .address, .phone, .email {
+    color: $emphasis-color;
+    font-weight: 700;
+  }
+
   .dropdown-button {
     display: block;
 

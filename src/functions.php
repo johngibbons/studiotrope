@@ -649,6 +649,19 @@ function custom_taxonomies_terms_links(){
   }
 }
 
+function project_studios(){
+  global $post;
+
+  $post = get_post( $post->ID );
+
+  $studios = get_the_terms( $post->ID, "studio" );
+
+  foreach ( $studios as $studio ) {
+    $studio_array[] = $studio->slug;
+  }
+  return $studio_array;
+}
+
 // ACF options page
 if( function_exists('acf_add_options_page') ) {
 

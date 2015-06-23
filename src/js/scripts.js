@@ -272,6 +272,50 @@
     });
   }
 
+  /**************************************************
+    Timelapse module wiping effect
+    **************************************************/
+
+  $(window).on("load", function() {
+
+    if ( $(".timelapse").length ) {
+      var timelapseContainers = $(".timelapse");
+
+      timelapseContainers.each(function() {
+        var images = $(this).find("img");
+        var imageHeight = images.first().height();
+        var imageNumber = images.length;
+
+        $(this).height(imageHeight);
+
+        var scrollContainer = $(this).find(".scroll-container");
+        scrollContainer.height(imageHeight * imageNumber);
+
+        var imageWrappers = $(this).find(".image");
+        var i = imageNumber;
+        imageWrappers.each(function(){
+          $(this).css("z-index", i);
+          i--;
+        });
+
+        $(this).on("scroll", function(){
+          var scrollPosition = $(this).scrollTop();
+          var slideNumber = Math.floor(scrollPosition / imageHeight);
+          var slideScrollPosition = scrollPosition - slideNumber * imageHeight;
+
+          imageWrappers.each(function(){
+            $(this).css("top", scrollPosition);
+          });
+          imageWrappers.eq(slideNumber).css("height", imageHeight - slideScrollPosition);
+          if(slideNumber > 0) {
+            imageWrappers.eq(slideNumber - 1).css("height", 0);
+          }
+        });
+      });
+    }
+
+  });
+
 
     /**************************************************
       Scripts Based on Window Width

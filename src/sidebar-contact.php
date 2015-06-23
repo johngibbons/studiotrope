@@ -5,6 +5,7 @@
 <?php global $post ?>
 <?php $args = array(
   "post_type" => "troper",
+  "posts_per_page" => -1,
 ); ?>
 <?php $tropers = get_posts( $args ); ?>
 <?php foreach ( $tropers as $post ) : setup_postdata( $post ); ?>

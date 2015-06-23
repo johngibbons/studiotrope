@@ -1229,6 +1229,10 @@ fieldset {
 .header-icon {
   opacity: .3;
   position: absolute;
+  width: 15rem;
+  height: 7.5rem;
+  bottom: -1.5rem;
+  left: -1rem;
 }
 
 .icons-combined {
@@ -1437,6 +1441,20 @@ form.search input[type="search"] {
   }
 }
 
+.timelapse {
+  position: relative;
+  overflow: auto;
+}
+
+.scroll-container {
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  overflow: hidden;
+}
+
 .single-project .project {
   max-width: 100%;
   margin-left: auto;
@@ -1499,6 +1517,14 @@ form.search input[type="search"] {
   width: 5em;
   height: 5em;
   border-radius: 100%;
+}
+
+.project-title {
+  position: relative;
+}
+.project-title .text {
+  position: relative;
+  z-index: 1;
 }
 
 .project-detail-label {
@@ -2029,11 +2055,6 @@ form.search input[type="search"] {
   color: #d18b00;
 }
 
-.address, .phone, .email {
-  color: #444;
-  font-weight: 700;
-}
-
 @media (min-width: 1024px) {
   #contact-image {
     width: 57.1428571429%;
@@ -2065,6 +2086,10 @@ form.search input[type="search"] {
   margin-top: 5rem;
 }
 
+.contact .address, .contact .phone, .contact .email {
+  color: #444;
+  font-weight: 700;
+}
 .contact .dropdown-button {
   display: block;
 }

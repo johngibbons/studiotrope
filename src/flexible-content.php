@@ -76,6 +76,28 @@
 
         <?php break;
 
+        case "timelapse": ?>
+
+          <?php if(get_sub_field("images")): ?>
+            <?php echo "something" ?>
+
+            <?php $images = get_sub_field("images"); ?>
+
+            <div class="timelapse l-content-module <?php echo "l_" . $width . " " . $last; ?>">
+              <div class="scroll-container">
+
+              <?php foreach ( $images as $image ): ?>
+                <div class="image">
+                  <img src="<?php echo $image["sizes"]["large"] ?>" />
+                </div>
+              <?php endforeach; ?>
+
+              </div>
+            </div>
+          <?php endif; ?>
+
+        <?php break;
+
 }
     endwhile;
 
