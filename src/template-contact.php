@@ -2,7 +2,6 @@
 <?php get_template_part("contextual-module") ?>
 <main id="contact" class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-    <h1>Let's Talk</h1>
     <div id="contact-image">
       <?php $image = get_field('image'); ?> 
       <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"> 

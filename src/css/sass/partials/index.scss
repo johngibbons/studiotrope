@@ -36,3 +36,40 @@
     margin-bottom: gutter();
   }
 }
+
+#thumbnail-toggle {
+  .fa {
+    position: relative;
+    top: -0.5rem;
+    right: 0.25rem;
+    color: $link-color;
+    cursor: pointer;
+  }
+
+  .tooltip {
+    position: absolute;
+    opacity: 0;
+    bottom: 1rem;
+    left: 0.5rem;
+    padding: 0 1em;
+    width: 20rem;
+    letter-spacing: 0;
+    background-color: $white;
+    border: $base-border;
+    box-shadow: $base-box-shadow;
+    transition: $base-transition;
+    text-transform: none;
+    color: $text-color;
+    cursor: default;
+    z-index: 10;
+
+    a {
+      color: $link-color;
+    }
+
+    &.is-shown {
+      opacity: 1;
+    }
+  }
+}
+

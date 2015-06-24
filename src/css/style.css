@@ -1369,6 +1369,37 @@ fieldset {
   }
 }
 
+#thumbnail-toggle .fa {
+  position: relative;
+  top: -0.5rem;
+  right: 0.25rem;
+  color: #d18b00;
+  cursor: pointer;
+}
+#thumbnail-toggle .tooltip {
+  position: absolute;
+  opacity: 0;
+  bottom: 1rem;
+  left: 0.5rem;
+  padding: 0 1em;
+  width: 20rem;
+  letter-spacing: 0;
+  background-color: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-transform: none;
+  color: #999;
+  cursor: default;
+  z-index: 10;
+}
+#thumbnail-toggle .tooltip a {
+  color: #d18b00;
+}
+#thumbnail-toggle .tooltip.is-shown {
+  opacity: 1;
+}
+
 form.search {
   position: relative;
 }
@@ -1426,6 +1457,7 @@ form.search input[type="search"] {
   border-bottom: 1px dashed #c8c8c8;
   box-sizing: content-box;
   text-align: center;
+  font-size: 245%;
   font-family: "adelle", serif;
   font-weight: 100;
   letter-spacing: 1px;

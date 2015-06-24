@@ -272,50 +272,24 @@
     });
   }
 
-  /**************************************************
-    Timelapse module wiping effect
-    **************************************************/
+    /**************************************************
+      Hover voice description
+      **************************************************/
+  
+  if ( $("#thumbnail-toggle .tooltip").length ) {
+    $("#thumbnail-toggle .fa").on("click", function(){
+      $("#thumbnail-toggle .tooltip").toggleClass("is-shown");
+    });
+  }
 
-  $(window).on("load", function() {
+      var $headerHeight = $("#header-bar").outerHeight();
 
-    if ( $(".timelapse").length ) {
-      var timelapseContainers = $(".timelapse");
+      $(".contextual-module").stick_in_parent({offset_top: $headerHeight});
 
-      timelapseContainers.each(function() {
-        var images = $(this).find("img");
-        var imageHeight = images.first().height();
-        var imageNumber = images.length;
-
-        $(this).height(imageHeight);
-
-        var scrollContainer = $(this).find(".scroll-container");
-        scrollContainer.height(imageHeight * imageNumber);
-
-        var imageWrappers = $(this).find(".image");
-        var i = imageNumber;
-        imageWrappers.each(function(){
-          $(this).css("z-index", i);
-          i--;
-        });
-
-        $(this).on("scroll", function(){
-          var scrollPosition = $(this).scrollTop();
-          var slideNumber = Math.floor(scrollPosition / imageHeight);
-          var slideScrollPosition = scrollPosition - slideNumber * imageHeight;
-
-          imageWrappers.each(function(){
-            $(this).css("top", scrollPosition);
-          });
-          imageWrappers.eq(slideNumber).css("height", imageHeight - slideScrollPosition);
-          if(slideNumber > 0) {
-            imageWrappers.eq(slideNumber - 1).css("height", 0);
-          }
-        });
+      //fix sticky kit position relative bug
+      $(window).scroll(function(){
+        $(".is_stuck").closest("div").css("position", "static");
       });
-    }
-
-  });
-
 
     /**************************************************
       Scripts Based on Window Width
@@ -433,6 +407,10 @@
 
       window.onload = function(){
 
+        if ( $(".timelapse").length ) {
+          timelapseWipe();
+        }
+
 
 
         /***********************************************************
@@ -530,7 +508,6 @@
 
       $("#header-search").keyup(function(e){
         if(e.which === 13){//Enter key pressed
-            
             $("#header-search").find("form").submit();//Trigger search form submit
         }
       });
@@ -694,6 +671,51 @@ var checkboxFilter = {
       self.$container.mixItUp("filter", self.outputString);
     }
   }
+};
+
+/**************************************************
+  Timelapse module wiping effect
+**************************************************/
+
+var timelapseWipe = function(){
+
+  var timelapseContainers = $(".timelapse");
+
+  timelapseContainers.each(function() {
+    var images = $(this).find("img");
+    var imageHeight = images.first().height();
+    var imageNumber = images.length;
+
+    $(this).height(imageHeight);
+
+    var scrollContainer = $(this).find(".scroll-container");
+    scrollContainer.height(imageHeight * imageNumber);
+
+    var imageWrappers = $(this).find(".image");
+    var i = imageNumber;
+    imageWrappers.each(function(){
+      $(this).css("z-index", i);
+      i--;
+    });
+
+    $(this).on("scroll", function(){
+      var scrollPosition = $(this).scrollTop();
+      var slideNumber = Math.floor(scrollPosition / imageHeight);
+      var slideScrollPosition = scrollPosition - slideNumber * imageHeight;
+
+      imageWrappers.each(function(){
+        $(this).css("top", scrollPosition);
+      });
+      imageWrappers.eq(slideNumber).css("height", imageHeight - slideScrollPosition);
+      if(slideNumber > 0) {
+        imageWrappers.eq(slideNumber - 1).css("height", 0);
+      }
+      if(slideNumber < imageNumber) {
+        imageWrappers.eq(slideNumber + 1).css("height", imageHeight);
+      }
+    });
+  });
+
 };
 
 /***********************************************************
