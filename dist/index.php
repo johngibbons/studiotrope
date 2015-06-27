@@ -7,8 +7,15 @@
 ?>
     <section id="filter-description"><?php the_field("filter_description", "option"); ?></section>
     <div id="thumbnail-toggle" class="detail">
-      <span id="toggle-images" class="toggle-option is-selected">show images</span> |
-      <span id="toggle-voice" class="toggle-option">show voice</span>
+      <span id="toggle-images" class="toggle-option is-selected">images</span> |
+      <span id="toggle-voice" class="toggle-option">voices</span>
+      <i class="fa fa-question-circle">
+        <div class="tooltip">
+          <p id="voice-description">
+          <?php the_field("voice_description_short", "option"); ?> <a href="<?php the_field("voice_link", "option"); ?>"><br><br>Learn More</a>
+          </p>
+        </div>
+      </i>
     </div>
     <section id="projects-index" class="container">
       <?php get_template_part('loop-project'); ?>

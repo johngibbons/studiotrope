@@ -1,15 +1,14 @@
 <!-- sidebar -->
-<aside class="sidebar" role="complementary">
+<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-  <?php get_template_part('searchform'); ?>
+  <h1 class="page-title">
+    <?php the_title(); ?>
+  </h1>
 
-  <div class="sidebar-widget">
-    <?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-1')) ?>
-  </div>
+  <p class="description">
+    <?php the_field("page_sidebar"); ?>
+  </p>
 
-  <div class="sidebar-widget">
-    <?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('widget-area-2')) ?>
-  </div>
-
-</aside>
+<?php endwhile ?>
+<?php endif ?>
 <!-- /sidebar -->

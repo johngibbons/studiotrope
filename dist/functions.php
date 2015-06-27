@@ -171,7 +171,7 @@ function html5blank_styles()
 {
   if (HTML5_DEBUG) {
     // normalize-css
-    wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize/normalize.css', array(), '3.0.1');
+    wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize.css/normalize.css', array(), '3.0.1');
 
     // Animsition
     wp_register_style('animsition', get_template_directory_uri() . '/bower_components/animsition/dist/css/animsition.min.css', array('normalize'), '1.0');

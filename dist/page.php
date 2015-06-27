@@ -1,41 +1,16 @@
 <?php get_header(); ?>
-
-  <div class="l-container">
-
-    <main role="main">
-      <!-- section -->
-      <section>
-
-        <h1><?php the_title(); ?></h1>
-
-      <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-
-        <!-- article -->
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-          <?php the_content(); ?>
-
-        </article>
-        <!-- /article -->
-
-      <?php endwhile; ?>
-
-      <?php else: ?>
-
-        <!-- article -->
-        <article>
-
-          <h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
-
-        </article>
-        <!-- /article -->
-
-      <?php endif; ?>
-
-      </section>
-      <!-- /section -->
-    </main>
-
-  </div>
-
+<?php get_template_part("contextual-module"); ?>
+<main class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main"> 
+  <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+    <section id="page-<?php the_ID(); ?>">
+      <?php $flexible_content_type = "page"; ?>
+      <?php include(locate_template('flexible-content.php')); ?>
+    </section>
+  <?php endwhile; ?>
+  <?php else: ?>
+    <section>
+      <h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
+    </section>
+  <?php endif; ?>
+</main>
 <?php get_footer(); ?>

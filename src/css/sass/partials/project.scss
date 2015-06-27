@@ -21,7 +21,7 @@
     transform: translate(-50%, -50%);
     margin: 0;
     width: 90%;
-    height: 80%;
+    height: auto;
     font-size: $font-size-base * 2;
     font-family: $font-family-testimonial;
     line-height: 1.25;
@@ -30,7 +30,7 @@
 
     @include susy-breakpoint($desktop, $desktop-columns) {
       width: 60%;
-      height: 40%;
+      height: auto;
     }
   }
 

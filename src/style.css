@@ -2805,11 +2805,11 @@ a:hover {
 }
 a:active, a:visited, a:focus {
   text-decoration: none;
+  outline: none;
 }
 
 q {
   quotes: "“" "”";
-  font-size: 245%;
   padding-right: 0.1em;
   font-style: italic;
   color: #999;
@@ -2843,6 +2843,7 @@ q:after {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   background-color: transparent;
+  outline: none;
 }
 .underline-btn .btn-text, .white-btn .btn-text, button .btn-text, .btn .btn-text, input[type="submit"] .btn-text {
   position: relative;
@@ -2851,6 +2852,10 @@ q:after {
 .underline-btn:hover, .white-btn:hover, button:hover, .btn:hover, input[type="submit"]:hover, .underline-btn:focus, .white-btn:focus, button:focus, .btn:focus, input[type="submit"]:focus {
   color: #d18b00;
   text-decoration: none;
+  outline: none;
+}
+.underline-btn:active, .white-btn:active, button:active, .btn:active, input[type="submit"]:active {
+  outline: none;
 }
 
 .underline-btn {
@@ -3321,7 +3326,7 @@ form.search input[type="search"] {
   transform: translate(-50%, -50%);
   margin: 0;
   width: 90%;
-  height: 80%;
+  height: auto;
   font-size: 280%;
   font-family: "adelle", serif;
   line-height: 1.25;
@@ -3331,7 +3336,7 @@ form.search input[type="search"] {
 @media (min-width: 1024px) {
   .single-project .project-voice {
     width: 60%;
-    height: 40%;
+    height: auto;
   }
 }
 .single-project .featured-image {
@@ -3592,9 +3597,6 @@ form.search input[type="search"] {
   #people-index .mix, #people-index .gap {
     width: 23.4042553191%;
   }
-}
-#people-index .troper {
-  display: inline-block;
 }
 #people-index .troper-name {
   position: absolute;

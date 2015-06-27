@@ -171,7 +171,7 @@ function html5blank_styles()
 {
   if (HTML5_DEBUG) {
     // normalize-css
-    wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize/normalize.css', array(), '3.0.1');
+    wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize.css/normalize.css', array(), '3.0.1');
 
     // Animsition
     wp_register_style('animsition', get_template_directory_uri() . '/bower_components/animsition/dist/css/animsition.min.css', array('normalize'), '1.0');
@@ -603,7 +603,7 @@ function update_swiftype_document_url( $document, $post ) {
 
 function swiftype_search_params_filter( $params ) {
   // set the fields to search and their boosts
-  $params['search_fields[posts]'] = array( 'title^3', 'project_tag^2', 'author^2', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio' );
+  $params['search_fields[posts]'] = array( 'title^3', 'project_tags^2', 'author^2', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio' );
 
   return $params;
 }
@@ -613,7 +613,7 @@ function swiftype_javascript_config() {
   <script type="text/javascript">
   var swiftypeConfig = {
     fetchFields: {'posts': ['title', 'object_type']},
-    searchFields: {'posts': ['title', 'project_tag', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
+    searchFields: {'posts': ['title', 'project_tags', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
   };
   </script>
 <?php

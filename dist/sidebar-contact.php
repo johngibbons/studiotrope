@@ -1,4 +1,5 @@
 <div class="mobile-dropdown">
+<h1><?php the_title(); ?></h1>
   <h2 class="detail dropdown-button title-text">Contact Someone Directly</h2>
   <ul id="people-list" class="detail dropdown">
 

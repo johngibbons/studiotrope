@@ -42,7 +42,7 @@ var gulp = require( "gulp" ),
         /** The banner of `style.css` */
         "src/css/banner.css",
         /** Normalize */
-        "src/bower_components/normalize/normalize.css",
+        "src/bower_components/normalize.css/normalize.css",
         /** Animsition **/
         "src/bower_components/animsition/dist/css/animsition.css",
         /** Theme style */

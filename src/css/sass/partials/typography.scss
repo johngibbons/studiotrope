@@ -41,13 +41,13 @@ a {
 
   &:active, &:visited, &:focus {
     text-decoration: none;
+    outline: none;
   }
 
 }
 
 q {
   quotes:	"“" "”";
-  font-size: $font-size-base * 1.75;
   padding-right: 0.1em;
   font-style: italic;
   color: $text-color;
