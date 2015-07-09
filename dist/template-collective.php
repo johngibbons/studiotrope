@@ -74,6 +74,19 @@
 
         <?php }
       } ?>
+
+        <div class="section is-hidden">
+          <div class="heading">
+            <h1 class="page-title">
+              <span class="text">Voice</span>
+              <svg class="icon icons-combined header-icon">
+                <use xlink:href="#icons_combined"></use>
+              </svg>
+            </h1>
+          </div>
+          <?php $flexible_content_type = "voice" ?>
+          <?php include(locate_template('flexible-content.php')); ?>
+        </div>
   <?php endwhile; ?>
   <?php else: ?>
     <article>

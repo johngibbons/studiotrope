@@ -37,5 +37,8 @@
           <li class="sub-slide-link" data-menuanchor="graphics-services">Services</li>
         </a>
       </ul>
+    <a href="#voice">
+      <li class="slide-link" data-menuanchor="voice">Voice</li>
+    </a>
   </ul>
 </div>

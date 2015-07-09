@@ -1482,14 +1482,17 @@ form.search input[type="search"] {
   position: relative;
   overflow: auto;
 }
-
-.scroll-container {
+.timelapse .scroll-container {
   position: relative;
 }
-
-.image {
+.timelapse .image {
   position: absolute;
   overflow: hidden;
+  width: 100%;
+}
+.timelapse .image img {
+  width: 100%;
+  height: auto;
 }
 
 .single-project .project {
@@ -1849,6 +1852,10 @@ form.search input[type="search"] {
     transform: translate(-50%, -50%);
     padding: 5rem;
   }
+}
+#home-hero #home-video-overlay button {
+  display: block;
+  margin: 1rem auto;
 }
 #home-hero .logo-img {
   padding: 1em;

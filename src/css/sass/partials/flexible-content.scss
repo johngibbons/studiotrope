@@ -24,13 +24,20 @@
 .timelapse {
   position: relative;
   overflow: auto;
+
+  .scroll-container {
+    position: relative;
+  }
+
+  .image {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
-.scroll-container {
-  position: relative;
-}
-
-.image {
-  position: absolute;
-  overflow: hidden;
-}

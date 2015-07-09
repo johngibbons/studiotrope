@@ -294,7 +294,7 @@
 
   if ( $("#fullpage").length ) {
     $("#fullpage").fullpage({
-      anchors: ["collective", "architecture", "architecture-manifesto", "architecture-services", "interiors", "interiors-manifesto", "interiors-services", "graphics", "graphics-manifesto", "graphics-services"],
+      anchors: ["collective", "architecture", "architecture-manifesto", "architecture-services", "interiors", "interiors-manifesto", "interiors-services", "graphics", "graphics-manifesto", "graphics-services", "voice"],
       animateAnchor: false,
       menu: "#slides-nav",
       scrollingSpeed: 700,

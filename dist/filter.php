@@ -6,7 +6,7 @@
     // Don't Show Tags in Filter
     if (array_key_exists("project_tag", $taxonomies)) {
       unset($taxonomies["project_tag"]);
-    } elseif (array_key_exists("post_tag")) {
+    } elseif (array_key_exists("post_tag", $taxonomies)) {
       unset($taxonomies["post_tag"]);
     }
 
