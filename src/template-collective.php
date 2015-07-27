@@ -1,15 +1,20 @@
 <?php /* Template Name: The Collective Page Template */ get_header(); ?>
+<?php $studios = array("architecture", "interiors", "graphics"); ?>
+<?php $slides = array("", "services"); ?>
 <?php get_template_part("contextual-module") ?>
 <main id="the-collective" class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+    <div id="collective-heading">
+      <h1 class="page-title">
+        <span class="text"></span>
+        <svg class="icon icons-combined header-icon">
+          <use xlink:href="#icons_combined"></use>
+        </svg>
+      </h1>
+      <p class="detail"></p>
+    </div>
     <div id="fullpage">
       <div class="section is-hidden">
-        <h1 class="page-title">
-          <span class="text"><?php the_title(); ?></span>
-          <svg class="icon icons-combined header-icon">
-            <use xlink:href="#icons_combined"></use>
-          </svg>
-        </h1>
 
         <h2 class="studiotrope-text">studiotrope:</h2>
         <p class="pronunciation">| ˈst(y)o͞odēˌō | trōp |</p>
@@ -36,34 +41,21 @@
 
       </div>
 
-      <?php $studios = ["architecture", "interiors", "graphics"]; ?>
-      <?php $slides = ["", "manifesto", "services"]; ?>
+      <div class="section is-hidden">
+        <?php $flexible_content_type = "manifesto" ?>
+        <?php include(locate_template('flexible-content.php')); ?>
+      </div>
+
+      <div class="section is-hidden">
+        <?php $flexible_content_type = "voice" ?>
+        <?php include(locate_template('flexible-content.php')); ?>
+      </div>
+
 
       <?php foreach ($studios as $studio) { ?>
         <?php foreach ($slides as $slide) { ?>
 
           <div class="section is-hidden">
-            <div class="heading">
-              <h1 class="page-title">
-                <?php if ( $studio == "architecture" ): ?>
-                  <svg class="icon icons-combined header-icon">
-                    <use xlink:href="#architecture_icon"></use>
-                  </svg>
-                  <span class="text">Architecture</span>
-                <?php elseif ( $studio == "interiors" ): ?>
-                  <svg class="icon icons-combined header-icon">
-                    <use xlink:href="#interiors_icon"></use>
-                  </svg>
-                  <span class="text">Interior Design</span>
-                <?php elseif ( $studio == "graphics" ): ?>
-                  <svg class="icon icons-combined header-icon">
-                    <use xlink:href="#graphics_icon"></use>
-                  </svg>
-                  <span class="text">Graphic Design</span>
-                <?php endif; ?>
-              </h1>
-              <p class="detail"><?php echo $slide ?></p>
-            </div>
             <?php if ($slide == ""): ?>
               <?php $flexible_content_type = $studio ?>
             <?php else: ?>
@@ -75,18 +67,6 @@
         <?php }
       } ?>
 
-        <div class="section is-hidden">
-          <div class="heading">
-            <h1 class="page-title">
-              <span class="text">Voice</span>
-              <svg class="icon icons-combined header-icon">
-                <use xlink:href="#icons_combined"></use>
-              </svg>
-            </h1>
-          </div>
-          <?php $flexible_content_type = "voice" ?>
-          <?php include(locate_template('flexible-content.php')); ?>
-        </div>
   <?php endwhile; ?>
   <?php else: ?>
     <article>

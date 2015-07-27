@@ -5,7 +5,8 @@
     <section id="project-<?php the_ID(); ?>" <?php post_class(""); ?>>
         <div id="voice-heading">
     <?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-      <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' )[0]; ?>
+      <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' ); ?>
+      <?php $url = $url[0]; ?>
         <div class="featured-image" style="background-image: url( <?php echo $url ?> );"></div>
           <div class="overlay"></div>
           <p class="project-voice"><span><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span></p>

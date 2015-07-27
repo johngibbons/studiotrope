@@ -1,6 +1,6 @@
 #home-hero {
   position: relative;
-  height: calc(100vh - 6rem);
+  height: 100vh;
   overflow: hidden;
 
   #home-video-overlay {
@@ -75,4 +75,14 @@
 #home-statement {
   font-size: $font-size-base;
   padding: 2em 0;
+}
+
+.home {
+  #header-bar {
+    display: none;
+  }
+
+  .l-wrapper {
+    padding-top: 0;
+  }
 }

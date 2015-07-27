@@ -2,7 +2,7 @@
 <?php if($post->post_type === "troper") : ?>
         <article id="troper-<?php the_ID(); ?>" <?php post_class("mix"); ?>>
 
-          <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="no-underline">
+          <a href="<?php the_permalink(); ?>" class="no-underline">
             <?php $avatar = get_field("st_profile_picture"); ?>
             <?php $thumb = $avatar["sizes"]["thumbnail"]; ?>
             <img src="<?php echo $thumb; ?>" alt="<?php echo $avatar['alt']; ?>" class="troper-avatar">

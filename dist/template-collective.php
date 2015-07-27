@@ -36,8 +36,34 @@
 
       </div>
 
-      <?php $studios = ["architecture", "interiors", "graphics"]; ?>
-      <?php $slides = ["", "manifesto", "services"]; ?>
+      <div class="section is-hidden">
+        <div class="heading">
+          <h1 class="page-title">
+            <span class="text">Manifesto</span>
+            <svg class="icon icons-combined header-icon">
+              <use xlink:href="#icons_combined"></use>
+            </svg>
+          </h1>
+        </div>
+        <?php $flexible_content_type = "manifesto" ?>
+        <?php include(locate_template('flexible-content.php')); ?>
+      </div>
+
+      <div class="section is-hidden">
+        <div class="heading">
+          <h1 class="page-title">
+            <span class="text">Voice</span>
+            <svg class="icon icons-combined header-icon">
+              <use xlink:href="#icons_combined"></use>
+            </svg>
+          </h1>
+        </div>
+        <?php $flexible_content_type = "voice" ?>
+        <?php include(locate_template('flexible-content.php')); ?>
+      </div>
+
+      <?php $studios = array("architecture", "interiors", "graphics"); ?>
+      <?php $slides = array("", "services"); ?>
 
       <?php foreach ($studios as $studio) { ?>
         <?php foreach ($slides as $slide) { ?>
@@ -75,18 +101,6 @@
         <?php }
       } ?>
 
-        <div class="section is-hidden">
-          <div class="heading">
-            <h1 class="page-title">
-              <span class="text">Voice</span>
-              <svg class="icon icons-combined header-icon">
-                <use xlink:href="#icons_combined"></use>
-              </svg>
-            </h1>
-          </div>
-          <?php $flexible_content_type = "voice" ?>
-          <?php include(locate_template('flexible-content.php')); ?>
-        </div>
   <?php endwhile; ?>
   <?php else: ?>
     <article>

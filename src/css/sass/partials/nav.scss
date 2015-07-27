@@ -22,6 +22,10 @@ nav {
   height: 100%;
   z-index: 0;
 
+  @include susy-breakpoint($desktop, $desktop-columns) {
+    display: none;
+  }
+
   #nav-contents {
     position: absolute;
     top: 0;

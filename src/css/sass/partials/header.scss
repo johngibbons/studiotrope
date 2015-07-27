@@ -14,13 +14,13 @@
   box-shadow: $base-box-shadow;
   z-index: 2;
 
-  &.show {
-    position: fixed;
-  }
-
-  @include susy-breakpoint($desktop, $desktop-columns) {
-    position: absolute;
-  }
+//  &.show {
+//    position: fixed;
+//  }
+//
+//  @include susy-breakpoint($desktop, $desktop-columns) {
+//    position: absolute;
+//  }
 
   // Logo
 

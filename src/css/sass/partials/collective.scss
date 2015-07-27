@@ -5,18 +5,11 @@
 
   @include susy-breakpoint($desktop, $desktop-columns){
     position: relative;
-    height: 10000vh;
     margin-top: 0;
   }
 
-  #slides-container {
-    top: 14rem;
-    left: auto;
-
-    @include susy-breakpoint($desktop, $desktop-columns){
-      top: 7rem;
-      width: auto;
-    }
+  #fullpage {
+    top: 10rem;
   }
 
   .section {
@@ -41,8 +34,8 @@
     }
   }
 
-  .heading {
-    position: relative;
+  #collective-heading {
+    position: fixed;
 
     p {
       position: relative;

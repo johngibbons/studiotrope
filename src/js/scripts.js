@@ -294,12 +294,12 @@
 
   if ( $("#fullpage").length ) {
     $("#fullpage").fullpage({
-      anchors: ["collective", "architecture", "architecture-manifesto", "architecture-services", "interiors", "interiors-manifesto", "interiors-services", "graphics", "graphics-manifesto", "graphics-services", "voice"],
-      animateAnchor: false,
+      anchors: ["collective", "manifesto", "voice", "architecture", "architecture-services", "interiors", "interiors-services", "graphics", "graphics-services"],
+      autoScrolling: false,
       menu: "#slides-nav",
       scrollingSpeed: 700,
+      fitToSection: false,
       recordHistory: false,
-      responsiveWidth: 768,
       onLeave: function( ){
         var leavingSection = $(this);
         leavingSection.addClass("is-hidden");
@@ -307,9 +307,53 @@
       afterLoad: function( ){
         var loadedSection = $(this);
         loadedSection.removeClass("is-hidden");
+        var anchor = loadedSection.data("anchor");
+        var heading = $("#collective-heading");
+        var title = heading.find(".text");
+        var subtitle = heading.find(".detail");
+        var icons = heading.find("use");
+        if (anchor === "collective") {
+          title.html("The Collective");
+          subtitle.html("");
+          icons.attr("xlink:href", "#icons_combined");
+        } else if ( anchor === "manifesto" ) {
+          title.html("Manifesto");
+          subtitle.html("");
+          icons.attr("xlink:href", "#icons_combined");
+        } else if ( anchor === "voice" ) {
+          title.html("Voice");
+          subtitle.html("");
+          icons.attr("xlink:href", "#icons_combined");
+        } else if ( anchor === "architecture" ) {
+          title.html("Architecture");
+          subtitle.html("");
+          icons.attr("xlink:href", "#architecture_icon");
+        } else if ( anchor === "architecture-services" ) {
+          title.html("Architecture");
+          subtitle.html("services");
+          icons.attr("xlink:href", "#architecture_icon");
+        } else if ( anchor === "interiors" ) {
+          title.html("Interior Design");
+          subtitle.html("");
+          icons.attr("xlink:href", "#interiors_icon");
+        } else if ( anchor === "interiors-services" ) {
+          title.html("Interior Design");
+          subtitle.html("services");
+          icons.attr("xlink:href", "#interiors_icon");
+        } else if ( anchor === "graphics" ) {
+          title.html("Graphic Design");
+          subtitle.html("");
+          icons.attr("xlink:href", "#graphics_icon");
+        } else if ( anchor === "graphics-services" ) {
+          title.html("Graphic Design");
+          subtitle.html("services");
+          icons.attr("xlink:href", "#graphics_icon");
+        }
       },
     });
+
   }
+
   /**************************************************
     Troper Name shows on hover
     **************************************************/
@@ -384,44 +428,44 @@
        **************************************************/
 
       if ( $("#troper-profile-picture").length ) {
-        $("#troper-profile-picture").stick_in_parent();
+        $("#troper-profile-picture").stick_in_parent({offset_top: $headerHeight + 20});
       }
 
       /**************************************************
         Header Hide on Scroll Down, Show on Scroll Up
        **************************************************/
 
-      $(window).scroll(
-
-          {
-            previousTop: 0
-          }, 
-
-          function () {
-
-            var currentTop = $(window).scrollTop();
-
-            // If Past Header Hide or Show Header Based on scroll direction
-            if( currentTop > $headerHeight ) {
-
-              if (currentTop < this.previousTop) {
-                // Show header if scroll up
-                $("#header-bar, .mobile-dropdown").addClass("show");
-              } else {
-                // Hide header if scroll down
-                $("#header-bar, .mobile-dropdown").removeClass("show");
-              }
-
-            } else if($(window).scrollTop() === 0) {
-              // Return to absolute positioning once at top of page
-              $("#header-bar, .mobile-dropdown").removeClass("show");
-
-            }
-
-            // Recalculate Previous Scroll Position
-            this.previousTop = currentTop;
-
-          });
+//      $(window).scroll(
+//
+//          {
+//            previousTop: 0
+//          }, 
+//
+//          function () {
+//
+//            var currentTop = $(window).scrollTop();
+//
+//            // If Past Header Hide or Show Header Based on scroll direction
+//            if( currentTop > $headerHeight ) {
+//
+//              if (currentTop < this.previousTop) {
+//                // Show header if scroll up
+//                $("#header-bar, .mobile-dropdown").addClass("show");
+//              } else {
+//                // Hide header if scroll down
+//                $("#header-bar, .mobile-dropdown").removeClass("show");
+//              }
+//
+//            } else if($(window).scrollTop() === 0) {
+//              // Return to absolute positioning once at top of page
+//              $("#header-bar, .mobile-dropdown").removeClass("show");
+//
+//            }
+//
+//            // Recalculate Previous Scroll Position
+//            this.previousTop = currentTop;
+//
+//          });
 
       /***********************************************************
         Single Project Page Hide Voice and Show Image as Scroll Down

@@ -508,14 +508,6 @@ main:after {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
-#header-bar.show {
-  position: fixed;
-}
-@media (min-width: 1024px) {
-  #header-bar {
-    position: absolute;
-  }
-}
 #header-bar .logo {
   position: absolute;
   left: 50%;
@@ -747,6 +739,11 @@ nav li {
   background-color: #eee;
   height: 100%;
   z-index: 0;
+}
+@media (min-width: 1024px) {
+  #nav-mobile {
+    display: none;
+  }
 }
 #nav-mobile #nav-contents {
   position: absolute;
@@ -1836,7 +1833,7 @@ form.search input[type="search"] {
 
 #home-hero {
   position: relative;
-  height: calc(100vh - 6rem);
+  height: 100vh;
   overflow: hidden;
 }
 #home-hero #home-video-overlay {
@@ -1912,6 +1909,13 @@ form.search input[type="search"] {
   padding: 2em 0;
 }
 
+.home #header-bar {
+  display: none;
+}
+.home .l-wrapper {
+  padding-top: 0;
+}
+
 #troper-profile-picture {
   display: block;
   width: 100%;
@@ -1965,19 +1969,11 @@ form.search input[type="search"] {
 @media (min-width: 1024px) {
   #the-collective {
     position: relative;
-    height: 10000vh;
     margin-top: 0;
   }
 }
-#the-collective #slides-container {
-  top: 14rem;
-  left: auto;
-}
-@media (min-width: 1024px) {
-  #the-collective #slides-container {
-    top: 7rem;
-    width: auto;
-  }
+#the-collective #fullpage {
+  top: 10rem;
 }
 #the-collective .section {
   opacity: 1;
@@ -1999,10 +1995,10 @@ form.search input[type="search"] {
   display: table;
   clear: both;
 }
-#the-collective .heading {
-  position: relative;
+#the-collective #collective-heading {
+  position: fixed;
 }
-#the-collective .heading p {
+#the-collective #collective-heading p {
   position: relative;
   top: -1.8em;
 }

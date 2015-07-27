@@ -736,4 +736,22 @@ function any_of_post_type($post_type) {
     return false;
   }
 }
+
+//Get projects link for specific studio
+
+function custom_term_link($post_type, $term, $taxonomy) {
+  $link = get_post_type_archive_link( $post_type );
+  $taxonomy_object = get_taxonomy($taxonomy);
+  if ( '' != get_option('permalink_structure') ) {
+    // using pretty permalinks, append to url
+    $link = user_trailingslashit( $link . $taxonomy . "s/" . $term ); // www.example.com/pagename/test
+  } else {
+    $link = add_query_arg( array($taxonomy => $term), $link );
+  }
+  return $link;
+}
+
+//Hide ACF Menu so nothing gets changed
+
+add_filter('acf/settings/show_admin', '__return_false');
 ?>

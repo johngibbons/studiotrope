@@ -7,7 +7,7 @@
         echo $print_query;
 
       } else {
-        $print_query = "<h2 class='query-text'>with <span class='category'>" . str_replace("_", " ", $query_type) . "</span> : <span class='value'>" . $query . "</span></h2>";
+        $print_query = "<h2 class='query-text'>with <span class='category'>" . str_replace(array("_", "-"), " ", $query_type) . "</span> : <span class='value'>" . str_replace(array("_", "-"), " ", $query) . "</span></h2>";
         $print_query .= "<a href=" . get_post_type_archive_link( 'project' ) . " class='all-projects-link'>see all projects</a>";
         echo $print_query;
       }
