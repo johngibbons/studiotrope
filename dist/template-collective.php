@@ -2,14 +2,17 @@
 <?php get_template_part("contextual-module") ?>
 <main id="the-collective" class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+    <div id="collective-heading">
+      <h1 class="page-title">
+        <span class="text"></span>
+        <svg class="icon icons-combined header-icon">
+          <use xlink:href="#icons_combined"></use>
+        </svg>
+      </h1>
+      <p class="detail"></p>
+    </div>
     <div id="fullpage">
       <div class="section is-hidden">
-        <h1 class="page-title">
-          <span class="text"><?php the_title(); ?></span>
-          <svg class="icon icons-combined header-icon">
-            <use xlink:href="#icons_combined"></use>
-          </svg>
-        </h1>
 
         <h2 class="studiotrope-text">studiotrope:</h2>
         <p class="pronunciation">| ˈst(y)o͞odēˌō | trōp |</p>
@@ -37,65 +40,59 @@
       </div>
 
       <div class="section is-hidden">
-        <div class="heading">
-          <h1 class="page-title">
-            <span class="text">Manifesto</span>
-            <svg class="icon icons-combined header-icon">
-              <use xlink:href="#icons_combined"></use>
-            </svg>
-          </h1>
-        </div>
         <?php $flexible_content_type = "manifesto" ?>
         <?php include(locate_template('flexible-content.php')); ?>
       </div>
 
       <div class="section is-hidden">
-        <div class="heading">
-          <h1 class="page-title">
-            <span class="text">Voice</span>
-            <svg class="icon icons-combined header-icon">
-              <use xlink:href="#icons_combined"></use>
-            </svg>
-          </h1>
-        </div>
         <?php $flexible_content_type = "voice" ?>
         <?php include(locate_template('flexible-content.php')); ?>
       </div>
 
       <?php $studios = array("architecture", "interiors", "graphics"); ?>
-      <?php $slides = array("", "services"); ?>
+      <?php $slides = array("", "services", "people", "projects"); ?>
 
       <?php foreach ($studios as $studio) { ?>
         <?php foreach ($slides as $slide) { ?>
 
           <div class="section is-hidden">
-            <div class="heading">
-              <h1 class="page-title">
-                <?php if ( $studio == "architecture" ): ?>
-                  <svg class="icon icons-combined header-icon">
-                    <use xlink:href="#architecture_icon"></use>
-                  </svg>
-                  <span class="text">Architecture</span>
-                <?php elseif ( $studio == "interiors" ): ?>
-                  <svg class="icon icons-combined header-icon">
-                    <use xlink:href="#interiors_icon"></use>
-                  </svg>
-                  <span class="text">Interior Design</span>
-                <?php elseif ( $studio == "graphics" ): ?>
-                  <svg class="icon icons-combined header-icon">
-                    <use xlink:href="#graphics_icon"></use>
-                  </svg>
-                  <span class="text">Graphic Design</span>
-                <?php endif; ?>
-              </h1>
-              <p class="detail"><?php echo $slide ?></p>
-            </div>
             <?php if ($slide == ""): ?>
               <?php $flexible_content_type = $studio ?>
-            <?php else: ?>
+              <?php include(locate_template('flexible-content.php')); ?>
+            <?php elseif ($slide == "services"): ?>
               <?php $flexible_content_type = $studio . "_" . $slide; ?>
+              <?php include(locate_template('flexible-content.php')); ?>
+            <?php elseif ($slide == "people"): ?>
+              <?php if ($studio == "interiors") $studio = "interior-design"; ?>
+              <?php if ($studio == "graphics") $studio = "graphic-design"; ?>
+              <div id="people-index">
+                <?php $args = array(
+                  "posts_per_page" => -1,
+                  "post_type" => "troper",
+                  "studio" => $studio,
+                  "post_status" => "publish",
+                ); 
+
+                $posts = get_posts( $args );
+                include(locate_template('custom-loop.php'));
+              ?>
+            </div>
+            <?php elseif ($slide == "projects"): ?>
+              <?php if ($studio == "interiors") $studio = "interior-design"; ?>
+              <?php if ($studio == "graphics") $studio = "graphic-design"; ?>
+              <div id="projects-index">
+                <?php $args = array(
+                  "posts_per_page" => -1,
+                  "post_type" => "project",
+                  "studio" => $studio,
+                  "post_status" => "publish",
+                ); 
+
+                $posts = get_posts( $args );
+                include(locate_template('custom-loop.php'));
+              ?>
+            </div>
             <?php endif; ?>
-            <?php include(locate_template('flexible-content.php')); ?>
           </div>
 
         <?php }

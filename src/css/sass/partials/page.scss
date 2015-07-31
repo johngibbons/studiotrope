@@ -1,9 +1,12 @@
 .page-title {
   position: relative;
-  z-index: 1;
 
   .text {
     position: relative;
+    z-index: 2;
+  }
+
+  .icons-combined {
     z-index: 1;
   }
 }

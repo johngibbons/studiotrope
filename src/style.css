@@ -2288,7 +2288,7 @@ main:after {
   height: 6rem;
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  z-index: 2;
+  z-index: 4;
 }
 #header-bar .logo {
   position: absolute;
@@ -2631,13 +2631,14 @@ nav li {
  */
 .contextual-module {
   padding: 2rem;
-  z-index: 1;
+  z-index: 3;
 }
 @media (min-width: 1024px) {
   .contextual-module {
     width: 22.8571428571%;
     float: left;
     margin-right: 2.8571428571%;
+    height: auto;
     background-color: #fafafa;
     padding: 10rem 4rem 6rem;
     border-right: 1px dashed #c8c8c8;
@@ -3121,10 +3122,12 @@ fieldset {
 
 .page-title {
   position: relative;
-  z-index: 1;
 }
 .page-title .text {
   position: relative;
+  z-index: 2;
+}
+.page-title .icons-combined {
   z-index: 1;
 }
 
@@ -3794,22 +3797,21 @@ form.search input[type="search"] {
 }
 
 #the-collective {
-  margin-top: 4rem;
+  margin-top: 0;
 }
 @media (min-width: 1024px) {
   #the-collective {
     position: relative;
-    margin-top: 0;
+    padding-top: 0;
   }
 }
-#the-collective #fullpage {
-  top: 10rem;
+#the-collective .mix {
+  display: inline-block;
 }
 #the-collective .section {
   opacity: 1;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  margin-bottom: 10rem;
 }
 @media (min-width: 1024px) {
   #the-collective .section {
@@ -3827,11 +3829,37 @@ form.search input[type="search"] {
   clear: both;
 }
 #the-collective #collective-heading {
-  position: fixed;
+  display: block;
+  height: 5rem;
+  width: 100%;
+  padding-top: 2rem;
+  background-color: white;
+  box-shadow: 0px 30px 40px 30px white;
+  z-index: 1;
+}
+@media (min-width: 1024px) {
+  #the-collective #collective-heading {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+    left: auto;
+  }
 }
 #the-collective #collective-heading p {
   position: relative;
   top: -1.8em;
+  margin: 0;
+}
+#the-collective #spacing-fix {
+  display: none;
+  padding-top: 2rem;
+  height: 5rem;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #the-collective #spacing-fix {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
 }
 #the-collective #collective {
   position: relative;
@@ -3855,7 +3883,6 @@ form.search input[type="search"] {
   font-size: 420%;
   margin-bottom: 0;
   line-height: 0.25;
-  margin-top: 5rem;
 }
 #the-collective .pronunciation {
   position: relative;
@@ -3890,7 +3917,6 @@ form.search input[type="search"] {
 
 .the-collective .mobile-dropdown {
   background-color: #fff;
-  position: fixed;
   top: 6rem;
   left: 0;
 }
@@ -3898,6 +3924,15 @@ form.search input[type="search"] {
   .the-collective .mobile-dropdown {
     position: static;
     background-color: transparent;
+  }
+}
+.the-collective .contextual-module {
+  padding: 0;
+  height: 4.5rem;
+}
+@media (min-width: 1024px) {
+  .the-collective .contextual-module {
+    padding: 10rem 4rem 6rem;
   }
 }
 

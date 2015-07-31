@@ -294,20 +294,24 @@
 
   if ( $("#fullpage").length ) {
     $("#fullpage").fullpage({
-      anchors: ["collective", "manifesto", "voice", "architecture", "architecture-services", "interiors", "interiors-services", "graphics", "graphics-services"],
+      anchors: ["collective", "manifesto", "voice", "architecture", "architecture-services", "architecture-people", "architecture-projects", "interiors", "interiors-services", "interiors-people", "interiors-projects", "graphics", "graphics-services", "graphics-people", "graphics-projects"],
       autoScrolling: false,
+      animateAnchor: false,
       menu: "#slides-nav",
       scrollingSpeed: 700,
       fitToSection: false,
+      verticalCentered: false,
+      paddingTop: "6rem",
+      paddingBottom: "8rem",
       recordHistory: false,
       onLeave: function( ){
         var leavingSection = $(this);
         leavingSection.addClass("is-hidden");
       },
-      afterLoad: function( ){
+      afterLoad: function( anchor, index ){
+        index = index;
         var loadedSection = $(this);
         loadedSection.removeClass("is-hidden");
-        var anchor = loadedSection.data("anchor");
         var heading = $("#collective-heading");
         var title = heading.find(".text");
         var subtitle = heading.find(".detail");
@@ -332,6 +336,14 @@
           title.html("Architecture");
           subtitle.html("services");
           icons.attr("xlink:href", "#architecture_icon");
+        } else if ( anchor === "architecture-people" ) {
+          title.html("Architecture");
+          subtitle.html("people");
+          icons.attr("xlink:href", "#architecture_icon");
+        } else if ( anchor === "architecture-projects" ) {
+          title.html("Architecture");
+          subtitle.html("projects");
+          icons.attr("xlink:href", "#architecture_icon");
         } else if ( anchor === "interiors" ) {
           title.html("Interior Design");
           subtitle.html("");
@@ -339,6 +351,14 @@
         } else if ( anchor === "interiors-services" ) {
           title.html("Interior Design");
           subtitle.html("services");
+          icons.attr("xlink:href", "#interiors_icon");
+        } else if ( anchor === "interiors-people" ) {
+          title.html("Interior Design");
+          subtitle.html("people");
+          icons.attr("xlink:href", "#interiors_icon");
+        } else if ( anchor === "interiors-projects" ) {
+          title.html("Interior Design");
+          subtitle.html("projects");
           icons.attr("xlink:href", "#interiors_icon");
         } else if ( anchor === "graphics" ) {
           title.html("Graphic Design");
@@ -348,8 +368,22 @@
           title.html("Graphic Design");
           subtitle.html("services");
           icons.attr("xlink:href", "#graphics_icon");
+        } else if ( anchor === "graphics-people" ) {
+          title.html("Graphic Design");
+          subtitle.html("people");
+          icons.attr("xlink:href", "#graphics_icon");
+        } else if ( anchor === "graphics-projects" ) {
+          title.html("Graphic Design");
+          subtitle.html("projects");
+          icons.attr("xlink:href", "#graphics_icon");
         }
       },
+    });
+
+    $(".section").css("height", "");
+    $(window).on("scroll", function() {
+      $("#collective-heading").css("position", "fixed");
+      $("#spacing-fix").show();
     });
 
   }
@@ -503,6 +537,7 @@
         ************************************************************/
 
         // Elements to be Animated
+        var heading = $("collective-heading");
         var scrollInstr = $("#scrollInstr");
         var studiotropeText = $(".studiotrope-text");
         var pronunciation = $(".pronunciation");
@@ -511,32 +546,18 @@
         var studioNames = $(".studio-name");
         var secondParagraph = $(".second");
         var collective = $("#collective");
-        var architecture = $("#architecture");
-        var interiors = $("#interiors");
-        var graphics = $("#graphic-design");
 
         // Initialize TimelineLite in a paused state
         var tl = new TimelineLite();
 
         // Apply animations as user scrolls or clicks on navs in a paused state
-        tl.from(studiotropeText, 0.3, {autoAlpha: 0})
+        tl.from(heading, 0.3, {autoAlpha: 0})
+          .from(studiotropeText, 0.3, {autoAlpha: 0})
           .from(pronunciation, 0.3, {autoAlpha: 0})
           .from(definition, 0.3, {autoAlpha: 0})
-          .from(firstParagraph, 0.3, {top: "30rem", autoAlpha:0})
-          .staggerFrom(studioNames, 1, {top: "30rem", autoAlpha:0}, 0.25)
-          .from(scrollInstr, 1, {autoAlpha:0}, "+=0.5")
-          .addPause()
-          .to(collective, 0.3, {autoAlpha: 0})
-          .addLabel("architecture")
-          .from(architecture, 0.3, {autoAlpha: 0}, "+=0.75")
-          .addPause()
-          .to(architecture, 0.3, {autoAlpha: 0})
-          .addLabel("interiors")
-          .from(interiors, 0.3, {autoAlpha: 0}, "+=0.75")
-          .addPause()
-          .to(interiors, 0.3, {autoAlpha: 0})
-          .addLabel("graphics")
-          .from(graphics, 0.3, {autoAlpha: 0}, "+=0.75");
+          .from(firstParagraph, 0.5, {top: "30rem", autoAlpha:0})
+          .from(studioNames, 0.5, {autoAlpha:0} )
+          .from(scrollInstr, 0.5, {autoAlpha:0} );
 
         //Animate based on slides rather than direct scrolling distance
         var lastScrollTop = 0;
@@ -545,7 +566,7 @@
           if (st > lastScrollTop){
             tl.play();
           } else {
-            tl.reverse();
+            //tl.reverse();
           }
           lastScrollTop = st;
         });
@@ -566,6 +587,18 @@
 
       $(".dropdown-sublist-title").click(function() {
         $(this).next().slideToggle(100);
+      });
+
+      /***********************************************************
+        Collective Dropdown
+       ************************************************************/
+
+      $("body").on("click", ".slide-link, .sub-slide-link" , function() {
+        $(".dropdown").slideToggle(100);
+      });
+
+      $(window).scroll(function() {
+        $(".the-collective .mobile-dropdown").css("position", "fixed");
       });
 
       /***********************************************************

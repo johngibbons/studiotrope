@@ -5,10 +5,11 @@
 
 .contextual-module {
   padding: 2rem;
-  z-index: 1;
+  z-index: 3;
 
   @include susy-breakpoint($desktop, $desktop-columns) {
     @include span(3);
+    height: auto;
     background-color: $st-off-white;
     padding: ($header-bar-height + 4) 4rem 6rem;
     border-right: $base-border-medium-dashed;
