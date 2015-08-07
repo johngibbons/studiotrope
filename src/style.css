@@ -2288,7 +2288,7 @@ main:after {
   height: 6rem;
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  z-index: 4;
+  z-index: 99999;
 }
 #header-bar .logo {
   position: absolute;
@@ -3259,47 +3259,6 @@ form.search input[type="search"] {
   border-radius: 0;
 }
 
-.emphasis {
-  padding-top: 9.0909090909%;
-  padding-bottom: 9.0909090909%;
-  border-top: 1px dashed #c8c8c8;
-  border-bottom: 1px dashed #c8c8c8;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  text-align: center;
-  font-size: 245%;
-  font-family: "adelle", serif;
-  font-weight: 100;
-  letter-spacing: 1px;
-}
-.emphasis .source {
-  font-size: 140%;
-  color: #444;
-  display: block;
-}
-@media (min-width: 768px) {
-  .emphasis .source {
-    display: inline;
-  }
-}
-
-.timelapse {
-  position: relative;
-  overflow: auto;
-}
-.timelapse .scroll-container {
-  position: relative;
-}
-.timelapse .image {
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-}
-.timelapse .image img {
-  width: 100%;
-  height: auto;
-}
-
 .single-project .project {
   max-width: 100%;
   margin-left: auto;
@@ -3582,6 +3541,68 @@ form.search input[type="search"] {
   color: #d18b00;
 }
 
+.emphasis {
+  padding-top: 9.0909090909%;
+  padding-bottom: 9.0909090909%;
+  border-top: 1px dashed #c8c8c8;
+  border-bottom: 1px dashed #c8c8c8;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  text-align: center;
+  font-size: 245%;
+  font-family: "adelle", serif;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+.emphasis .source {
+  font-size: 140%;
+  color: #444;
+  display: block;
+}
+@media (min-width: 768px) {
+  .emphasis .source {
+    display: inline;
+  }
+}
+
+.timelapse {
+  position: relative;
+  overflow: auto;
+}
+.timelapse .scroll-container {
+  position: relative;
+}
+.timelapse .overlay {
+  opacity: 1;
+  text-align: center;
+  color: #fff;
+  font-size: 140%;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.timelapse .overlay .fa {
+  display: block;
+  position: absolute;
+  top: 50%;
+  font-size: 280%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  width: 100%;
+}
+.timelapse .overlay.scrolled {
+  opacity: 0;
+}
+.timelapse .image {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+.timelapse .image img {
+  width: 100%;
+  height: auto;
+}
+
 #people-index .mix, #people-index .gap {
   width: 100%;
   height: auto;
@@ -3830,15 +3851,16 @@ form.search input[type="search"] {
 }
 #the-collective #collective-heading {
   display: block;
-  height: 5rem;
+  height: 10rem;
   width: 100%;
   padding-top: 2rem;
   background-color: white;
-  box-shadow: 0px 30px 40px 30px white;
   z-index: 1;
 }
 @media (min-width: 1024px) {
   #the-collective #collective-heading {
+    height: 5rem;
+    box-shadow: 0px 30px 40px 30px white;
     padding-top: 6rem;
     padding-bottom: 2rem;
     left: auto;

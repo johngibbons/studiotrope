@@ -1,4 +1,4 @@
-<div class="mobile-dropdown">
+<div class="mobile-dropdown transition-container">
   <h2 class="detail dropdown-button title-text">Section</h2>
   <ul id="slides-nav" class="detail dropdown">
     <a href="#collective">

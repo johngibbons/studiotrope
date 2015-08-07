@@ -27,6 +27,7 @@
     $("html").on("click", "#nav-toggle, #nav-open-overlay", function() {
       $("#nav-toggle").toggleClass("close");
       $("body").toggleClass("is-pushed");
+      $("#nav-mobile").toggleClass("is-hidden");
     });
 
     /**************************************************
@@ -89,7 +90,6 @@
     var initialDescription = $("#filter-description").text();
 
     var filterObjects = function() {
-      console.log("here");
 
       // when filter applied, enable reset
       $("#filter-reset").attr("disabled", false);
@@ -200,6 +200,12 @@
     }
 
 
+    /**************************************************
+      Single Project Timelapse Module
+     **************************************************/
+    if ( $(".timelapse").length ) {
+      wipeScroll.init(".timelapse");
+    }
 
     /**************************************************
       Tropers Index Filter
@@ -526,9 +532,6 @@
 
       window.onload = function(){
 
-        if ( $(".timelapse").length ) {
-          timelapseWipe();
-        }
 
 
 
@@ -795,47 +798,125 @@ var checkboxFilter = {
   Timelapse module wiping effect
 **************************************************/
 
-var timelapseWipe = function(){
+var wipeScroll = {
+  groups:  [],
+  $containers: null,
 
-  var timelapseContainers = $(".timelapse");
+  // Set up the initial variables
+  init: function(containers){
+    var self = this;
 
-  timelapseContainers.each(function() {
-    var images = $(this).find("img");
-    var imageHeight = images.first().height();
-    var imageNumber = images.length;
+    self.$containers = $(containers);
 
-    $(this).height(imageHeight);
-
-    var scrollContainer = $(this).find(".scroll-container");
-    scrollContainer.height(imageHeight * imageNumber);
-
-    var imageWrappers = $(this).find(".image");
-    var i = imageNumber;
-    imageWrappers.each(function(){
-      $(this).css("z-index", i);
-      i--;
-    });
-
-    $(this).on("scroll", function(){
-      var scrollPosition = $(this).scrollTop();
-      var slideNumber = Math.floor(scrollPosition / imageHeight);
-      var slideScrollPosition = scrollPosition - slideNumber * imageHeight;
-
-      imageWrappers.each(function(){
-        $(this).css("top", scrollPosition);
+    self.$containers.each(function(){
+      self.groups.push({
+        $container: $(this),
+        $imageStack: $(this).find(".image-stack"),
+        $images: $(this).find(".image"),
+        height: $(this).find(".image").first().height(),
+        numImages: $(this).find(".image").length,
       });
-      imageWrappers.eq(slideNumber).css("height", imageHeight - slideScrollPosition);
-      if(slideNumber > 0) {
-        imageWrappers.eq(slideNumber - 1).css("height", 0);
-      }
-      if(slideNumber < imageNumber) {
-        imageWrappers.eq(slideNumber + 1).css("height", imageHeight);
-      }
     });
-  });
+
+    self.setHeights();
+    self.stackImages();
+    self.addInstructions();
+    self.bindHandlers();
+  },
+
+  // Set the heights of each container based on image height
+  setHeights: function(){
+    var self = this;
+
+    self.groups.forEach(function(element){
+      element.$container.height(element.height);
+      element.$imageStack.height(element.height * element.numImages);
+    });
+  },
+
+  stackImages: function(){
+    var self = this;
+
+    self.groups.forEach(function(element){
+      element.$images.each(function(i){
+        $(this).css("z-index", element.numImages - i);
+      });
+    });
+  },
+
+  addInstructions: function(){
+    var self = this;
+
+    self.groups.forEach(function(element){
+      element.$container.find(".overlay").css("z-index", element.numImages + 1);
+    });
+  },
+
+  bindHandlers: function(){
+    var self = this;
+
+    self.groups.forEach(function(element){
+      element.$container.on("scroll", function(){
+        $(this).find(".overlay").addClass("scrolled");
+        var scrollPosition = $(this).scrollTop();
+        var slideNumber = Math.floor(scrollPosition / element.height);
+        var slideScrollPosition = scrollPosition - slideNumber * element.height;
+
+        element.$images.css("top", scrollPosition);
+        element.$images.eq(slideNumber).css("height", element.height - slideScrollPosition);
+
+        if ( slideNumber > 0 ) {
+          element.$images.eq(slideNumber - 1).css("height", 0);
+        }
+
+        if ( slideNumber < self.numImages ) {
+          element.$images.eq(slideNumber + 1).css("height", element.height);
+        }
+      });
+    });
+  },
 
 };
 
+//var timelapseWipe = function(){
+//
+//  var timelapseContainers = $(".timelapse");
+//
+//  timelapseContainers.each(function() {
+//    var images = $(this).find("img");
+//    var imageHeight = images.first().height();
+//    var imageNumber = images.length;
+//
+//    $(this).height(imageHeight);
+//
+//    var scrollContainer = $(this).find(".image-stack");
+//    scrollContainer.height(imageHeight * imageNumber);
+//
+//    var imageWrappers = $(this).find(".image");
+//    var i = imageNumber;
+//    imageWrappers.each(function(){
+//      $(this).css("z-index", i);
+//      i--;
+//    });
+//
+//    $(this).on("scroll", function(){
+//      var scrollPosition = $(this).scrollTop();
+//      var slideNumber = Math.floor(scrollPosition / imageHeight);
+//      var slideScrollPosition = scrollPosition - slideNumber * imageHeight;
+//
+//      imageWrappers.css("top", scrollPosition);
+//      imageWrappers.eq(slideNumber).css("height", imageHeight - slideScrollPosition);
+//      if(slideNumber > 0) {
+//        imageWrappers.eq(slideNumber - 1).css("height", 0);
+//      }
+//      if(slideNumber < imageNumber) {
+//        imageWrappers.eq(slideNumber + 1).css("height", imageHeight);
+//      }
+//    });
+//  });
+//
+//};
+//
 /***********************************************************
   Make All Words Start With an Uppercase Letter
  ************************************************************/

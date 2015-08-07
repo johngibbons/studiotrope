@@ -1,4 +1,4 @@
-<nav id="nav-mobile" role="navigation">
+<nav id="nav-mobile" class="is-hidden" role="navigation">
   <div id="nav-contents">
     <a href="<?php echo home_url(); ?>" id="nav-logo" class="no-underline">
       <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo" class="logo-img">

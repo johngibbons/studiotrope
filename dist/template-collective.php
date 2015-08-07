@@ -11,6 +11,7 @@
       </h1>
       <p class="detail"></p>
     </div>
+    <div id="spacing-fix"></div>
     <div id="fullpage">
       <div class="section is-hidden">
 

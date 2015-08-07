@@ -83,7 +83,10 @@
             <?php $images = get_sub_field("images"); ?>
 
             <div class="timelapse l-content-module <?php echo "l_" . $width . " " . $last; ?>">
-              <div class="scroll-container">
+              <div class="overlay">
+                <i class="fa fa-long-arrow-down"></i>
+              </div>
+              <div class="image-stack">
 
               <?php foreach ( $images as $image ): ?>
                 <div class="image">
