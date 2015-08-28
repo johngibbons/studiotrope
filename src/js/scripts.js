@@ -82,89 +82,6 @@
     }).resize();
 
     /**************************************************
-     Filtering Functionality
-     **************************************************/
-
-    var filterParams = {};
-    var filterDescription = [];
-    var initialDescription = $("#filter-description").text();
-
-    var filterObjects = function() {
-
-      // when filter applied, enable reset
-      $("#filter-reset").attr("disabled", false);
-
-      // Check Box for Applied Filters
-      $(this).find("i").toggleClass("fa-square-o fa-check-square");
-
-      // Set Up Filter Description Text
-      var category = $(this).closest("fieldset").children("legend:first").text();
-      var term = $(this).text();
-
-      if(filterParams[category]) {
-        if(filterParams[category].indexOf(term) > -1) { // check if value is already in array
-          var index = filterParams[category].indexOf(term);
-          filterParams[category].splice(index, 1);
-        } else {
-          filterParams[category].push(term);
-        }
-      } else {
-        filterParams[category] = [term];
-      }
-
-      filterDescription = [initialDescription];
-      var categories = Object.keys(filterParams);
-
-      $.each(categories, function(index, value){
-        if (filterParams[value].length > 0) {
-          if (index > 0) {
-            filterDescription.push(" and ");
-          }
-          filterDescription.push(" <span class='category'>" + value.toProperCase() + ": </span><span class='value'>");
-          filterDescription.push(filterParams[value].join("</span> or <span class='value'>") + "</span>");
-          $("#filter-description").html(filterDescription.join(""));
-        } else {
-          $("#filter-description").html(filterDescription.join(""));
-        }
-      });
-      $("#filter-description").addClass("is-shown");
-
-    };
-
-    //Projects filter labeling and description behavior
-
-    var initFilter = function(filter, container) {
-
-        var checkedFilterItem = $(filter).find("input:checked + label");
-        var uncheckedFilterItem = $(filter).find("input:not([disabled]) + label");
-        if( checkedFilterItem.length ) {
-          $("#filter-reset").click();
-        }
-
-        uncheckedFilterItem.click(filterObjects);
-
-        //If No Filters Are Applied, Reset Disabled, Remove Description
-
-        $(container).on("mixEnd", function(e, state){
-          if (state.activeFilter === ".mix") {
-            $("#filter-reset").attr("disabled", true);
-            $("#filter-description").removeClass("is-shown");
-          }
-        });
-
-        //Filter Resets Checkboxes, Description
-
-        $("#filter-reset").click(function() {
-          $(filter).find("i").removeClass("fa-check-square").addClass("fa-square-o");
-          $(this).attr("disabled", true);
-          filterDescription = [];
-          filterParams = {};
-          $("#filter-description").removeClass("is-shown");
-        });
-
-    };
-
-    /**************************************************
       Projects Index Filter
      **************************************************/
 
@@ -203,9 +120,11 @@
     /**************************************************
       Single Project Timelapse Module
      **************************************************/
-    if ( $(".timelapse").length ) {
-      wipeScroll.init(".timelapse");
-    }
+    $(window).on("load", function(){
+      if ( $(".timelapse").length ) {
+        wipeScroll.init(".timelapse");
+      }
+    });
 
     /**************************************************
       Tropers Index Filter
@@ -659,6 +578,83 @@
   Custom Projects Filter using Mixitup Plugin
  ************************************************************/
 
+  var filterParams = {};
+  var filterDescription = [];
+  var initialDescription = $("#filter-description").text();
+
+  var filterObjects = function() {
+
+    // when filter applied, enable reset
+    $("#filter-reset").attr("disabled", false);
+
+    // Check Box for Applied Filters
+    $(this).find("i").toggleClass("fa-square-o fa-check-square");
+
+    // Set Up Filter Description Text
+    var category = $(this).closest("fieldset").children("legend:first").text();
+    var term = $(this).text();
+
+    if(filterParams[category]) {
+      if(filterParams[category].indexOf(term) > -1) { // check if value is already in array
+        var index = filterParams[category].indexOf(term);
+        filterParams[category].splice(index, 1);
+      } else {
+        filterParams[category].push(term);
+      }
+    } else {
+      filterParams[category] = [term];
+    }
+
+    filterDescription = [initialDescription];
+    var categories = Object.keys(filterParams);
+
+    $.each(categories, function(index, value){
+      if (filterParams[value].length > 0) {
+        if (index > 0) {
+          filterDescription.push(" and ");
+        }
+        filterDescription.push(" <span class='category'>" + value.toProperCase() + ": </span><span class='value'>");
+        filterDescription.push(filterParams[value].join("</span> or <span class='value'>") + "</span>");
+        $("#filter-description").html(filterDescription.join(""));
+      } else {
+        $("#filter-description").html(filterDescription.join(""));
+      }
+    });
+    $("#filter-description").addClass("is-shown");
+
+  };
+
+  //Projects filter labeling and description behavior
+
+  var initFilter = function(filter, container) {
+
+      var checkedFilterItem = $(filter).find("input:checked + label");
+      var uncheckedFilterItem = $(filter).find("input:not([disabled]) + label");
+      if( checkedFilterItem.length ) {
+        $("#filter-reset").click();
+      }
+
+      uncheckedFilterItem.click(filterObjects);
+
+      //If No Filters Are Applied, Reset Disabled, Remove Description
+
+      $(container).on("mixEnd", function(e, state){
+        if (state.activeFilter === ".mix") {
+          $("#filter-reset").attr("disabled", true);
+          $("#filter-description").removeClass("is-shown");
+        }
+      });
+
+      //Filter Resets Checkboxes, Description
+
+      $("#filter-reset").click(function() {
+        filterDescription = [];
+        filterParams = {};
+        $("#filter-description").removeClass("is-shown");
+      });
+
+  };
+
 // To keep our code clean and modular, all custom functionality will be contained inside a single object literal called "checkboxFilter".
 
 var checkboxFilter = {
@@ -703,6 +699,8 @@ var checkboxFilter = {
     self.$reset.on("click", function(e){
       e.preventDefault();
       self.$filters[0].reset();
+      $(this).attr("disabled", true);
+      self.$filters.find("i").removeClass("fa-check-square").addClass("fa-square-o");
       self.parseFilters();
     });
   },
@@ -864,6 +862,8 @@ var wipeScroll = {
 
         element.$images.css("top", scrollPosition);
         element.$images.eq(slideNumber).css("height", element.height - slideScrollPosition);
+
+        scrollPosition <= 0 && ($(this).find(".overlay").removeClass("scrolled"));
 
         if ( slideNumber > 0 ) {
           element.$images.eq(slideNumber - 1).css("height", 0);
