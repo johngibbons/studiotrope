@@ -470,9 +470,6 @@ add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove 
 add_filter('post_thumbnail_html', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter('image_send_to_editor', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter('pre_get_posts', 'query_post_type'); // Query Projects as well as blog posts for tags
-add_filter( 'swiftype_document_builder', 'update_swiftype_document_url', 10, 2 );
-
-add_filter( 'swiftype_search_params', 'swiftype_search_params_filter', 8, 1 );
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
@@ -577,7 +574,38 @@ function st_get_tax($tax_name) {
     Swiftype Search Settings
 \*------------------------------------*/
 
-function update_swiftype_document_url( $document, $post ) {
+
+function swiftype_search_params_filter( $params ) {
+  // set the fields to search and their boosts
+  $params['search_fields[posts]'] = array( 'title^3', 'terms^2', 'author^2', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio' );
+
+  return $params;
+}
+
+function swiftype_javascript_config() {
+?>
+  <script type="text/javascript">
+  var swiftypeConfig = {
+    fetchFields: {'posts': ['title', 'object_type', 'terms']},
+    searchFields: {'posts': ['title', 'terms', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
+  };
+  </script>
+<?php
+}
+
+function swiftype_document_builder_filter( $document, $post ) {
+  $term_names = array();
+  $taxonomy_names = get_object_taxonomies( $post );
+  foreach ( $taxonomy_names as $taxonomy ) {
+    $terms = get_the_terms( $post->ID, $taxonomy );
+    if ( is_array( $terms ) ) {
+      foreach ( $terms as $term ) {
+        array_push( $term_names, $term->name );
+      }
+    }
+  }
+  $document['fields'][] = array( 'name' => 'terms', 'type' => 'string', 'value' => $term_names );
+
   $document['fields'][] = array( 'name' => 'project_description',
     'type' => 'text',
     'value' => get_post_meta( $post->ID, 'st_project_description', true ));
@@ -594,30 +622,11 @@ function update_swiftype_document_url( $document, $post ) {
     'type' => 'text',
     'value' => get_post_meta( $post->ID, 'st_bio', true ));
 
-  $document['fields'][] = array( 'name' => 'project_tags',
-    'type' => 'string',
-    'value' => get_post_meta( $post->ID, 'project_tag' ));
-
   return $document;
 }
 
-function swiftype_search_params_filter( $params ) {
-  // set the fields to search and their boosts
-  $params['search_fields[posts]'] = array( 'title^3', 'project_tags^2', 'author^2', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio' );
-
-  return $params;
-}
-
-function swiftype_javascript_config() {
-?>
-  <script type="text/javascript">
-  var swiftypeConfig = {
-    fetchFields: {'posts': ['title', 'object_type']},
-    searchFields: {'posts': ['title', 'project_tags', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
-  };
-  </script>
-<?php
-}
+add_filter( 'swiftype_search_params', 'swiftype_search_params_filter', 8, 1 );
+add_filter( 'swiftype_document_builder', 'swiftype_document_builder_filter', 8, 2 );
 
 // Utility for showing all of the custom taxonomies of a post type
 // get taxonomies terms links

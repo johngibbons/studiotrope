@@ -605,10 +605,7 @@ function swiftype_document_builder_filter( $document, $post ) {
     }
   }
   $document['fields'][] = array( 'name' => 'terms', 'type' => 'string', 'value' => $term_names );
-  return $document;
-}
 
-function update_swiftype_document_url( $document, $post ) {
   $document['fields'][] = array( 'name' => 'project_description',
     'type' => 'text',
     'value' => get_post_meta( $post->ID, 'st_project_description', true ));
@@ -629,7 +626,6 @@ function update_swiftype_document_url( $document, $post ) {
 }
 
 add_filter( 'swiftype_search_params', 'swiftype_search_params_filter', 8, 1 );
-add_filter( 'swiftype_document_builder', 'update_swiftype_document_url', 10, 2 );
 add_filter( 'swiftype_document_builder', 'swiftype_document_builder_filter', 8, 2 );
 
 // Utility for showing all of the custom taxonomies of a post type
