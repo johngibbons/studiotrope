@@ -20,8 +20,13 @@
 
           if(get_sub_field('image')):
 
-            $image = get_sub_field('image'); ?> 
-            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" class="flexible-image l-content-module <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>"> 
+            $image = get_sub_field('image');
+            $size = "large";
+            $large = $image["sizes"][$size];
+            $width = $image["sizes"][$size . "-width"];
+            $height = $image["sizes"][$size . "-height"];
+?> 
+  <img data-original="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>" class="lazy flexible-image l-content-module <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
 
     <?php endif; ?>
 
@@ -88,9 +93,14 @@
               </div>
               <div class="image-stack">
 
-              <?php foreach ( $images as $image ): ?>
+              <?php foreach ( $images as $image ): 
+                $size = "large";
+                $large = $image["sizes"][$size];
+                $width = $image["sizes"][$size . "-width"];
+                $height = $image["sizes"][$size . "-height"];
+    ?> 
                 <div class="image">
-                  <img src="<?php echo $image["sizes"]["large"] ?>" />
+                  <img data-original="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>" class="lazy" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
                 </div>
               <?php endforeach; ?>
 

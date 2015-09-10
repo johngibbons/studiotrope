@@ -25,6 +25,8 @@ var gulp = require( "gulp" ),
       "src/bower_components/animsition/dist/js/jquery.animsition.js",
       /** TextFill */
       "src/bower_components/jquery-textfill/source/jquery.textfill.js",
+      /** LazyLoad */
+      "src/bower_components/jquery.lazyload/jquery.lazyload.js",
       /** Page scripts */
       "src/js/scripts.js"
     ],

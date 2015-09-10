@@ -32,6 +32,7 @@ img {
   // Don't allow <IMG> to be larger then its container
   max-width: 100%;
   // Omit space caused by default style, between images lines
+  height: auto;
   vertical-align: middle;
 }
 
