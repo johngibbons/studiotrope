@@ -1,6 +1,6 @@
 <?php /* Template Name: Contact Page Template */ get_header(); ?>
 <?php get_template_part("contextual-module") ?>
-<main id="contact" class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main"> 
+<main id="contact" class="l-container-w-side" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
     <div id="contact-image">
       <?php $image = get_field('image'); ?> 

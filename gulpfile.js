@@ -21,8 +21,6 @@ var gulp = require( "gulp" ),
       "src/bower_components/gsap/src/uncompressed/TweenMax.js",
       /** Fullpage.js */
       "src/bower_components/fullpage.js/jquery.fullPage.js",
-      /** Animsition */
-      "src/bower_components/animsition/dist/js/jquery.animsition.js",
       /** TextFill */
       "src/bower_components/jquery-textfill/source/jquery.textfill.js",
       /** LazyLoad */
@@ -35,8 +33,6 @@ var gulp = require( "gulp" ),
       development: [
         /** The banner of `style.css` */
         "src/css/banner.css",
-        /** Animsition */
-        "src/bower_components/animsition/dist/css/animsition.css",
         /** Theme style */
         "src/css/style.css"
       ],
@@ -45,8 +41,6 @@ var gulp = require( "gulp" ),
         "src/css/banner.css",
         /** Normalize */
         "src/bower_components/normalize.css/normalize.css",
-        /** Animsition **/
-        "src/bower_components/animsition/dist/css/animsition.css",
         /** Theme style */
         "src/css/style.css"
       ]

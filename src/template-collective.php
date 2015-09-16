@@ -1,6 +1,6 @@
 <?php /* Template Name: The Collective Page Template */ get_header(); ?>
 <?php get_template_part("contextual-module") ?>
-<main id="the-collective" class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main"> 
+<main id="the-collective" class="l-container-w-side" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
     <div id="collective-heading">
       <h1 class="page-title">

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <?php get_template_part("contextual-module"); ?>
-<main class="l-container-w-side animsition" data-animsition-in="fade-in-right-sm" role="main">
+<main class="l-container-w-side" role="main">
 <?php 
   // check if any projects were returned
   if (any_of_post_type("project")):

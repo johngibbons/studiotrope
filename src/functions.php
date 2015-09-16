@@ -110,9 +110,6 @@ function html5blank_header_scripts()
       // Fullpage.js
       wp_register_script('fullpage', get_template_directory_uri(). '/bower_components/fullpage.js/jquery.fullPage.min.js');
 
-      // Animsition for page transitions
-      wp_register_script('animsition', get_template_directory_uri(). '/bower_components/animsition/dist/js/jquery.animsition.js');
-
       // Text resizing by container size
       wp_register_script('textfill', get_template_directory_uri(). '/bower_components/jquery-textfill/source/jquery.textfill.js');
 
@@ -131,7 +128,6 @@ function html5blank_header_scripts()
           'stickykit',
           'gsap',
           'fullpage',
-          'animsition',
           'textfill',
           'lazyload'
         ),
@@ -173,14 +169,11 @@ function html5blank_styles()
     // normalize-css
     wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize.css/normalize.css', array(), '3.0.1');
 
-    // Animsition
-    wp_register_style('animsition', get_template_directory_uri() . '/bower_components/animsition/dist/css/animsition.min.css', array('normalize'), '1.0');
-
     // Fullpage.js
     wp_register_style('fullpage', get_template_directory_uri() . '/bower_components/fullpage.js/jquery.fullPage.css', array('fullpage'), '1.0');
 
     // Custom CSS
-    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize', 'animsition'), '1.0');
+    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize'), '1.0');
 
     // Register CSS
     wp_enqueue_style('html5blank');

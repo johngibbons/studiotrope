@@ -7,18 +7,6 @@
 
     // JQuery Document Ready
 
-    /**************************************************
-      Animsition for page transition animations
-     **************************************************/
-
-    $(".animsition").animsition({
-      inClass: "fade-in-right",
-      outClass: "fade-out-up",
-      linkElement: "a:not([target='_blank']):not([href^=#]):not([href*=mailto])",
-      touchSupport: true,
-      inDuration: 300,
-      outDuration: 300,
-    });
 
     /**************************************************
       Lazy loading for project images
