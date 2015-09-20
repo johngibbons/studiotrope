@@ -19,8 +19,6 @@ var gulp = require( "gulp" ),
       "src/bower_components/sticky-kit/jquery.sticky-kit.js",
       /** GSAP */
       "src/bower_components/gsap/src/uncompressed/TweenMax.js",
-      /** Fullpage.js */
-      "src/bower_components/fullpage.js/jquery.fullPage.js",
       /** TextFill */
       "src/bower_components/jquery-textfill/source/jquery.textfill.js",
       /** LazyLoad */

@@ -136,6 +136,7 @@
   h3 {
     display: block;
     position: absolute;
+    width: 100%;
     max-width: $thumb-height;
     text-transform: uppercase;
     letter-spacing: .25rem;
@@ -146,12 +147,16 @@
     transform: rotate(-90deg);
     transform-origin: left top 0;
     transition: $base-transition;
-    bottom: -1rem;
-    left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    bottom: -3em;
+    left: 0;
     font-family: $proxima-cond;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    background: rgba(0,0,0,0.8);
     z-index: 1;
 
     &.is-dark {
@@ -163,8 +168,9 @@
     h3 {
       opacity: 1;
       transform: rotate(0);
-      bottom: 1rem;
-      left: 1rem;
+      bottom: 0;
+      left: 0;
+      max-width: 100%;
       white-space: normal;
     }
 

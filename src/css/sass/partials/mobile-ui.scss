@@ -43,7 +43,7 @@
       }
     }
 
-    legend {
+    legend, a {
       color: $emphasis-color;
       font-weight: 700;
     }
@@ -54,7 +54,7 @@
     }
 
     @include susy-breakpoint($desktop, $desktop-columns) {
-      legend {
+      legend, a {
         padding: 0;
         padding-top: 1rem;
       }

@@ -9,10 +9,12 @@
   }
 
 
-  &> li:first-child {
+  >li:first-child > a {
     border-top: none;
   }
-  li {
+
+  a {
+    display: block;
     border-top: $base-border-dashed;
     padding: 1em;
     padding-left: 2rem;

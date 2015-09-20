@@ -1,4 +1,8 @@
-
+.page-template-template-collective {
+  .page-title {
+    margin-bottom: 2em;
+  }
+}
 #the-collective {
   margin-top: 0;
 
@@ -35,29 +39,6 @@
     }
   }
 
-  #collective-heading {
-
-    display: block;
-    height: 10rem;
-    width: 100%;
-    padding-top: 2rem;
-    background-color: white;
-    z-index: 1;
-
-    @include susy-breakpoint($desktop, $desktop-columns) {
-      height: 5rem;
-      box-shadow: 0px 30px 40px 30px rgba(255,255,255,1);
-      padding-top: 6rem;
-      padding-bottom: 2rem;
-      left: auto;
-    }
-
-    p {
-      position: relative;
-      top: -1.8em;
-      margin: 0;
-    }
-  }
 
   #spacing-fix {
     display: none;
@@ -135,6 +116,26 @@
 
 }
 
+#collective-heading {
+
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  height: 3em;
+
+  .page-title {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  @include susy-breakpoint($desktop, $desktop-columns){
+    margin-top: 0;
+  }
+}
+
 .the-collective {
   .mobile-dropdown {
     background-color: $white;
@@ -148,7 +149,6 @@
   }
 
   .contextual-module {
-    padding: 0;
     height: 4.5rem;
 
     @include susy-breakpoint($desktop, $desktop-columns){
@@ -157,27 +157,20 @@
   }
 }
 
-.slide-link {
-  cursor: pointer;
-  color: $emphasis-color;
-  font-weight: 700;
-  border-bottom: $base-border-dashed;
+#collective-menu {
 
-  @include susy-breakpoint($desktop, $desktop-columns){
-    margin-top: 1em;
-    border-bottom: none;
+  li.menu-item-has-children {
+    @include susy-breakpoint($desktop, $desktop-columns){
+      margin-bottom: 1em;
+    }
   }
 
-  &.active {
-    color: $link-color;
+  &>li>a {
+    font-weight: 700;
+    color: $st-dark-gray;
   }
 
-}
-
-.sub-slide-link {
-  cursor: pointer;
-
-  &.active {
+  li.current-menu-item>a {
     color: $link-color;
   }
 

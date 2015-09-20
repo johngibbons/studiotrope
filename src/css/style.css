@@ -1107,16 +1107,17 @@ fieldset {
     background-color: transparent;
   }
 }
-.dropdown > li:first-child {
+.dropdown > li:first-child > a {
   border-top: none;
 }
-.dropdown li {
+.dropdown a {
+  display: block;
   border-top: 1px dashed #eee;
   padding: 1em;
   padding-left: 2rem;
 }
 @media (min-width: 1024px) {
-  .dropdown li {
+  .dropdown a {
     background-color: transparent;
     border-top: none;
     padding: 0;
@@ -1287,7 +1288,7 @@ fieldset {
   font-weight: 700;
   color: #d18b00;
 }
-.mobile-dropdown form legend {
+.mobile-dropdown form legend, .mobile-dropdown form a {
   color: #444;
   font-weight: 700;
 }
@@ -1296,7 +1297,7 @@ fieldset {
   outline: none;
 }
 @media (min-width: 1024px) {
-  .mobile-dropdown form legend {
+  .mobile-dropdown form legend, .mobile-dropdown form a {
     padding: 0;
     padding-top: 1rem;
   }
@@ -1326,7 +1327,7 @@ fieldset {
   position: relative;
   z-index: 2;
 }
-.page-title .icons-combined {
+.page-title svg {
   z-index: 1;
 }
 
@@ -1486,7 +1487,7 @@ form.search input[type="search"] {
   width: 90%;
   height: auto;
   font-size: 280%;
-  font-family: "adelle", serif;
+  font-family: "bookmania", sans-serif;
   line-height: 1.25;
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
@@ -1686,6 +1687,7 @@ form.search input[type="search"] {
 .mix h3 {
   display: block;
   position: absolute;
+  width: 100%;
   max-width: 20rem;
   text-transform: uppercase;
   letter-spacing: .25rem;
@@ -1696,12 +1698,16 @@ form.search input[type="search"] {
   transform: rotate(-90deg);
   transform-origin: left top 0;
   transition: all 0.3s ease;
-  bottom: -1rem;
-  left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  bottom: -3em;
+  left: 0;
   font-family: "proxima-nova-condensed", sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1;
 }
 .mix h3.is-dark {
@@ -1710,8 +1716,9 @@ form.search input[type="search"] {
 .mix:hover h3 {
   opacity: 1;
   transform: rotate(0);
-  bottom: 1rem;
-  left: 1rem;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
   white-space: normal;
 }
 .mix:hover .project-thumb {
@@ -1732,7 +1739,7 @@ form.search input[type="search"] {
   box-sizing: content-box;
   text-align: center;
   font-size: 245%;
-  font-family: "adelle", serif;
+  font-family: "bookmania", sans-serif;
   font-weight: 100;
   letter-spacing: 1px;
 }
@@ -1986,6 +1993,10 @@ form.search input[type="search"] {
   clear: both;
 }
 
+.page-template-template-collective .page-title {
+  margin-bottom: 2em;
+}
+
 #the-collective {
   margin-top: 0;
 }
@@ -2016,28 +2027,6 @@ form.search input[type="search"] {
   content: "";
   display: table;
   clear: both;
-}
-#the-collective #collective-heading {
-  display: block;
-  height: 10rem;
-  width: 100%;
-  padding-top: 2rem;
-  background-color: white;
-  z-index: 1;
-}
-@media (min-width: 1024px) {
-  #the-collective #collective-heading {
-    height: 5rem;
-    box-shadow: 0px 30px 40px 30px white;
-    padding-top: 6rem;
-    padding-bottom: 2rem;
-    left: auto;
-  }
-}
-#the-collective #collective-heading p {
-  position: relative;
-  top: -1.8em;
-  margin: 0;
 }
 #the-collective #spacing-fix {
   display: none;
@@ -2104,6 +2093,24 @@ form.search input[type="search"] {
   color: #444;
 }
 
+#collective-heading {
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  height: 3em;
+}
+#collective-heading .page-title {
+  margin-bottom: 0;
+}
+#collective-heading p {
+  margin: 0;
+}
+@media (min-width: 1024px) {
+  #collective-heading {
+    margin-top: 0;
+  }
+}
+
 .the-collective .mobile-dropdown {
   background-color: #fff;
   top: 6rem;
@@ -2116,7 +2123,6 @@ form.search input[type="search"] {
   }
 }
 .the-collective .contextual-module {
-  padding: 0;
   height: 4.5rem;
 }
 @media (min-width: 1024px) {
@@ -2125,26 +2131,16 @@ form.search input[type="search"] {
   }
 }
 
-.slide-link {
-  cursor: pointer;
-  color: #444;
-  font-weight: 700;
-  border-bottom: 1px dashed #eee;
-}
 @media (min-width: 1024px) {
-  .slide-link {
-    margin-top: 1em;
-    border-bottom: none;
+  #collective-menu li.menu-item-has-children {
+    margin-bottom: 1em;
   }
 }
-.slide-link.active {
-  color: #d18b00;
+#collective-menu > li > a {
+  font-weight: 700;
+  color: #444;
 }
-
-.sub-slide-link {
-  cursor: pointer;
-}
-.sub-slide-link.active {
+#collective-menu li.current-menu-item > a {
   color: #d18b00;
 }
 

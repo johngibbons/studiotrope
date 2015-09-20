@@ -213,106 +213,6 @@
   }
 
   /**************************************************
-    Fullpage slides for The Collective
-   **************************************************/
-
-  if ( $("#fullpage").length ) {
-    $("#fullpage").fullpage({
-      anchors: ["collective", "manifesto", "voice", "architecture", "architecture-services", "architecture-people", "architecture-projects", "interiors", "interiors-services", "interiors-people", "interiors-projects", "graphics", "graphics-services", "graphics-people", "graphics-projects"],
-      autoScrolling: false,
-      animateAnchor: false,
-      menu: "#slides-nav",
-      scrollingSpeed: 700,
-      fitToSection: false,
-      verticalCentered: false,
-      paddingTop: "6rem",
-      paddingBottom: "8rem",
-      recordHistory: false,
-      onLeave: function( ){
-        var leavingSection = $(this);
-        leavingSection.addClass("is-hidden");
-      },
-      afterLoad: function( anchor, index ){
-        index = index;
-        var loadedSection = $(this);
-        loadedSection.removeClass("is-hidden");
-        var heading = $("#collective-heading");
-        var title = heading.find(".text");
-        var subtitle = heading.find(".detail");
-        var icons = heading.find("use");
-        if (anchor === "collective") {
-          title.html("The Collective");
-          subtitle.html("");
-          icons.attr("xlink:href", "#icons_combined");
-        } else if ( anchor === "manifesto" ) {
-          title.html("Manifesto");
-          subtitle.html("");
-          icons.attr("xlink:href", "#icons_combined");
-        } else if ( anchor === "voice" ) {
-          title.html("Voice");
-          subtitle.html("");
-          icons.attr("xlink:href", "#icons_combined");
-        } else if ( anchor === "architecture" ) {
-          title.html("Architecture");
-          subtitle.html("");
-          icons.attr("xlink:href", "#architecture_icon");
-        } else if ( anchor === "architecture-services" ) {
-          title.html("Architecture");
-          subtitle.html("services");
-          icons.attr("xlink:href", "#architecture_icon");
-        } else if ( anchor === "architecture-people" ) {
-          title.html("Architecture");
-          subtitle.html("people");
-          icons.attr("xlink:href", "#architecture_icon");
-        } else if ( anchor === "architecture-projects" ) {
-          title.html("Architecture");
-          subtitle.html("projects");
-          icons.attr("xlink:href", "#architecture_icon");
-        } else if ( anchor === "interiors" ) {
-          title.html("Interior Design");
-          subtitle.html("");
-          icons.attr("xlink:href", "#interiors_icon");
-        } else if ( anchor === "interiors-services" ) {
-          title.html("Interior Design");
-          subtitle.html("services");
-          icons.attr("xlink:href", "#interiors_icon");
-        } else if ( anchor === "interiors-people" ) {
-          title.html("Interior Design");
-          subtitle.html("people");
-          icons.attr("xlink:href", "#interiors_icon");
-        } else if ( anchor === "interiors-projects" ) {
-          title.html("Interior Design");
-          subtitle.html("projects");
-          icons.attr("xlink:href", "#interiors_icon");
-        } else if ( anchor === "graphics" ) {
-          title.html("Graphic Design");
-          subtitle.html("");
-          icons.attr("xlink:href", "#graphics_icon");
-        } else if ( anchor === "graphics-services" ) {
-          title.html("Graphic Design");
-          subtitle.html("services");
-          icons.attr("xlink:href", "#graphics_icon");
-        } else if ( anchor === "graphics-people" ) {
-          title.html("Graphic Design");
-          subtitle.html("people");
-          icons.attr("xlink:href", "#graphics_icon");
-        } else if ( anchor === "graphics-projects" ) {
-          title.html("Graphic Design");
-          subtitle.html("projects");
-          icons.attr("xlink:href", "#graphics_icon");
-        }
-      },
-    });
-
-    $(".section").css("height", "");
-    $(window).on("scroll", function() {
-      $("#collective-heading").css("position", "fixed");
-      $("#spacing-fix").show();
-    });
-
-  }
-
-  /**************************************************
     Troper Name shows on hover
     **************************************************/
 
@@ -508,18 +408,6 @@
 
       $(".dropdown-sublist-title").click(function() {
         $(this).next().slideToggle(100);
-      });
-
-      /***********************************************************
-        Collective Dropdown
-       ************************************************************/
-
-      $("body").on("click", ".slide-link, .sub-slide-link" , function() {
-        $(".dropdown").slideToggle(100);
-      });
-
-      $(window).scroll(function() {
-        $(".the-collective .mobile-dropdown").css("position", "fixed");
       });
 
       /***********************************************************
