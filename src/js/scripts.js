@@ -234,6 +234,27 @@
     });
   }
 
+    /***********************************************************
+      Single Project Page Hide Voice and Show Image as Scroll Down
+      ************************************************************/
+
+    if ($("#voice-heading").length) {
+      var headerHeight = $("#header-bar").outerHeight();
+      var fromTop = $("#voice-heading").offset().top;
+      var fromHeader = fromTop - headerHeight - 20;
+
+      $(window).scroll(function(){
+        var scrolled = $(window).scrollTop();
+        console.log( "fromHeader: ", fromHeader );
+        console.log( "scrolled: ", scrolled );
+        if ( fromHeader <= scrolled ) {
+          $("#voice-heading").find(".overlay").addClass("is-hidden");
+        } else {
+          $("#voice-heading").find(".overlay").removeClass("is-hidden");
+        }
+      });
+    }
+
     /**************************************************
       Scripts Based on Window Width
      **************************************************/
@@ -288,61 +309,6 @@
       if ( $("#troper-profile-picture").length ) {
         $("#troper-profile-picture").stick_in_parent({offset_top: $headerHeight + 20});
       }
-
-      /**************************************************
-        Header Hide on Scroll Down, Show on Scroll Up
-       **************************************************/
-
-//      $(window).scroll(
-//
-//          {
-//            previousTop: 0
-//          }, 
-//
-//          function () {
-//
-//            var currentTop = $(window).scrollTop();
-//
-//            // If Past Header Hide or Show Header Based on scroll direction
-//            if( currentTop > $headerHeight ) {
-//
-//              if (currentTop < this.previousTop) {
-//                // Show header if scroll up
-//                $("#header-bar, .mobile-dropdown").addClass("show");
-//              } else {
-//                // Hide header if scroll down
-//                $("#header-bar, .mobile-dropdown").removeClass("show");
-//              }
-//
-//            } else if($(window).scrollTop() === 0) {
-//              // Return to absolute positioning once at top of page
-//              $("#header-bar, .mobile-dropdown").removeClass("show");
-//
-//            }
-//
-//            // Recalculate Previous Scroll Position
-//            this.previousTop = currentTop;
-//
-//          });
-
-      /***********************************************************
-        Single Project Page Hide Voice and Show Image as Scroll Down
-       ************************************************************/
-
-      var speed = 10.5;
-      var imageHeight = $(".featured-image").height();
-      var initialOverlayOpacity = $("#voice-heading").find(".overlay").css("opacity");
-
-      $(window).scroll(function(){
-
-        var dist = $(window).scrollTop();
-        var textOpacity = (imageHeight - speed * dist) / imageHeight;
-        var overlayOpacity = initialOverlayOpacity * (imageHeight - speed * dist) / imageHeight;
-
-        $(".project-voice").css("opacity", textOpacity);
-        $("#voice-heading").find(".overlay").css("opacity", overlayOpacity);
-
-      });
 
       // Prevent JShint from throwing unknown variable errors with GSAP
       /* global TimelineLite: false */

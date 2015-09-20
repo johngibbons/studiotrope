@@ -8,8 +8,9 @@
       <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large' ); ?>
       <?php $url = $url[0]; ?>
         <div class="featured-image" style="background-image: url( <?php echo $url ?> );"></div>
-          <div class="overlay"></div>
-          <p class="project-voice"><span><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span></p>
+          <div class="overlay">
+            <p class="project-voice"><span><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span></p>
+          </div>
         </div>
       <?php $flexible_content_type = "project"; ?>
       <?php include(locate_template('flexible-content.php')); ?>

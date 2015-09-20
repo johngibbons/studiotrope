@@ -132,9 +132,6 @@ function html5blank_header_scripts()
       // GSAP
       wp_register_script('gsap', get_template_directory_uri(). '/bower_components/gsap/src/uncompressed/TweenMax.js');
 
-      // Fullpage.js
-      wp_register_script('fullpage', get_template_directory_uri(). '/bower_components/fullpage.js/jquery.fullPage.min.js');
-
       // Text resizing by container size
       wp_register_script('textfill', get_template_directory_uri(). '/bower_components/jquery-textfill/source/jquery.textfill.js');
 
@@ -152,7 +149,6 @@ function html5blank_header_scripts()
           'mixitup',
           'stickykit',
           'gsap',
-          'fullpage',
           'textfill',
           'lazyload'
         ),
@@ -193,9 +189,6 @@ function html5blank_styles()
   if (HTML5_DEBUG) {
     // normalize-css
     wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize.css/normalize.css', array(), '3.0.1');
-
-    // Fullpage.js
-    wp_register_style('fullpage', get_template_directory_uri() . '/bower_components/fullpage.js/jquery.fullPage.css', array('fullpage'), '1.0');
 
     // Custom CSS
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize'), '1.0');

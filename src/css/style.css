@@ -1510,8 +1510,11 @@ form.search input[type="search"] {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #000;
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+.single-project .overlay.is-hidden {
+  background-color: transparent;
 }
 
 .project-details .troper-avatar {
