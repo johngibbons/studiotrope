@@ -1470,13 +1470,10 @@ form.search input[type="search"] {
 .single-project #voice-heading {
   position: relative;
   width: 100%;
-  height: 60rem;
-  overflow: hidden;
 }
-@media (min-width: 1024px) {
-  .single-project #voice-heading {
-    height: 60rem;
-  }
+.single-project #voice-heading img {
+  width: 100%;
+  height: auto;
 }
 .single-project .project-voice {
   position: absolute;
@@ -1497,12 +1494,6 @@ form.search input[type="search"] {
     width: 60%;
     height: auto;
   }
-}
-.single-project .featured-image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
 }
 .single-project .overlay {
   position: absolute;
@@ -1674,7 +1665,7 @@ form.search input[type="search"] {
   bottom: 3rem;
   left: 0;
   max-height: 80%;
-  padding: 1rem 0 1rem 3rem;
+  padding: 1rem 0 1rem 4rem;
   font-size: 168%;
   font-weight: 700;
   font-family: "bookmania", sans-serif;

@@ -83,6 +83,31 @@ function html5blank_nav()
   );
 }
 
+// The Collective page navigation
+function the_collective_nav()
+{
+  wp_nav_menu(
+    array(
+      'theme_location'  => 'collective-menu',
+      'menu'            => '',
+      'container'       => 'div',
+      'container_class' => 'menu-{menu slug}-container',
+      'container_id'    => '',
+      'menu_class'      => 'menu',
+      'menu_id'         => '',
+      'echo'            => true,
+      'fallback_cb'     => 'wp_page_menu',
+      'before'          => '',
+      'after'           => '',
+      'link_before'     => '',
+      'link_after'      => '',
+      'items_wrap'      => '<ul id="collective-menu" class="detail dropdown">%3$s</ul>',
+      'depth'           => 0,
+      'walker'          => ''
+    )
+  );
+}
+
 // Load HTML5 Blank scripts (header.php)
 function html5blank_header_scripts()
 {
@@ -107,12 +132,6 @@ function html5blank_header_scripts()
       // GSAP
       wp_register_script('gsap', get_template_directory_uri(). '/bower_components/gsap/src/uncompressed/TweenMax.js');
 
-      // Fullpage.js
-      wp_register_script('fullpage', get_template_directory_uri(). '/bower_components/fullpage.js/jquery.fullPage.min.js');
-
-      // Animsition for page transitions
-      wp_register_script('animsition', get_template_directory_uri(). '/bower_components/animsition/dist/js/jquery.animsition.js');
-
       // Text resizing by container size
       wp_register_script('textfill', get_template_directory_uri(). '/bower_components/jquery-textfill/source/jquery.textfill.js');
 
@@ -130,8 +149,6 @@ function html5blank_header_scripts()
           'mixitup',
           'stickykit',
           'gsap',
-          'fullpage',
-          'animsition',
           'textfill',
           'lazyload'
         ),
@@ -173,14 +190,8 @@ function html5blank_styles()
     // normalize-css
     wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize.css/normalize.css', array(), '3.0.1');
 
-    // Animsition
-    wp_register_style('animsition', get_template_directory_uri() . '/bower_components/animsition/dist/css/animsition.min.css', array('normalize'), '1.0');
-
-    // Fullpage.js
-    wp_register_style('fullpage', get_template_directory_uri() . '/bower_components/fullpage.js/jquery.fullPage.css', array('fullpage'), '1.0');
-
     // Custom CSS
-    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize', 'animsition'), '1.0');
+    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize'), '1.0');
 
     // Register CSS
     wp_enqueue_style('html5blank');
@@ -205,8 +216,7 @@ function register_html5_menu()
 {
   register_nav_menus(array( // Using array to specify more menus if needed
     'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
-    'sidebar-menu' => __('Sidebar Menu', 'html5blank'), // Sidebar Navigation
-    'extra-menu' => __('Extra Menu', 'html5blank') // Extra Navigation if needed (duplicate as many as you need!)
+    'collective-menu' => __('Sidebar Menu for The Collective', 'the_collective'), // Sidebar Navigation
   ));
 }
 
@@ -480,6 +490,17 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
+
+// custom class for dropdown nav menu
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
+function special_nav_class($classes, $item){
+  $parent = $item->menu_item_parent;
+  if( $parent == 0 ){ //Notice you can change the conditional from is_single() and $item->title
+    $classes[] = "special-class";
+  }
+    return $classes;
+}
 
 /*------------------------------------*\
     Custom Post Types
@@ -760,7 +781,8 @@ function custom_term_link($post_type, $term, $taxonomy) {
   return $link;
 }
 
+
 //Hide ACF Menu so nothing gets changed
 
-add_filter('acf/settings/show_admin', '__return_false');
+//add_filter('acf/settings/show_admin', '__return_false');
 ?>

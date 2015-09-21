@@ -7,7 +7,7 @@
 
   // Display connected tropers
   if ( $projects->have_posts() ) : ?>
-    <li class="label">Worked On:</li>
+    <li class="label">Projects:</li>
     <?php while ( $projects->have_posts() ) : $projects->the_post(); ?>
     <a href="<?php the_permalink(); ?>" class="project">
       <li class="value">

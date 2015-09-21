@@ -7,6 +7,13 @@
   <div id="thumbnail-toggle" class="detail">
     <span id="toggle-images" class="toggle-option is-selected">show images</span> |
     <span id="toggle-voice" class="toggle-option">show voice</span>
+    <i class="fa fa-question-circle">
+      <div class="tooltip">
+        <p id="voice-description">
+        <?php the_field("voice_description_short", "option"); ?> <a href="<?php echo get_permalink( get_page_by_path( 'the-collective/voice' ) ); ?>"><br><br>Learn More</a>
+        </p>
+      </div>
+    </i>
   </div>
   <section id="projects-index" class="container">
     <?php get_template_part('loop-project'); ?>

@@ -1,4 +1,4 @@
-<aside class="contextual-module animsition" data-animsition-in="fade-in-left-sm">
+<aside class="contextual-module">
 <?php if ( function_exists('yoast_breadcrumb') ) {
 yoast_breadcrumb('<p id="breadcrumbs">','</p>');
 } ?>

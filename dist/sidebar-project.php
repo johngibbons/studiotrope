@@ -61,7 +61,6 @@
 
   <ul class="detail">
       <?php custom_taxonomies_terms_links(); // Project Details Links ?>
-      <?php get_template_part('connected-tropers'); // Contributers ?>
   </ul>
   <p id="project-detail-description">
     <?php echo get_post_meta(get_the_ID(), "st_project_description", true); ?>

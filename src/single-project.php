@@ -7,7 +7,7 @@
     <?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
       <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large' ); ?>
       <?php $url = $url[0]; ?>
-        <div class="featured-image" style="background-image: url( <?php echo $url ?> );"></div>
+        <img src="<?php echo $url; ?>" class="featured-image">
           <div class="overlay">
             <p class="project-voice"><span><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span></p>
           </div>
