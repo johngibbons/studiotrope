@@ -19,6 +19,8 @@ var gulp = require( "gulp" ),
       "src/bower_components/sticky-kit/jquery.sticky-kit.js",
       /** TextFill */
       "src/bower_components/jquery-textfill/source/jquery.textfill.js",
+      /** Instantclick */
+      "src/bower_components/instantclick/instantclick.js",
       /** Page scripts */
       "src/js/scripts.js"
     ],

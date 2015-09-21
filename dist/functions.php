@@ -428,7 +428,6 @@ function html5blankcomments($comment, $args, $depth)
 
 // Add Actions
 add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
-add_action( 'wp_enqueue_scripts', 'theme_typekit' ); //Add Typekit Fonts
 add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
@@ -436,7 +435,6 @@ add_action('wp_enqueue_scripts', 'fontAwesome_styles');
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
-add_action( 'wp_head', 'theme_typekit_inline' ); //Add Typekit Fonts
 add_action( 'p2p_init', 'st_connection_types' ); //Troper to Project Connection
 // add_action( 'wp_ajax_nopriv_projects_filter', 'st_projects_filter' ); //Ajax Projects Filter
 // add_action( 'wp_ajax_projects_filter', 'st_projects_filter' ); //Ajax Projects Filter
