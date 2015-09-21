@@ -10,7 +10,7 @@
     <i class="fa fa-question-circle">
       <div class="tooltip">
         <p id="voice-description">
-        <?php the_field("voice_description_short", "option"); ?> <a href="<?php echo get_permalink( get_page_by_path( 'the-collective/voice' ) ); ?>"><br><br>Learn More</a>
+        <?php the_field("voice_description_short", "option"); ?> <a href="<?php the_field("voice_link", "option"); ?>"><br><br>Learn More</a>
         </p>
       </div>
     </i>

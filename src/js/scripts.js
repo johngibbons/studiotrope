@@ -9,17 +9,6 @@
 
 
     /**************************************************
-      Lazy loading for project images
-     **************************************************/
-
-    if ($("img.lazy").length) {
-      $("img.lazy").lazyload({
-        effect: "fadeIn",
-        threshold: 400
-      });
-    }
-
-    /**************************************************
       Mobile Navigation Sliding Menu
      **************************************************/
 
@@ -33,52 +22,94 @@
       Video Sizing Responsive to Container Size
      **************************************************/
 
-    // Find all embedded content
-    var $embeds = $("iframe");
+      // Find all embedded content
+    if ($("iframe").length && $(".l-container-w-side").length) {
+      var $embeds = $("iframe");
+      var $fluidEl;
+      if ($(".l-container-w-side").length) {
+        $fluidEl = $(".l-container-w-side");
+      } else {
+        $fluidEl = $("body");
+      }
 
-    // Figure out and save aspect ratio for each video
-    $embeds.each(function() {
-
-      $(this)
-        .data("aspectRatio", this.height / this.width)
-
-        // and remove the hard coded width/height
-        .removeAttr("height")
-        .removeAttr("width");
-
-    });
-
-    // When the window is resized
-    $(window).resize(function() {
-      // Resize all videos according to their own aspect ratio
-      var windowRatio = $(window).height() / $(window).width();
-
+      // Figure out and save aspect ratio for each video
       $embeds.each(function() {
 
-        var $el = $(this);
-        var $container = $el.closest("div");
+        $(this)
+          .data("aspectRatio", $(this).attr("height") / $(this).attr("width"))
+          // and remove the hard coded width/height
+          .removeAttr("height")
+          .removeAttr("width");
 
-        if ($el.data("aspectRatio") < windowRatio) {
-          $container.css({"width": "auto", "height": "100%" });
-          var newHeight = $container.height();
+      });
 
-          $el
-            .height(newHeight)
-            .width(newHeight / $el.data("aspectRatio"));
-        } else {
-          $container.css({"width": "100%", "height": "auto" });
-          var newWidth = $container.width();
+      // When the window is resized
+      $(window).resize(function() {
+        // Resize all videos according to their own aspect ratio
+        var newWidth = $fluidEl.width();
 
+        $embeds.each(function() {
+
+          var $el = $(this);
+          console.log($el.data("aspectRatio"));
           $el
             .width(newWidth)
             .height(newWidth * $el.data("aspectRatio"));
 
-        }
+        });
 
-      });
+        // Kick off one resize to fix all videos on page load
+      }).resize();
+    }
 
-      // Kick off one resize to fix all videos on page load
-    }).resize();
+    /**************************************************
+      Video Sizing Full Screen for Home Page
+     **************************************************/
+
+      // Find all embedded content
+      if ($("#home-hero").length) {
+        var $video = $("iframe");
+        console.log("init width", $video.attr("width"));
+        console.log("init height", $video.attr("height"));
+
+        var videoAspect = $video.attr("height") / $video.attr("width");
+        console.log("init aspect", videoAspect);
+
+        $video
+          .removeAttr("height")
+          .removeAttr("width");
+
+
+        // When the window is resized
+        $(window).resize(function() {
+          // Resize all videos according to their own aspect ratio
+          var windowAspectRatio = $(window).height() / $(window).width();
+          console.log("windowAspect: ", windowAspectRatio);
+          console.log("videoAspect: ", videoAspect);
+
+          if (windowAspectRatio < videoAspect) {
+            console.log("window wider");
+            // Window wider than video
+            var newWidth = $(window).width();
+
+            $video
+              .width(newWidth)
+              .height(newWidth * videoAspect);
+          } else {
+            console.log("window taller");
+            // Window taller than video
+            var newHeight = $(window).height();
+
+            $video
+              .width(newHeight / videoAspect)
+              .height(newHeight);
+          }
+
+
+          // Kick off one resize to fix all videos on page load
+        }).resize();
+
+      }
 
     /**************************************************
       Projects Index Filter
@@ -213,6 +244,25 @@
   }
 
   /**************************************************
+    Project Content Filter
+   **************************************************/
+
+  if ( $(".js-filter").length ){
+    $(".js-filter").on("change", "input", function(){
+      $(".l-content-module").show();
+      $(".js-filter").find("input").each(function(){
+        if (this.checked) {
+          $(this).parent("label").addClass("selected");
+          var studio = $(this).val();
+          $(".l-content-module").not($("." + studio)).hide();
+        } else {
+          $(this).parent("label").removeClass("selected");
+        }
+      });
+    });
+  }
+
+  /**************************************************
     Troper Name shows on hover
     **************************************************/
 
@@ -307,55 +357,6 @@
       if ( $("#troper-profile-picture").length ) {
         $("#troper-profile-picture").stick_in_parent({offset_top: $headerHeight + 20});
       }
-
-      // Prevent JShint from throwing unknown variable errors with GSAP
-      /* global TimelineLite: false */
-      /* jshint undef: true, unused: false */
-
-      window.onload = function(){
-
-
-
-
-        /***********************************************************
-          Custom GSAP animations for The Collective Page
-        ************************************************************/
-
-        // Elements to be Animated
-        var heading = $("collective-heading");
-        var scrollInstr = $("#scrollInstr");
-        var studiotropeText = $(".studiotrope-text");
-        var pronunciation = $(".pronunciation");
-        var definition = $(".definition");
-        var firstParagraph = $(".first");
-        var studioNames = $(".studio-name");
-        var secondParagraph = $(".second");
-        var collective = $("#collective");
-
-        // Initialize TimelineLite in a paused state
-        var tl = new TimelineLite();
-
-        // Apply animations as user scrolls or clicks on navs in a paused state
-        tl.from(heading, 0.3, {autoAlpha: 0})
-          .from(studiotropeText, 0.3, {autoAlpha: 0})
-          .from(pronunciation, 0.3, {autoAlpha: 0})
-          .from(definition, 0.3, {autoAlpha: 0})
-          .from(firstParagraph, 0.5, {top: "30rem", autoAlpha:0})
-          .from(studioNames, 0.5, {autoAlpha:0} )
-          .from(scrollInstr, 0.5, {autoAlpha:0} );
-
-        //Animate based on slides rather than direct scrolling distance
-        var lastScrollTop = 0;
-        $(window).scroll(function(){
-          var st = $(this).scrollTop();
-          if (st > lastScrollTop){
-            tl.play();
-          } else {
-            //tl.reverse();
-          }
-          lastScrollTop = st;
-        });
-      };
 
     } else {
 
@@ -666,7 +667,6 @@ var wipeScroll = {
         numImages: $(this).find(".image").length,
       });
     });
-    console.log(self.groups);
 
     self.setHeights();
     self.stackImages();

@@ -13,6 +13,10 @@
     }
   }
 
+  .l-content-module.is-hidden {
+    display: none;
+  }
+
   .project-voice {
     position: absolute;
     top: 50%;
@@ -100,4 +104,41 @@
 
 #project-detail-description {
   margin-top: 3rem;
+}
+
+.js-filter {
+
+  display: block;
+  border-top: $base-border-medium-dashed;
+  border-bottom: $base-border-medium-dashed;
+  margin-top: 2em;
+  padding: 2em;
+  background-color: $st-off-white;
+  text-align: center;
+  width: 100%;
+
+  p.filter-text {
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .js-link {
+    display: inline-block;
+    margin-right: 3em;
+    font-size: $font-size-base;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.selected {
+      color: $st-orange;
+      font-weight: 700;
+    }
+  }
+
 }

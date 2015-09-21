@@ -17,12 +17,8 @@ var gulp = require( "gulp" ),
       "src/bower_components/bower-mixitup/src/jquery.mixitup.js",
       /** Sticky Kit */
       "src/bower_components/sticky-kit/jquery.sticky-kit.js",
-      /** GSAP */
-      "src/bower_components/gsap/src/uncompressed/TweenMax.js",
       /** TextFill */
       "src/bower_components/jquery-textfill/source/jquery.textfill.js",
-      /** LazyLoad */
-      "src/bower_components/jquery.lazyload/jquery.lazyload.js",
       /** Page scripts */
       "src/js/scripts.js"
     ],

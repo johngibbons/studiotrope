@@ -129,14 +129,8 @@ function html5blank_header_scripts()
       // Sticky-kit
       wp_register_script('stickykit', get_template_directory_uri(). '/bower_components/sticky-kit/jquery.sticky-kit.js');
 
-      // GSAP
-      wp_register_script('gsap', get_template_directory_uri(). '/bower_components/gsap/src/uncompressed/TweenMax.js');
-
       // Text resizing by container size
       wp_register_script('textfill', get_template_directory_uri(). '/bower_components/jquery-textfill/source/jquery.textfill.js');
-
-      // Text resizing by container size
-      wp_register_script('lazyload', get_template_directory_uri(). '/bower_components/jquery.lazyload/jquery.lazyload.js');
 
       // Custom scripts
       wp_register_script(
@@ -148,9 +142,7 @@ function html5blank_header_scripts()
           'jquery',
           'mixitup',
           'stickykit',
-          'gsap',
           'textfill',
-          'lazyload'
         ),
         '1.0.0');
 

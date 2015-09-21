@@ -14,7 +14,18 @@
         $last = "last";
       } else { $last = ""; }
 
-      switch (get_row_layout()) {
+      if (get_sub_field("studio")) {
+        $terms = get_sub_field('studio');
+      } ?>
+<?php $studio_names = array();
+      array_push($studio_names, "all");
+      if( $terms ):
+        foreach( $terms as $term ):
+          array_push($studio_names, $term->slug); ?>
+  <?php endforeach;
+      endif; ?>
+
+      <?php switch (get_row_layout()) {
 
         case "image":
 
@@ -23,10 +34,10 @@
             $image = get_sub_field('image');
             $size = "large";
             $large = $image["sizes"][$size];
-            $width = $image["sizes"][$size . "-width"];
-            $height = $image["sizes"][$size . "-height"];
+            $img_width = $image["sizes"][$size . "-width"];
+            $img_height = $image["sizes"][$size . "-height"];
 ?> 
-  <img data-original="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>" class="lazy flexible-image l-content-module <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
+  <img src="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>" class="flexible-image l-content-module <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>" data-content-id="<?php echo $row_num ?>" width="<?php echo $img_width; ?>" height="<?php echo $img_height; ?>">
 
     <?php endif; ?>
 
@@ -36,7 +47,7 @@
 
           <?php if(get_sub_field("text")): ?>
 
-            <p class="flexible-text l-content-module <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>"><?php the_sub_field('text'); ?></p>
+            <p class="flexible-text l-content-module <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>" data-content-id="<?php echo $row_num ?>"><?php the_sub_field('text'); ?></p>
 
           <?php endif; ?>
 
@@ -46,7 +57,7 @@
 
           <?php if(get_sub_field("emphasis")): ?>
 
-            <div class="emphasis l-content-module l-full-bleed <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>">
+            <div class="emphasis l-content-module l-full-bleed <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>" data-content-id="<?php echo $row_num ?>">
               <?php if (get_sub_field("bool_quote")): ?>
                 <q><?php the_sub_field('emphasis'); ?></q>
               <?php else: ?>
@@ -65,7 +76,7 @@
 
           <?php if(get_sub_field("video")): ?>
 
-            <div class="flexible-video video l-content-module <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>"><?php the_sub_field('video'); ?></div>
+            <div class="flexible-video video l-content-module <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>" data-content-id="<?php echo $row_num ?>"><?php the_sub_field('video'); ?></div>
 
           <?php endif; ?>
 
@@ -75,7 +86,7 @@
 
           <?php if(get_sub_field("prezi")): ?>
 
-            <div class="flexible-prezi prezi l-content-module <?php echo "l_" . $width . " " . $last; ?>" data-content-id="<?php echo $row_num ?>"><?php the_sub_field('prezi'); ?></div>
+            <div class="flexible-prezi prezi l-content-module <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>" data-content-id="<?php echo $row_num ?>"><?php the_sub_field('prezi'); ?></div>
 
           <?php endif; ?>
 
@@ -87,7 +98,7 @@
 
             <?php $images = get_sub_field("images"); ?>
 
-            <div class="timelapse l-content-module <?php echo "l_" . $width . " " . $last; ?>">
+            <div class="timelapse l-content-module <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>">
               <div class="overlay">
                 <i class="fa fa-long-arrow-down"></i>
               </div>
@@ -100,7 +111,7 @@
                 $height = $image["sizes"][$size . "-height"];
     ?> 
                 <div class="image">
-                  <img data-original="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>" class="lazy" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
+                  <img src="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>">
                 </div>
               <?php endforeach; ?>
 

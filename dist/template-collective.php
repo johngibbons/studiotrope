@@ -1,6 +1,6 @@
 <?php /* Template Name: The Collective Page Template */ get_header(); ?>
 <?php get_template_part("contextual-module"); ?>
-<main class="l-container-w-side" role="main"> 
+<main id="the-collective" class="l-container-w-side" role="main"> 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
     <section id="page-<?php the_ID(); ?>">
       <?php $flexible_content_type = "collective"; ?>

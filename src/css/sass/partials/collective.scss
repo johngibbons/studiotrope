@@ -4,41 +4,10 @@
   }
 }
 #the-collective {
-  margin-top: 0;
-
-  @include susy-breakpoint($desktop, $desktop-columns){
-    position: relative;
-    padding-top: 0;
-  }
-
-  #fullpage {
-  }
 
   .mix {
     display: inline-block;
   }
-
-  .section {
-    opacity: 1;
-    transition: $base-transition;
-
-    @include susy-breakpoint($desktop, $desktop-columns){
-      margin-bottom: 0;
-    }
-
-    &.is-hidden {
-      @include susy-breakpoint($desktop, $desktop-columns){
-        opacity: 0;
-      }
-    }
-
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-  }
-
 
   #spacing-fix {
     display: none;
@@ -92,21 +61,24 @@
     position: relative;
   }
 
-  .studio-name {
-    display: block;
-    position: relative;
-    font-weight: 100;
-    color: $link-color;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    font-size: $font-size-base * 1.5;
-    margin-top: 0;
-  }
 
 
   .description {
     margin-top: 5rem;
     font-size: $font-size-base * 0.8;
+
+    h3 {
+      font-family: $font-family-details;
+      display: block;
+      position: relative;
+      font-weight: 100;
+      color: $link-color;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: $font-size-base * 1.25;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 
   .studio-title {

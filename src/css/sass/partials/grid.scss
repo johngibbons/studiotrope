@@ -1,6 +1,8 @@
 .l_full {
+
   @include susy-breakpoint($tablet, $tablet-columns) {
     @include span($tablet-columns of $tablet-columns);
+    clear: both;
   }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
@@ -16,6 +18,7 @@
 
   @include susy-breakpoint($tablet, $tablet-columns) {
     @include span(2*$tablet-columns/3 of $tablet-columns);
+    clear: both;
   }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
@@ -28,9 +31,9 @@
 }
 
 .l_one_half {
-
   @include susy-breakpoint($tablet, $tablet-columns) {
     @include span($tablet-columns/2 of $tablet-columns);
+    clear: both;
   }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
@@ -46,6 +49,7 @@
 
   @include susy-breakpoint($tablet, $tablet-columns) {
     @include span($tablet-columns/3 of $tablet-columns);
+    clear: both;
   }
 
   @include susy-breakpoint($desktop, $desktop-columns) {
@@ -60,6 +64,13 @@
 .last {
   @include susy-breakpoint($desktop, $desktop-columns) {
     @include last;
+    clear: none;
+
+    &:after {
+      content: "";
+      clear: both;
+      display: table;
+    }
   }
 }
 

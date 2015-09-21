@@ -15,7 +15,7 @@ yoast_breadcrumb('<p id="breadcrumbs">','</p>');
     get_sidebar("blogpost");
   elseif(is_search()):
     get_sidebar("search");
-  elseif(is_page_template("template-collective.php")):
+  elseif(is_page_template("template-collective.php") || is_page_template("template-collective-people.php") || is_page_template("template-collective-projects.php")):
     get_sidebar("collective");
   elseif(is_page_template("template-contact.php")):
     get_sidebar("contact");

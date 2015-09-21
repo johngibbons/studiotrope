@@ -12,6 +12,16 @@
             <p class="project-voice"><span><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span></p>
           </div>
         </div>
+      <div class="js-filter">
+        <p class="filter-text">Filter content by studio: </p>
+        <form action="">
+          <label class="js-link selected"><input type="radio" name="studio" value="all">all</label>
+          <?php $studios = project_studios(); ?>
+          <?php foreach ( $studios as $studio ): ?>
+            <label class="js-link"><input type="radio" name="studio" value="<?php echo $studio ?>"><?php echo $studio ?></label>
+          <?php endforeach; ?>
+        </form>
+      </div>
       <?php $flexible_content_type = "project"; ?>
       <?php include(locate_template('flexible-content.php')); ?>
     </section>
@@ -22,5 +32,15 @@
       <h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
     </section>
   <?php endif; ?>
+  <div class="js-filter">
+    <p class="filter-text">Filter content by studio: </p>
+    <form action="">
+      <label class="js-link selected"><input type="radio" name="studio" value="all">all</label>
+      <?php $studios = project_studios(); ?>
+      <?php foreach ( $studios as $studio ): ?>
+        <label class="js-link"><input type="radio" name="studio" value="<?php echo $studio ?>"><?php echo $studio ?></label>
+      <?php endforeach; ?>
+    </form>
+  </div>
 </main>
 <?php get_footer(); ?>
