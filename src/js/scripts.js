@@ -7,6 +7,24 @@
 
     // JQuery Document Ready
 
+    /**************************************************
+      Lazy loading for project images
+     **************************************************/
+
+    if ($("img.lazy").length) {
+      $("img.lazy").lazyload({
+        effect: "fadeIn",
+        threshold: 400
+      });
+    }
+
+    if ($("span.lazy").length) {
+      $("span.lazy").lazyload({ });
+      $("span.lazy").lazyload({
+        event: "filter",
+      });
+    }
+
 
     /**************************************************
       Mobile Navigation Sliding Menu
@@ -240,12 +258,12 @@
 
   if ( $(".js-filter").length ){
     $(".js-filter").on("change", "input", function(){
-      $(".l-content-module").show();
+      $(".l-content-module").removeClass("is-hidden");
       $(".js-filter").find("input").each(function(){
         if (this.checked) {
           $(this).parent("label").addClass("selected");
           var studio = $(this).val();
-          $(".l-content-module").not($("." + studio)).hide();
+          $(".l-content-module").not($("." + studio)).addClass("is-hidden");
         } else {
           $(this).parent("label").removeClass("selected");
         }
@@ -537,6 +555,7 @@ var checkboxFilter = {
 
     self.$filters.on("change", function(){
       self.parseFilters();
+      self.lazyloadThumbs();
     });
 
     self.$reset.on("click", function(e){
@@ -549,6 +568,9 @@ var checkboxFilter = {
   },
 
   // The parseFilters method checks which filters are active in each group:
+  lazyloadThumbs: function(){
+    $("span.lazy").trigger("filter");
+  },
 
   parseFilters: function(){
     var self = this;

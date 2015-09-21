@@ -10,12 +10,12 @@
     wp_reset_postdata(); // set $post back to original post ?>
     <article id="post-<?php the_ID(); ?>" <?php post_class($troper_ids); ?>>
       <?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
-        <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' ); ?>
+        <?php $url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'small' ); ?>
         <?php $url = $url[0]; ?>
         <a href="<?php the_permalink(); ?>">
           <h3 class="thumb-title"><?php echo the_title(); ?></h3>
           <span class="project-voice-thumb is-hidden"><span><?php echo get_post_meta(get_the_id(), "project_voice", true); ?></span></span>
-          <span class="project-thumb" style="background-image: url( <?php echo $url ?> );"></span>
+          <span class="project-thumb lazy" data-original="<?php echo $url ?>" style="background-color: #eee;"></span>
         </a>
       <?php endif; ?>
     </article>

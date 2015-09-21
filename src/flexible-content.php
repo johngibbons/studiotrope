@@ -37,7 +37,7 @@
             $img_width = $image["sizes"][$size . "-width"];
             $img_height = $image["sizes"][$size . "-height"];
 ?> 
-  <img src="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>" class="flexible-image l-content-module <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>" data-content-id="<?php echo $row_num ?>" width="<?php echo $img_width; ?>" height="<?php echo $img_height; ?>">
+      <img data-original="<?php echo $large; ?>" alt="<?php echo $image['alt']; ?>" class="lazy flexible-image l-content-module <?php echo "l_" . $width . " " . $last . " " . implode(" ", $studio_names); ?>" data-content-id="<?php echo $row_num ?>" width="<?php echo $img_width; ?>" height="<?php echo $img_height; ?>">
 
     <?php endif; ?>
 

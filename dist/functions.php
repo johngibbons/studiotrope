@@ -25,7 +25,7 @@ if (function_exists('add_theme_support'))
   add_theme_support('post-thumbnails');
   add_image_size('large', 1500, '', true); // Large Thumbnail
   add_image_size('medium', 750, '', true); // Medium Thumbnail
-  add_image_size('small', 250, '', true); // Small Thumbnail
+  add_image_size('small', 350, '', true); // Small Thumbnail
   add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
   // Add Support for Custom Backgrounds - Uncomment below if you're going to use
@@ -132,6 +132,8 @@ function html5blank_header_scripts()
       // Text resizing by container size
       wp_register_script('textfill', get_template_directory_uri(). '/bower_components/jquery-textfill/source/jquery.textfill.js');
 
+      wp_register_script('lazyload', get_template_directory_uri(). '/bower_components/jquery_lazyload/jquery.lazyload.js');
+
       // Custom scripts
       wp_register_script(
         'html5blankscripts',
@@ -143,6 +145,7 @@ function html5blank_header_scripts()
           'mixitup',
           'stickykit',
           'textfill',
+          'lazyload'
         ),
         '1.0.0');
 
@@ -426,6 +429,7 @@ add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_hea
 add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
+add_action('wp_enqueue_scripts', 'fontAwesome_styles'); // Font Awesome
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
@@ -500,6 +504,16 @@ function query_post_type($query) {
     $query->set('post_type', $post_type);
     return $query;
   }
+}
+
+/*------------------------------------*\
+    Font Awesome
+\*------------------------------------*/
+
+function fontAwesome_styles()
+{
+  wp_register_style('fontAwesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array());
+  wp_enqueue_style('fontAwesome');
 }
 
 /*------------------------------------*\
