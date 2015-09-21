@@ -51,7 +51,6 @@
         $embeds.each(function() {
 
           var $el = $(this);
-          console.log($el.data("aspectRatio"));
           $el
             .width(newWidth)
             .height(newWidth * $el.data("aspectRatio"));
@@ -69,11 +68,8 @@
       // Find all embedded content
       if ($("#home-hero").length) {
         var $video = $("iframe");
-        console.log("init width", $video.attr("width"));
-        console.log("init height", $video.attr("height"));
 
         var videoAspect = $video.attr("height") / $video.attr("width");
-        console.log("init aspect", videoAspect);
 
         $video
           .removeAttr("height")
@@ -84,11 +80,7 @@
         $(window).resize(function() {
           // Resize all videos according to their own aspect ratio
           var windowAspectRatio = $(window).height() / $(window).width();
-          console.log("windowAspect: ", windowAspectRatio);
-          console.log("videoAspect: ", videoAspect);
-
           if (windowAspectRatio < videoAspect) {
-            console.log("window wider");
             // Window wider than video
             var newWidth = $(window).width();
 
@@ -96,7 +88,6 @@
               .width(newWidth)
               .height(newWidth * videoAspect);
           } else {
-            console.log("window taller");
             // Window taller than video
             var newHeight = $(window).height();
 
@@ -656,6 +647,17 @@ var wipeScroll = {
   init: function(containers){
     var self = this;
 
+    self.containers = containers;
+    self.setContainers(containers);
+    self.setHeights();
+    self.stackImages();
+    self.addInstructions();
+    self.bindHandlers();
+  },
+
+  setContainers: function(containers){
+    var self = this;
+
     self.$containers = $(containers);
 
     self.$containers.each(function(){
@@ -664,14 +666,10 @@ var wipeScroll = {
         $imageStack: $(this).find(".image-stack"),
         $images: $(this).find(".image"),
         height: $(this).find("img").first().height(),
+        aspect: $(this).find("img").first().height() / $(this).find("img").first().width(),
         numImages: $(this).find(".image").length,
       });
     });
-
-    self.setHeights();
-    self.stackImages();
-    self.addInstructions();
-    self.bindHandlers();
   },
 
   // Set the heights of each container based on image height
@@ -725,6 +723,11 @@ var wipeScroll = {
           element.$images.eq(slideNumber + 1).css("height", element.height);
         }
       });
+    });
+
+    $(window).resize(function(){
+      self.setContainers(self.containers);
+      self.setHeights();
     });
   },
 
