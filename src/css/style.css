@@ -1488,7 +1488,6 @@ form.search input[type="search"] {
 .single-project .l-content-module.is-hidden {
   position: absolute;
   left: -9999px;
-  top: -9999px;
 }
 .single-project .project-voice {
   position: absolute;
@@ -1576,27 +1575,37 @@ form.search input[type="search"] {
   border-top: 1px dashed #c8c8c8;
   border-bottom: 1px dashed #c8c8c8;
   margin-top: 2em;
-  padding: 2em;
+  padding: 1em;
   background-color: #fafafa;
-  text-align: center;
+  text-align: left;
   width: 100%;
+}
+.js-filter p.filter-text {
+  display: inline-block;
 }
 .js-filter input[type="radio"] {
   display: none;
 }
+.js-filter form {
+  display: inline-block;
+}
 .js-filter .js-link {
   display: inline-block;
-  margin-right: 3em;
-  font-size: 140%;
-  text-transform: uppercase;
+  margin-left: 1em;
   cursor: pointer;
+  padding: 0.25em 0.5em;
+  transition: all 0.3s ease;
 }
 .js-filter .js-link:last-child {
   margin-right: 0;
 }
+.js-filter .js-link:hover {
+  background-color: rgba(209, 139, 0, 0.1);
+}
 .js-filter .js-link.selected {
   color: #d18b00;
   font-weight: 700;
+  background-color: rgba(209, 139, 0, 0.3);
 }
 
 .archive .category, .search .category {

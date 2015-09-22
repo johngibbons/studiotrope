@@ -257,18 +257,7 @@
    **************************************************/
 
   if ( $(".js-filter").length ){
-    $(".js-filter").on("change", "input", function(){
-      $(".l-content-module").removeClass("is-hidden");
-      $(".js-filter").find("input").each(function(){
-        if (this.checked) {
-          $(this).parent("label").addClass("selected");
-          var studio = $(this).val();
-          $(".l-content-module").not($("." + studio)).addClass("is-hidden");
-        } else {
-          $(this).parent("label").removeClass("selected");
-        }
-      });
-    });
+    new ProjectContentFilter();
   }
 
   /**************************************************
@@ -764,3 +753,39 @@ String.prototype.toProperCase = function () {
 };
 
 
+
+function ProjectContentFilter(){
+  this.filters = $(".js-filter");
+  this.labels = this.filters.find("label");
+
+  this.bindHandlers();
+}
+
+(function() {
+  this.bindHandlers = function(){
+    var self = this;
+    this.filters.on("change", "input", function(){
+      self.syncForms(this);
+      self.formatLabels();
+      self.filterContent();
+    });
+  };
+
+  this.syncForms = function(el){
+    this.studio = $(el).val();
+    this.selected = this.filters.find("input[value=" + this.studio + "]");
+    this.selected.prop("checked", true);
+  };
+
+  this.formatLabels = function(){
+    this.labels.removeClass("selected");
+    var selectedLabels = this.selected.closest("label");
+    selectedLabels.addClass("selected");
+  };
+
+  this.filterContent = function(){
+    var content = $(".l-content-module");
+    content.removeClass("is-hidden");
+    content.not($("." + this.studio)).addClass("is-hidden");
+  };
+}).call(ProjectContentFilter.prototype);

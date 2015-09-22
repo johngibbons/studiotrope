@@ -16,7 +16,6 @@
   .l-content-module.is-hidden {
     position: absolute;
     left: -9999px;
-    top: -9999px;
   }
 
   .project-voice {
@@ -114,32 +113,42 @@
   border-top: $base-border-medium-dashed;
   border-bottom: $base-border-medium-dashed;
   margin-top: 2em;
-  padding: 2em;
+  padding: 1em;
   background-color: $st-off-white;
-  text-align: center;
+  text-align: left;
   width: 100%;
 
   p.filter-text {
+    display: inline-block;
   }
 
   input[type="radio"] {
     display: none;
   }
 
+  form {
+    display: inline-block;
+  }
+
   .js-link {
     display: inline-block;
-    margin-right: 3em;
-    font-size: $font-size-base;
-    text-transform: uppercase;
+    margin-left: 1em;
     cursor: pointer;
+    padding: 0.25em 0.5em;
+    transition: $base-transition;
 
     &:last-child {
       margin-right: 0;
     }
 
+    &:hover {
+      background-color: transparentize($st-orange, 0.9);
+    }
+
     &.selected {
       color: $st-orange;
       font-weight: 700;
+      background-color: transparentize($st-orange, 0.7);
     }
   }
 
