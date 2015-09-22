@@ -24,17 +24,17 @@
       </div>
       <?php $flexible_content_type = "project"; ?>
       <?php include(locate_template('flexible-content.php')); ?>
-      <div class="js-filter detail">
-        <p class="filter-text">Filter content by studio: </p>
-        <form action="">
-          <label class="js-link selected"><input type="radio" name="studio" value="all" checked>all</label>
-          <?php $studios = project_studios(); ?>
-          <?php foreach ( $studios as $studio ): ?>
-            <label class="js-link"><input type="radio" name="studio" value="<?php echo $studio ?>"><?php echo $studio ?></label>
-          <?php endforeach; ?>
-        </form>
-      </div>
     </section>
+    <div class="js-filter detail">
+      <p class="filter-text">Filter content by studio: </p>
+      <form action="">
+        <label class="js-link selected"><input type="radio" name="studio" value="all" checked>all</label>
+        <?php $studios = project_studios(); ?>
+        <?php foreach ( $studios as $studio ): ?>
+          <label class="js-link"><input type="radio" name="studio" value="<?php echo $studio ?>"><?php echo $studio ?></label>
+        <?php endforeach; ?>
+      </form>
+    </div>
     <?php endif; ?>
   <?php endwhile; ?>
   <?php else: ?>

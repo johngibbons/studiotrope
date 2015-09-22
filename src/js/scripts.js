@@ -768,6 +768,7 @@ function ProjectContentFilter(){
       self.syncForms(this);
       self.formatLabels();
       self.filterContent();
+      self.scrollToTop();
     });
   };
 
@@ -787,5 +788,13 @@ function ProjectContentFilter(){
     var content = $(".l-content-module");
     content.removeClass("is-hidden");
     content.not($("." + this.studio)).addClass("is-hidden");
+  };
+
+  this.scrollToTop = function(){
+    var self = this;
+    var headerHeight = $("#header-bar").height();
+    $("html, body").animate({
+        scrollTop: (self.filters.first().offset().top - headerHeight - 20)
+    }, 500);
   };
 }).call(ProjectContentFilter.prototype);
