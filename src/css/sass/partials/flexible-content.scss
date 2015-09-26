@@ -26,7 +26,14 @@
   overflow: auto;
 
   .scroll-container {
-    position: relative;
+    position: absolute;
+    overflow: auto;
+    width: 100%;
+  }
+
+  .dummy-content {
+    display: block;
+    width: 100%;
   }
 
   .overlay {
