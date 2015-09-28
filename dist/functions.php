@@ -487,7 +487,7 @@ function special_nav_class($classes, $item){
   if( $parent == 0 ){ //Notice you can change the conditional from is_single() and $item->title
     $classes[] = "special-class";
   }
-    return $classes;
+  return $classes;
 }
 
 /*------------------------------------*\
@@ -605,10 +605,10 @@ function swiftype_javascript_config() {
 ?>
   <script type="text/javascript">
   var swiftypeConfig = {
-    fetchFields: {'posts': ['title', 'object_type', 'terms']},
+  fetchFields: {'posts': ['title', 'object_type', 'terms']},
     searchFields: {'posts': ['title', 'terms', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
-  };
-  </script>
+};
+</script>
 <?php
 }
 
@@ -660,11 +660,6 @@ function custom_taxonomies_terms_links(){
   // get post type taxonomies
   $taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
-  // reorder so that tags are last
-  $tags = $taxonomies["project_tag"];
-  unset($taxonomies["project_tag"]);
-  $taxonomies["project_tag"] = $tags;
-
   foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
 
     // get the terms related to post
@@ -677,6 +672,35 @@ function custom_taxonomies_terms_links(){
   }
 
   wp_reset_query();
+}
+
+function show_all_project_image_tags(){
+  global $post;
+
+  $post = get_post( $post->ID );
+  $images = get_attached_media( "image" );
+  $tags = [];
+  foreach ( $images as $image ){
+    $tags_obj = get_the_terms( $image->ID, "image_tag" );
+    if ( $tags_obj ){
+      foreach ( $tags_obj as $tag ){
+        if ( $tag->name ) {
+          array_push( $tags, $tag->name );
+        }
+      }
+    }
+  }
+  $tags = array_unique($tags);
+
+  echo "<li class='label'>Tags</li>";
+  echo "<li class='value'>";
+  $tags_html = [];
+  foreach ($tags as $tag){
+    $url = get_term_link($tag, "image_tag");
+    array_push($tags_html, "<a href='" . $url . "'>" . $tag . "</a>");
+  }
+  echo implode($tags_html, " / ");
+  echo "</li>";
 }
 
 function project_studios(){
@@ -694,6 +718,21 @@ function project_studios(){
 
   return $studio_array;
 }
+
+// add attachments to the main query using parse_query 
+
+function wptutsplus_add_attachments_to_tax_query() {
+     global $wp_query;
+     // When inside a custom taxonomy archive include attachments
+     if ( is_tax( 'image_tag' ) ) {
+         $wp_query->query_vars['post_type'] =  array( 'attachment' );
+         $wp_query->query_vars['post_status'] =  array( null );
+ 
+        return $wp_query;
+    }
+}
+add_action('parse_query', 'wptutsplus_add_attachments_to_tax_query');
+
 
 // ACF options page
 if( function_exists('acf_add_options_page') ) {
@@ -754,15 +793,15 @@ add_filter( 'get_next_post_sort', 'my_next_post_sort' );
 function any_of_post_type($post_type) {
   global $post;
   if (have_posts()): while (have_posts()) : the_post(); 
-    $returned_types[] = get_post_type($post);
-  endwhile;
-  endif;
+  $returned_types[] = get_post_type($post);
+endwhile;
+endif;
 
-  if (isset($returned_types)) {
-    return in_array($post_type, $returned_types);
-  } else {
-    return false;
-  }
+if (isset($returned_types)) {
+  return in_array($post_type, $returned_types);
+} else {
+  return false;
+}
 }
 
 //Get projects link for specific studio

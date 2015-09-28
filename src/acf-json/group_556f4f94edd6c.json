@@ -1,0 +1,70 @@
+{
+    "key": "group_556f4f94edd6c",
+    "title": "Theme Options",
+    "fields": [
+        {
+            "key": "field_5575b5589c0f2",
+            "label": "Facebook Link",
+            "name": "facebook_link",
+            "type": "url",
+            "instructions": "Paste the link to your Facebook page here.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5575b58868ace",
+            "label": "Instagram Link",
+            "name": "instagram_link",
+            "type": "url",
+            "instructions": "Paste the link to your Instagram feed here.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5575b5a068acf",
+            "label": "Twitter Link",
+            "name": "twitter_link",
+            "type": "url",
+            "instructions": "Paste the link to your Twitter account here.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "general-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "modified": 1442968831
+}

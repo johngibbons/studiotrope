@@ -1575,6 +1575,7 @@ form.search input[type="search"] {
   border-top: 1px dashed #c8c8c8;
   border-bottom: 1px dashed #c8c8c8;
   margin-top: 2em;
+  margin-bottom: 2em;
   padding: 1em;
   background-color: #fafafa;
   text-align: left;
@@ -1582,19 +1583,32 @@ form.search input[type="search"] {
 }
 .js-filter p.filter-text {
   display: inline-block;
+  color: #444;
 }
 .js-filter input[type="radio"] {
   display: none;
 }
 .js-filter form {
-  display: inline-block;
+  display: block;
+}
+@media (min-width: 1024px) {
+  .js-filter form {
+    display: inline-block;
+    width: auto;
+  }
 }
 .js-filter .js-link {
-  display: inline-block;
-  margin-left: 1em;
+  display: block;
+  padding: 1em;
   cursor: pointer;
-  padding: 0.25em 0.5em;
   transition: all 0.3s ease;
+}
+@media (min-width: 1024px) {
+  .js-filter .js-link {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    margin-left: 1em;
+  }
 }
 .js-filter .js-link:last-child {
   margin-right: 0;
@@ -1679,11 +1693,11 @@ form.search input[type="search"] {
   margin: 0;
 }
 
-#projects-index, #people-index {
+#projects-index, #people-index, #images-results {
   text-align: justify;
   padding: 2rem 0;
 }
-#projects-index:after, #people-index:after {
+#projects-index:after, #people-index:after, #images-results:after {
   content: "";
   display: inline-block;
   width: 100%;
@@ -1805,7 +1819,13 @@ form.search input[type="search"] {
   overflow: auto;
 }
 .timelapse .scroll-container {
-  position: relative;
+  position: absolute;
+  overflow: auto;
+  width: 100%;
+}
+.timelapse .dummy-content {
+  display: block;
+  width: 100%;
 }
 .timelapse .overlay {
   opacity: 1;
@@ -2046,32 +2066,8 @@ form.search input[type="search"] {
 #the-collective .mix {
   display: inline-block;
 }
-#the-collective #spacing-fix {
-  display: none;
-  padding-top: 2rem;
-  height: 5rem;
-  width: 100%;
-}
-@media (min-width: 1024px) {
-  #the-collective #spacing-fix {
-    padding-top: 6rem;
-    padding-bottom: 2rem;
-  }
-}
 #the-collective #collective {
   position: relative;
-}
-#the-collective #scrollInstr {
-  margin-top: 5rem;
-}
-#the-collective #scrollInstr .fa {
-  margin-left: 0.5em;
-  animation: pulse 2s ease infinite;
-}
-@media (min-width: 1024px) {
-  #the-collective #scrollInstr {
-    display: block;
-  }
 }
 #the-collective .studiotrope-text {
   position: relative;
@@ -2142,9 +2138,6 @@ form.search input[type="search"] {
     background-color: transparent;
   }
 }
-.the-collective .contextual-module {
-  height: 4.5rem;
-}
 @media (min-width: 1024px) {
   .the-collective .contextual-module {
     padding: 10rem 4rem 6rem;
@@ -2209,6 +2202,25 @@ form.search input[type="search"] {
     padding-left: 0;
     font-weight: 700;
   }
+}
+
+.tax-image_tag .mix {
+  display: inline-block;
+}
+
+.image.mix {
+  display: inline-block;
+}
+
+.image-thumb {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  transition: all 0.3s ease;
+}
+.image-thumb:hover {
+  filter: brightness(120%) saturate(80%);
 }
 
 /*# sourceMappingURL=style.css.map */

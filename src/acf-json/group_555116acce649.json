@@ -1,0 +1,725 @@
+{
+    "key": "group_555116acce649",
+    "title": "Project",
+    "fields": [
+        {
+            "key": "field_55672f482a38e",
+            "label": "Project Voice",
+            "name": "project_voice",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_555b86ed6761d",
+            "label": "Project Description",
+            "name": "st_project_description",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "br",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_554fc776da97e",
+            "label": "Flexible Project Content",
+            "name": "flexible_content_project",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "button_label": "Add Project Content",
+            "min": "",
+            "max": "",
+            "layouts": [
+                {
+                    "key": "5551176c52d59",
+                    "name": "image",
+                    "label": "Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5551184118a3d",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 2,
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_55512884b8e0a",
+                            "label": "Width",
+                            "name": "width",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "full": "Full Width",
+                                "two_thirds": "2\/3",
+                                "one_half": "1\/2",
+                                "one_third": "1\/3"
+                            },
+                            "default_value": {
+                                "full": "full"
+                            },
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 1,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
+                        },
+                        {
+                            "key": "field_55513468ea803",
+                            "label": "Last",
+                            "name": "last",
+                            "type": "true_false",
+                            "instructions": "Is this the last item in the row?",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Yes",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_55ff785ec8cf3",
+                            "label": "Studio(s)",
+                            "name": "studio",
+                            "type": "taxonomy",
+                            "instructions": "Select which studio(s) this image relates to.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "studio",
+                            "field_type": "checkbox",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "load_save_terms": 0,
+                            "return_format": "object",
+                            "multiple": 0,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "55511a75236eb",
+                    "name": "text",
+                    "label": "Text Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_555119ae18a3e",
+                            "label": "Text Block",
+                            "name": "text",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": "",
+                            "new_lines": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_555135f08c596",
+                            "label": "Width",
+                            "name": "width",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "full": "Full Width",
+                                "two_thirds": "2\/3",
+                                "one_half": "1\/2",
+                                "one_third": "1\/3"
+                            },
+                            "default_value": {
+                                "full": "full"
+                            },
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 1,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
+                        },
+                        {
+                            "key": "field_555136975436c",
+                            "label": "Last",
+                            "name": "last",
+                            "type": "true_false",
+                            "instructions": "Is this the last item in the row?",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Yes",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_55ff79146b8bc",
+                            "label": "Studio(s)",
+                            "name": "studio",
+                            "type": "taxonomy",
+                            "instructions": "Select which studio(s) this relates to.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "studio",
+                            "field_type": "checkbox",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "load_save_terms": 0,
+                            "return_format": "object",
+                            "multiple": 0,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "55514804c306e",
+                    "name": "video",
+                    "label": "Video",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_55514860c306f",
+                            "label": "Video",
+                            "name": "video",
+                            "type": "oembed",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "",
+                            "height": ""
+                        },
+                        {
+                            "key": "field_555158db28cea",
+                            "label": "Width",
+                            "name": "width",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "full": "Full Width",
+                                "two_thirds": "2\/3",
+                                "one_half": "1\/2",
+                                "one_third": "1\/3"
+                            },
+                            "default_value": {
+                                "full": "full"
+                            },
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 1,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
+                        },
+                        {
+                            "key": "field_55515915f8d13",
+                            "label": "Last",
+                            "name": "last",
+                            "type": "true_false",
+                            "instructions": "Is this the last item in the row?",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Yes",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_55ff792c6b8bd",
+                            "label": "Studio(s)",
+                            "name": "studio",
+                            "type": "taxonomy",
+                            "instructions": "Select which studio(s) this relates to.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "studio",
+                            "field_type": "checkbox",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "load_save_terms": 0,
+                            "return_format": "object",
+                            "multiple": 0,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "55511a91236ed",
+                    "name": "emphasis",
+                    "label": "Emphasized Text",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_55511a94236ee",
+                            "label": "Emphasized Text",
+                            "name": "emphasis",
+                            "type": "text",
+                            "instructions": "Use this for things like quotations, testimonials, or just text you want to stand out",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "e.g. Studiotrope is awesome!",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_5570c0d9c0dfc",
+                            "label": "Quote",
+                            "name": "bool_quote",
+                            "type": "true_false",
+                            "instructions": "Is this a quotation?  (This will add quotation marks before and after the Emphasized Text)",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Yes",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_5551690067fbc",
+                            "label": "Source",
+                            "name": "source",
+                            "type": "text",
+                            "instructions": "If a quotation or testimonial, you may enter the source here.  If none, just leave this blank.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "e.g. - John Smith, Client",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_555136248c597",
+                            "label": "Width",
+                            "name": "width",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "full": "Full Width",
+                                "two_thirds": "2\/3",
+                                "one_half": "1\/2",
+                                "one_third": "1\/3"
+                            },
+                            "default_value": {
+                                "full": "full"
+                            },
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 1,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
+                        },
+                        {
+                            "key": "field_555136845436b",
+                            "label": "Last",
+                            "name": "last",
+                            "type": "true_false",
+                            "instructions": "Is this the last item in the row?",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Yes",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_55ff79416b8be",
+                            "label": "Studio(s)",
+                            "name": "studio",
+                            "type": "taxonomy",
+                            "instructions": "Select which studio(s) this relates to.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "studio",
+                            "field_type": "checkbox",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "load_save_terms": 0,
+                            "return_format": "object",
+                            "multiple": 0,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "5570ba30149b7",
+                    "name": "prezi",
+                    "label": "Embedded Prezi",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5570ba8fe513c",
+                            "label": "Embedded Prezi",
+                            "name": "prezi",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "text",
+                            "toolbar": "basic",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_5570babae513d",
+                            "label": "Width",
+                            "name": "width",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "full": "Full Width",
+                                "two_thirds": "2\/3",
+                                "one_half": "1\/2",
+                                "one_third": "1\/3"
+                            },
+                            "default_value": {
+                                "full": "full"
+                            },
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
+                        },
+                        {
+                            "key": "field_5570baeee513e",
+                            "label": "Last",
+                            "name": "last",
+                            "type": "true_false",
+                            "instructions": "Is this the last item in the row?",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_55ff79566b8bf",
+                            "label": "Studio(s)",
+                            "name": "studio",
+                            "type": "taxonomy",
+                            "instructions": "Select which studio(s) this relates to.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "studio",
+                            "field_type": "checkbox",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "load_save_terms": 0,
+                            "return_format": "object",
+                            "multiple": 0,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "55896faff287d",
+                    "name": "timelapse",
+                    "label": "Timelapse",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_55896faff287e",
+                            "label": "Images",
+                            "name": "images",
+                            "type": "gallery",
+                            "instructions": "add all of your images here.  they must all be the exact same dimensions in order to work properly",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "min": "",
+                            "max": "",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_55896faff287f",
+                            "label": "Width",
+                            "name": "width",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "full": "Full Width",
+                                "two_thirds": "2\/3",
+                                "one_half": "1\/2",
+                                "one_third": "1\/3"
+                            },
+                            "default_value": {
+                                "full": "full"
+                            },
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
+                        },
+                        {
+                            "key": "field_55896faff2880",
+                            "label": "Last",
+                            "name": "last",
+                            "type": "true_false",
+                            "instructions": "Is this the last item in the row?",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_55ff79656b8c0",
+                            "label": "Studio(s)",
+                            "name": "studio",
+                            "type": "taxonomy",
+                            "instructions": "Select which studio(s) this relates to.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "studio",
+                            "field_type": "checkbox",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "load_save_terms": 0,
+                            "return_format": "object",
+                            "multiple": 0,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "custom_fields",
+        "discussion",
+        "comments"
+    ],
+    "modified": 1442970002
+}

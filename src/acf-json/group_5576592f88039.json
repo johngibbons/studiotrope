@@ -1,0 +1,103 @@
+{
+    "key": "group_5576592f88039",
+    "title": "Projects Index Filter",
+    "fields": [
+        {
+            "key": "field_55765939e4fc3",
+            "label": "Filter Instructions",
+            "name": "filter_instructions",
+            "type": "textarea",
+            "instructions": "This is the text that goes above the filter on desktop instructing the user on what the filter is.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": "br",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_557659780db5b",
+            "label": "Filter Description",
+            "name": "filter_description",
+            "type": "text",
+            "instructions": "This is the text that goes before the labels showing what is being filtered.  This only appears once filtering has occured.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5589ce5022e61",
+            "label": "Short Voice Description",
+            "name": "voice_description_short",
+            "type": "textarea",
+            "instructions": "This will be shown when the voice tooltip is clicked on the Projects page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "br",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_558a491764759",
+            "label": "Voice Link",
+            "name": "voice_link",
+            "type": "page_link",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-projects-filter"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "modified": 1442968846
+}

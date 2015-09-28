@@ -9,33 +9,8 @@
     display: inline-block;
   }
 
-  #spacing-fix {
-    display: none;
-    padding-top: 2rem;
-    height: 5rem;
-    width: 100%;
-
-    @include susy-breakpoint($desktop, $desktop-columns) {
-      padding-top: 6rem;
-      padding-bottom: 2rem;
-    }
-  }
-
   #collective {
     position: relative;
-  }
-
-  #scrollInstr {
-    margin-top: 5rem;
-
-    .fa {
-      margin-left: 0.5em;
-      animation: pulse 2s ease infinite;
-    }
-
-    @include susy-breakpoint($desktop, $desktop-columns){
-      display: block;
-    }
   }
 
   .studiotrope-text {
@@ -60,8 +35,6 @@
   p {
     position: relative;
   }
-
-
 
   .description {
     margin-top: 5rem;
@@ -109,6 +82,7 @@
 }
 
 .the-collective {
+
   .mobile-dropdown {
     background-color: $white;
     top: $header-bar-height;
@@ -121,8 +95,6 @@
   }
 
   .contextual-module {
-    height: 4.5rem;
-
     @include susy-breakpoint($desktop, $desktop-columns){
       padding: ($header-bar-height + 4) 4rem 6rem;
     }

@@ -1,0 +1,136 @@
+{
+    "key": "group_55527229a1ebf",
+    "title": "Troper Details",
+    "fields": [
+        {
+            "key": "field_5575f9a23e489",
+            "label": "Abbreviation",
+            "name": "abbreviation",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. jomo",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_55527259bd06d",
+            "label": "Job Title",
+            "name": "st_job_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. Designer",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_55528b4772b03",
+            "label": "Profile Picture",
+            "name": "st_profile_picture",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_5552d0c77f4fe",
+            "label": "Email Address",
+            "name": "st_email_address",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5552d16781325",
+            "label": "Bio",
+            "name": "st_bio",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "br",
+            "readonly": 0,
+            "disabled": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "troper"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "custom_fields",
+        "discussion",
+        "comments",
+        "author",
+        "featured_image",
+        "send-trackbacks"
+    ],
+    "modified": 1442968824
+}

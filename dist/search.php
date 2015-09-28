@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 <?php get_template_part("contextual-module"); ?>
 <main class="l-container-w-side" role="main">
+<?php print_r($wp_query); ?>
 <?php if (any_of_post_type("project")): ?>
   <!-- section -->
   <section id="filter-description"></section>
@@ -22,6 +23,10 @@
   <!-- section -->
   <section id="tropers-results">
     <?php get_template_part('loop-troper'); ?>
+  </section>
+
+  <section id="tropers-results">
+    <?php get_template_part('loop-images'); ?>
   </section>
   <!-- /section -->
   <!-- section -->

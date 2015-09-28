@@ -25,6 +25,10 @@
       });
     }
 
+    if ($("div.lazy").length) {
+      $("div.lazy").lazyload({ });
+    }
+
 
     /**************************************************
       Mobile Navigation Sliding Menu

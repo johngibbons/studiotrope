@@ -1,0 +1,21 @@
+.tax-image_tag {
+  .mix {
+    display: inline-block;
+  }
+}
+
+.image.mix {
+  display: inline-block;
+}
+
+.image-thumb {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  transition: $base-transition;
+
+  &:hover {
+    filter: brightness(120%) saturate(80%);
+  }
+}

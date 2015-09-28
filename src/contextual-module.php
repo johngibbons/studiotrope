@@ -5,6 +5,8 @@ yoast_breadcrumb('<p id="breadcrumbs">','</p>');
 <?php 
   if(is_post_type_archive("troper")):
     get_sidebar("tropers");
+  elseif(is_tax("image_tag")):
+    get_sidebar("images");
   elseif(is_archive()):
     get_sidebar("projects");
   elseif(is_singular("project")):
