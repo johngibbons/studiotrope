@@ -12,6 +12,4 @@
       <?php $filter_post_type = "project"; ?>
       <?php include(locate_template('filter.php')); ?>
     </form>
-<?php else: ?>
-      <p>No results.  Please try again.</p>
 <?php endif; ?>

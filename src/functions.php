@@ -814,17 +814,37 @@ add_filter( 'get_next_post_sort', 'my_next_post_sort' );
 // Check if query returned any of Post Type
 
 function any_of_post_type($post_type) {
-  global $post;
-  if (have_posts()): while (have_posts()) : the_post(); 
-  $returned_types[] = get_post_type($post);
-endwhile;
-endif;
+  get_attachment_parents();
+  global $wp_query;
 
-if (isset($returned_types)) {
-  return in_array($post_type, $returned_types);
-} else {
-  return false;
+  $posts = $wp_query->posts;
+
+  if ($posts): foreach ( $posts as $single_post ) :
+    global $post;
+    $post = $single_post;
+    setup_postdata( $post );
+    $returned_types[] = get_post_type( $post );
+  endforeach;
+  endif;
+
+  if (isset($returned_types)) {
+    return in_array($post_type, $returned_types);
+  } else {
+    return false;
+  }
 }
+
+function get_attachment_parents() {
+  global $post;
+  $parent_ids = [];
+  if (have_posts()): while (have_posts()) : the_post(); 
+    array_push($parent_ids, $post->post_parent);
+  endwhile;
+  endif;
+
+  $query = new WP_Query( array( "post_type" => "project", "post__in" => $parent_ids ) );
+  global $wp_query;
+  $wp_query->posts = array_unique(array_merge($wp_query->posts, $query->posts), SORT_REGULAR);
 }
 
 //Get projects link for specific studio
