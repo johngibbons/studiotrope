@@ -605,7 +605,7 @@ function swiftype_javascript_config() {
 ?>
   <script type="text/javascript">
   var swiftypeConfig = {
-  fetchFields: {'posts': ['title', 'object_type', 'terms']},
+    fetchFields: {'posts': ['title', 'object_type', 'terms']},
     searchFields: {'posts': ['title', 'terms', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
 };
 </script>
@@ -679,7 +679,7 @@ function show_all_project_image_tags(){
 
   $post = get_post( $post->ID );
   $images = get_attached_media( "image" );
-  $tags = [];
+  $tags = array();
   foreach ( $images as $image ){
     $tags_obj = get_the_terms( $image->ID, "image_tag" );
     if ( $tags_obj ){
@@ -694,7 +694,7 @@ function show_all_project_image_tags(){
 
   echo "<li class='label'>Tags</li>";
   echo "<li class='value'>";
-  $tags_html = [];
+  $tags_html = array();
   foreach ($tags as $tag){
     $url = get_term_link($tag, "image_tag");
     array_push($tags_html, "<a href='" . $url . "'>" . $tag . "</a>");
@@ -722,16 +722,39 @@ function project_studios(){
 // add attachments to the main query using parse_query 
 
 function wptutsplus_add_attachments_to_tax_query() {
-     global $wp_query;
-     // When inside a custom taxonomy archive include attachments
-     if ( is_tax( 'image_tag' ) ) {
-         $wp_query->query_vars['post_type'] =  array( 'attachment' );
-         $wp_query->query_vars['post_status'] =  array( null );
- 
-        return $wp_query;
-    }
+  global $wp_query;
+  // When inside a custom taxonomy archive include attachments
+  if ( is_tax( 'image_tag' ) ) {
+    $wp_query->query_vars['post_type'] =  array( 'attachment' );
+    $wp_query->query_vars['post_status'] =  array( null );
+
+    return $wp_query;
+  }
 }
 add_action('parse_query', 'wptutsplus_add_attachments_to_tax_query');
+
+function make_all_attachments_published() {
+  global $wpdb;
+  $args = array(
+    "post_parent" => null,
+    "post_type" => "attachment",
+    "post_status" => "any"
+  );
+
+  $all_attachments = get_children( $args );
+
+  foreach($all_attachments as $attachment) {
+    $wpdb->query( 
+    $wpdb->prepare( 
+      "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", 
+        $attachment->ID
+      )
+    );
+  }
+
+
+}
+add_action('init', 'make_all_attachments_published');
 
 
 // ACF options page
@@ -791,17 +814,37 @@ add_filter( 'get_next_post_sort', 'my_next_post_sort' );
 // Check if query returned any of Post Type
 
 function any_of_post_type($post_type) {
-  global $post;
-  if (have_posts()): while (have_posts()) : the_post(); 
-  $returned_types[] = get_post_type($post);
-endwhile;
-endif;
+  get_attachment_parents();
+  global $wp_query;
 
-if (isset($returned_types)) {
-  return in_array($post_type, $returned_types);
-} else {
-  return false;
+  $posts = $wp_query->posts;
+
+  if ($posts): foreach ( $posts as $single_post ) :
+    global $post;
+    $post = $single_post;
+    setup_postdata( $post );
+    $returned_types[] = get_post_type( $post );
+  endforeach;
+  endif;
+
+  if (isset($returned_types)) {
+    return in_array($post_type, $returned_types);
+  } else {
+    return false;
+  }
 }
+
+function get_attachment_parents() {
+  global $post;
+  $parent_ids = array();
+  if (have_posts()): while (have_posts()) : the_post(); 
+    array_push($parent_ids, $post->post_parent);
+  endwhile;
+  endif;
+
+  $query = new WP_Query( array( "post_type" => "project", "post__in" => $parent_ids ) );
+  global $wp_query;
+  $wp_query->posts = array_unique(array_merge($wp_query->posts, $query->posts), SORT_REGULAR);
 }
 
 //Get projects link for specific studio

@@ -679,7 +679,7 @@ function show_all_project_image_tags(){
 
   $post = get_post( $post->ID );
   $images = get_attached_media( "image" );
-  $tags = [];
+  $tags = array();
   foreach ( $images as $image ){
     $tags_obj = get_the_terms( $image->ID, "image_tag" );
     if ( $tags_obj ){
@@ -694,7 +694,7 @@ function show_all_project_image_tags(){
 
   echo "<li class='label'>Tags</li>";
   echo "<li class='value'>";
-  $tags_html = [];
+  $tags_html = array();
   foreach ($tags as $tag){
     $url = get_term_link($tag, "image_tag");
     array_push($tags_html, "<a href='" . $url . "'>" . $tag . "</a>");
@@ -733,28 +733,6 @@ function wptutsplus_add_attachments_to_tax_query() {
 }
 add_action('parse_query', 'wptutsplus_add_attachments_to_tax_query');
 
-function make_all_attachments_published() {
-  global $wpdb;
-  $args = array(
-    "post_parent" => null,
-    "post_type" => "attachment",
-    "post_status" => "any"
-  );
-
-  $all_attachments = get_children( $args );
-
-  foreach($all_attachments as $attachment) {
-    $wpdb->query( 
-    $wpdb->prepare( 
-      "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", 
-        $attachment->ID
-      )
-    );
-  }
-
-
-}
-add_action('init', 'make_all_attachments_published');
 
 
 // ACF options page
@@ -836,7 +814,7 @@ function any_of_post_type($post_type) {
 
 function get_attachment_parents() {
   global $post;
-  $parent_ids = [];
+  $parent_ids = array();
   if (have_posts()): while (have_posts()) : the_post(); 
     array_push($parent_ids, $post->post_parent);
   endwhile;

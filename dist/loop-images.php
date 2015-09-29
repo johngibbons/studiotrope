@@ -7,12 +7,11 @@
       );
       $url = wp_get_attachment_image_src( $post->ID, "small", $imgattr );
       $url = $url[0]; ?>
-      <div class="image-thumb mix">
-        <a href ="<?php echo get_attachment_link(); ?>">
-          <span class="project-thumb lazy" data-original="<?php echo $url; ?>" style ="background-color: #eee;"></span>
+      <div class="image mix">
+        <a href ="<?php echo get_attachment_link(); ?>" rel="lightbox">
+          <div class="image-thumb lazy" data-original="<?php echo $url; ?>" style ="background-color: #eee;"></div>
         </a>
       </div>
-      <span class="image-thumb lazy" data-original="<?php echo $url ?>" style="background-color: #eee;"></span>
 <?php endif;
   endwhile;
   endif;
