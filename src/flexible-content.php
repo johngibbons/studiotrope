@@ -16,6 +16,8 @@
 
       if (get_sub_field("studio")) {
         $terms = get_sub_field('studio');
+      } else {
+        $terms = false;
       } ?>
 <?php $studio_names = array();
       array_push($studio_names, "all");

@@ -605,7 +605,7 @@ function swiftype_javascript_config() {
 ?>
   <script type="text/javascript">
   var swiftypeConfig = {
-    fetchFields: {'posts': ['title', 'object_type', 'terms']},
+  fetchFields: {'posts': ['title', 'object_type', 'terms']},
     searchFields: {'posts': ['title', 'terms', 'author', 'body', 'excerpt', 'project_description', 'flex_text', 'troper_job', 'troper_bio']}
 };
 </script>
@@ -727,35 +727,36 @@ function wptutsplus_add_attachments_to_tax_query() {
   if ( is_tax( 'image_tag' ) ) {
     $wp_query->query_vars['post_type'] =  array( 'attachment' );
     $wp_query->query_vars['post_status'] =  array( null );
-
-    return $wp_query;
+  } elseif ( is_search() ) {
+    $wp_query->query_vars['post_status'] = array( 'publish', 'inherit' );
   }
+
+  return $wp_query;
 }
 add_action('parse_query', 'wptutsplus_add_attachments_to_tax_query');
 
-function make_all_attachments_published() {
-  global $wpdb;
-  $args = array(
-    "post_parent" => null,
-    "post_type" => "attachment",
-    "post_status" => "any"
-  );
-
-  $all_attachments = get_children( $args );
-
-  foreach($all_attachments as $attachment) {
-    $wpdb->query( 
-    $wpdb->prepare( 
-      "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", 
-        $attachment->ID
-      )
-    );
-  }
-
-
-}
-add_action('init', 'make_all_attachments_published');
-
+//function make_all_attachments_published() {
+//  global $wpdb;
+//  $args = array(
+//    "post_parent" => null,
+//    "post_type" => "attachment",
+//    "post_status" => "any"
+//  );
+//
+//  $all_attachments = get_children( $args );
+//
+//  foreach($all_attachments as $attachment) {
+//    $wpdb->query( 
+//    $wpdb->prepare( 
+//      "UPDATE $wpdb->posts SET post_status = 'inherit' WHERE ID = %d", 
+//        $attachment->ID
+//      )
+//    );
+//  }
+//
+//
+//}
+//add_action('init', 'make_all_attachments_published');
 
 // ACF options page
 if( function_exists('acf_add_options_page') ) {
@@ -821,17 +822,17 @@ function any_of_post_type($post_type) {
 
   if ($posts): foreach ( $posts as $single_post ) :
     global $post;
-    $post = $single_post;
-    setup_postdata( $post );
-    $returned_types[] = get_post_type( $post );
-  endforeach;
-  endif;
+  $post = $single_post;
+  setup_postdata( $post );
+  $returned_types[] = get_post_type( $post );
+endforeach;
+endif;
 
-  if (isset($returned_types)) {
-    return in_array($post_type, $returned_types);
-  } else {
-    return false;
-  }
+if (isset($returned_types)) {
+  return in_array($post_type, $returned_types);
+} else {
+  return false;
+}
 }
 
 function get_attachment_parents() {
@@ -842,9 +843,10 @@ function get_attachment_parents() {
   endwhile;
   endif;
 
-  $query = new WP_Query( array( "post_type" => "project", "post__in" => $parent_ids ) );
+  $parent_ids = array_unique( $parent_ids );
+  $parent_query = new WP_Query( array( "post__in" => $parent_ids, "post_type" => "project" ) );
   global $wp_query;
-  $wp_query->posts = array_unique(array_merge($wp_query->posts, $query->posts), SORT_REGULAR);
+  $wp_query->posts = array_unique(array_merge($wp_query->posts, $parent_query->posts), SORT_REGULAR);
 }
 
 //Get projects link for specific studio

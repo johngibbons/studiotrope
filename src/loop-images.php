@@ -16,3 +16,6 @@
   endwhile;
   endif;
 ?>
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

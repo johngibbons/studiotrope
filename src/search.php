@@ -10,8 +10,6 @@
         <?php get_template_part('loop-images'); ?>
       </section>
 
-      <?php get_attachment_parents(); ?>
-
     <?php endif; ?>
 
     <?php if ( any_of_post_type("project") ): ?>
@@ -34,9 +32,6 @@
 
       <section id="projects-index" class="container">
         <?php get_template_part('loop-project'); ?>
-        <div class="gap"></div>
-        <div class="gap"></div>
-        <div class="gap"></div>
       </section>
 
     <?php endif; ?>

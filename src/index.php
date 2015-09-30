@@ -36,9 +36,6 @@
 
       <section id="projects-index" class="container">
         <?php get_template_part('loop-project'); ?>
-        <div class="gap"></div>
-        <div class="gap"></div>
-        <div class="gap"></div>
       </section>
 
     <?php endif; ?>

@@ -19,6 +19,9 @@
       </article>
     <?php endif; ?>
   <?php endforeach; ?>
+  <div class="gap"></div>
+  <div class="gap"></div>
+  <div class="gap"></div>
 <?php else: ?>
   <article>
     <h2><?php _e( 'No results. Please try again.', 'html5blank' ); ?></h2>
